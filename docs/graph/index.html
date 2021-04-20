@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+<html lang="cn" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.82.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="1061. 按字典序排列最小的等效字符串   1061. 按字典序排列最小的等效字符串 # 给出长度相同的两个字符串：A 和 B，其中 A[i] 和 B[i] 是一组等价字符。 举个例子，如果 A = &ldquo;abc&rdquo; 且 B = &ldquo;cde&rdquo;，那么就有 &lsquo;a&rsquo; == &lsquo;c&rsquo;, &lsquo;b&rsquo; == &rsquo;d&#39;, &lsquo;c&rsquo; == &lsquo;e&rsquo;。 等价字符遵循任何等价关系的一般规则： 自反性：&#39;a&#39; == &#39;a&#39; 对称性：&#39;a&#39; == &#39;b&#39; 则必定有 &#39;b&#39; == &#39;a&#39; 传递性：&#39;a&#39; == &#39;b&#39; 且 &#39;b&#39; == &#39;c&#39; 就表明 &#39;a&#39; == &#39;c&#39; 例如，A 和 B 的等价信息和之前的例子一样，那么 S = &quot;eed&quot;, &quot;acd&quot; 或 &quot;aab&quot;， 这三个字符串都是等价的，而 &quot;aab&quot; 是 S 的按字典序最小的等价字符串 利用 A 和 B 的等价信息，找出并返回 S 的按字典序排列最小的等价字符串。   1135.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="图" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://localhost:1313/docs/graph/" />
+
+<title>图 | Leetcode 之旅</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.a6e33eff9fca295dda99115dabc387fd12b0e1282a347b6e4de6e73b19c96d91.css" integrity="sha256-puM&#43;/5/KKV3amRFdq8OH/RKw4SgqNHtuTebnOxnJbZE=">
+<script defer src="/cn.search.min.f6be3ada9b7a3daac2a78d9701a643d3609b4bc0d2546616c251f57bf0759c6a.js" integrity="sha256-9r462pt6ParCp42XAaZD02CbS8DSVGYWwlH1e/B1nGo="></script>
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/docs/graph/index.xml" title="Leetcode 之旅" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><span>Leetcode 之旅</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="搜索" aria-label="搜索" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/sort/" class="">排序</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/sort/contains-duplicate-iii/readme/" class="">220. 存在重复元素 III</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/sort/sort2d/" class="">二维排序问题</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/sort/mergesort/" class="">归并排序</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/sort/quick-select/" class="">快速选择算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/sort/kth-largest-element-in-an-array/readme/" class="">数组中的第K个元素</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/sort/count-of-smaller-numbers-after-self/readme/" class="">数组中的逆序对</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/sort/countsort/" class="">计数排序</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/" class="">哈希表、数组</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/two_sum/readme/" class="">1. 两数之和</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/clumsy-factorial/readme/" class="">1006. 笨阶乘</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/get-equal-substrings-within-budget/readme/" class="">1208. 尽可能使字符串相等</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/how-many-numbers-are-smaller-than-the-current-number/readme/" class="">1365. 有多少小于当前数字的数字</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/longest-sub-arr-with-fixed-sum/readme/" class="">1658. 将 x 减到 0 的最小操作数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/largest-number/readme/" class="">179. 最大数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/queue-reconstruction-by-height/readme/" class="">406. 根据身高重建队列 </a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/longest-repeating-character-replacement/readme/" class="">424. 替换后的最长重复字符</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/rotate-image/readme/" class="">48. 旋转图像</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/longest_palindromic_substring/readme/" class="">5. 最长回文子串</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/can-you-eat-your-favorite-candy-on-your-favorite-day/readme/" class="">5667. 你能在你最喜欢的那天吃到你最喜欢的糖果吗？</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/permutation-in-string/readme/" class="">567. 字符串的排列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/" class="">632. 最小区间</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/subarrays-with-k-different-integers/readme/" class="">992. K 个不同整数的子数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/search-a-2d-matrix/readme/" class="">搜索有序二维数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/matrix-traversal/readme/" class="">遍历二维矩阵</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/coin-change/readme/" class="">零钱兑换</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/hashmap-array/circus-tower-lcci/readme/" class="">面试题 17.08. 马戏团人塔</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/binary-search/" class="">二分搜索</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/binary-search/search-in-rotated-sorted-array/readme/" class="">33. 搜索旋转排序数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/binary-search/find-first-and-last-position-of-element-in-sorted-array/readme/" class="">34. 在排序数组中查找元素的第一个和最后一个位置</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/binary-search/median_of_two_sorted_arrays/readme/" class="">4. 寻找两个有序数组的中位数</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/linked-list/" class="">链表</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/linked-list/add_two_numbers/readme/" class="">2. 两数相加</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/linked-list/merge-k-sorted-lists/readme/" class="">23. 合并K个升序链表</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/" class="">树</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/binary-tree-level-order-traversal/readme/" class="">102. 二叉树的层序遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/binary-tree-zigzag-level-order-traversal/readme/" class="">103. 二叉树的之字形形层次遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/validate-binary-tree-nodes/readme/" class="">1361. 验证二叉树</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/maximum-sum-bst-in-binary-tree/readme/" class="">1373. 二叉搜索子树的最大键值和</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/binary-tree-preorder-traversal/readme/" class="">144. 二叉树的前序遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/binary-tree-postorder-traversal/readme/" class="">145. 二叉树的后序遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/serialize-and-deserialize-binary-tree/readme/" class="">297. 二叉树的序列化与反序列化</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/verify-preorder-serialization-of-a-binary-tree/readme/" class="">331. 验证二叉树的前序序列化</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/trim-a-binary-search-tree/readme/" class="">669. 修剪二叉搜索树</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/sum-of-distances-in-tree/readme/" class="">834. 树中距离之和</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/binary-tree-inorder-traversal/readme/" class="">94. 二叉树的中序遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/vertical-order-traversal-of-a-binary-tree/readme/" class="">987. 二叉树的垂序遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/traversal/binary-tree-morris/" class="">Morris 遍历二叉树</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/traversal/tree-traversal-levelorder/" class="">一般树的 BFS 层次遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/traversal/tree-traversal-dfs/" class="">一般树的 DFS 深度遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/tree/traversal/tree-traversal/" class="">树的遍历</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/" class=" active">图</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/lexicographically-smallest-equivalent-string/readme/" class="">1061. 按字典序排列最小的等效字符串</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/connecting-cities-with-minimum-cost/readme/" class="">1135. 最低成本联通所有城市</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/optimize-water-distribution-in-a-village/readme/" class="">1168. 水资源分配优化</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/smallest-string-with-swaps/readme/" class="">1202. 交换字符串中的元素</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/sort-items-by-groups-respecting-dependencies/readme/" class="">1203. 项目管理</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/critical-and-pseudo-critical-edges-in-mst/readme/" class="">1489. 找到最小生成树里的关键边和伪关键边</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/remove-max-number-of-edges-to-keep-graph-fully-traversable/readme/" class="">1579. 保证图可完全遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/course-schedule-ii/readme/" class="">210. 课程表 II</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/reconstruct-itinerary/readme/" class="">332. 重新安排行程</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/evaluate-division/readme/" class="">399. 除法求值</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/number-of-provinces/readme/" class="">547. 省份数量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/accounts-merge/readme/" class="">721. 账户合并</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/cracking-the-safe/readme/" class="">753. 破解保险箱</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/bricks-falling-when-hit/readme/" class="">803. 打砖块</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/most-stones-removed-with-same-row-or-column/readme/" class="">947. 移除最多的同行或同列石头</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/largest-component-size-by-common-factor/readme/" class="">952. 按公因数计算最大组件大小</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/satisfiability-of-equality-equations/readme/" class="">990. 等式方程的可满足性</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/union-find/union-find/" class="">UnionFind</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/graph/redundant-connection/readme/" class="">冗余连接</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/" class="">动态规划、贪心</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/video-stitching/readme/" class="">1024. 视频剪辑</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/palindrome-partitioning/readme/" class="">131. 分割回文串</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/minimize-deviation-in-array/readme/" class="">1675. 数组的最小偏移量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/132-pattern/readme/" class="">456. 132 模式</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/ones-and-zeroes/readme/" class="">474. 一和零</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/predict-the-winner/readme/" class="">486. 预测赢家</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/advantage-shuffle/readme/" class="">870. 优势洗牌</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/stamping-the-sequence/readme/" class="">936. 戳印序列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/longest-turbulent-subarray/readme/" class="">978. 最长湍流子数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/xunbao/readme/" class="">LCP 13. 寻宝</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/remove-k-digits/readme/" class="">去掉 k 个字符使结果保持一定顺序</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/special-dp/dp-in-a-tree/" class="">在树上动态规划</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/maximum-subarray/readme/" class="">最大子序和</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/trapping-rain-water/readme/" class="">柱状图中接雨水、找方块</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/stone-game/readme/" class="">石子游戏</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/best-time-to-buy-and-sell-stock/readme/" class="">股票收益问题</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/special-dp/pack/" class="">背包问题</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/jump-game/readme/" class="">跳跃游戏</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/dp-and-greedy/rearrange-k-distance-apart/readme/" class="">重排使相同元素至少间隔k</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/divide-and-conquer/" class="">分治</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/divide-and-conquer/count-of-range-sum/readme/" class="">327. 区间和的个数</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/" class="">回溯、bfs、dfs</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/path-with-minimum-effort/readme/" class="">1631. 最小体力消耗路径</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/combination-sum/readme/" class="">39. 组合总和</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/open-the-lock/readme/" class="">752. 打开转盘锁</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/swim-in-rising-water/readme/" class="">778. 水位上升的泳池中游泳</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/mechtz/readme/" class="">LCP 20. 快速公交</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/unique-paths/readme/" class="">不同路径</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/permutations/readme/" class="">全排列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/partition-to-k-equal-sum-subsets/readme/" class="">划分为k个相等的子集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/word-ladder/readme/" class="">单词接龙</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/subsets/readme/" class="">子集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/backtrack-dfs-bfs/freedom-trail/readme/" class="">自由之路</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/bit/" class="">位运算</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/bit/exchange-lcci/readme/" class="">面试题 05.07. 配对交换</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/bit/readme/" class="">位运算</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/design/" class="">设计</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/design/design-front-middle-back-queue/readme/" class="">1670. 设计前中后队列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/design/find-median-from-data-stream/readme/" class="">295. 数据流的中位数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/design/flatten-nested-list-iterator/readme/" class="">341. 扁平化嵌套列表迭代器</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/design/exam-room/readme/" class="">855. 考场就座</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/design/range-sum-query-2d-matrix/readme/" class="">二维区域子矩阵和</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/design/implement-trie-prefix-tree/readme/" class="">前缀树</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/design/my-calendar/readme/" class="">我的日程安排表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/design/design-twitter/readme/" class="">设计推特</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/stack-queue/" class="">栈、队列</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/stack-queue/validate-stack-sequences/readme/" class="">946. 验证栈序列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/stack-queue/largest-rectangle/readme/" class="">单调栈</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/math/" class="">数学</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/random/" class="">随机</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/others/" class="">其他</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/others/find-the-longest-substring-containing-vowels-in-even-counts/readme/" class="">1371. 每个元音包含偶数次的最长子字符串</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/others/is-string-a-number/readme/" class="">剑指 Offer 20. 表示数值的字符串</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/others/vowel-spellchecker/readme/" class="">找到中间态，避免穷举</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/go/" class="">扩展</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/go/base/" class="">Go语言特性</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/go/base/slice-insert/" class="">怎么在切片的指定索引处插入一个元素？</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/go/base/reference-value/" class="">类型：值还是引用</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/go/data-structural/" class="">Go 语言数据结构</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/go/data-structural/treap/" class="">Treap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/go/data-structural/heap/" class="">堆的使用</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://localhost:1313/docs/go/data-structural/heap-delete/" class="">支持删除任意元素的堆</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>图</strong>
+
+  <label for="toc-control">
+    
+  </label>
+</div>
+
+
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><dl>
+
+  <dt>
+    <a href="/docs/graph/lexicographically-smallest-equivalent-string/readme/">1061. 按字典序排列最小的等效字符串</a>
+  </dt>
+  <dd>
+    1061. 按字典序排列最小的等效字符串 #  给出长度相同的两个字符串：A 和 B，其中 A[i] 和 B[i] 是一组等价字符。
+举个例子，如果 A = &ldquo;abc&rdquo; 且 B = &ldquo;cde&rdquo;，那么就有 &lsquo;a&rsquo; == &lsquo;c&rsquo;, &lsquo;b&rsquo; == &rsquo;d', &lsquo;c&rsquo; == &lsquo;e&rsquo;。
+等价字符遵循任何等价关系的一般规则：
+自反性：'a' == 'a' 对称性：'a' == 'b' 则必定有 'b' == 'a' 传递性：'a' == 'b' 且 'b' == 'c' 就表明 'a' == 'c' 例如，A 和 B 的等价信息和之前的例子一样，那么 S = &quot;eed&quot;, &quot;acd&quot; 或 &quot;aab&quot;， 这三个字符串都是等价的，而 &quot;aab&quot; 是 S 的按字典序最小的等价字符串  利用 A 和 B 的等价信息，找出并返回 S 的按字典序排列最小的等价字符串。
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/connecting-cities-with-minimum-cost/readme/">1135. 最低成本联通所有城市</a>
+  </dt>
+  <dd>
+    1135. 最低成本联通所有城市 #  想象一下你是个城市基建规划者，地图上有 N 座城市，它们按以 1 到 N 的次序编号。
+给你一些可连接的选项 conections，其中每个选项 conections[i] = [city1, city2, cost] 表示
+将城市 city1 和城市 city2 连接所要的成本。
+（连接是双向的，也就是说城市 city1 和城市 city2 相连也同样意味着城市 city2 和城市 city1 相连）。
+返回使得每对城市间都存在将它们连接在一起的连通路径（可能长度为 1 的）最小成本。
+该最小成本应该是所用全部连接代价的综合。
+如果根据已知条件无法完成该项任务，则请你返回 -1。
+示例 1： 输入：N = 3, conections = [[1,2,5],[1,3,6],[2,3,1]] 输出：6 解释： 选出任意 2 条边都可以连接所有城市，我们从中选取成本最小的 2 条。 示例 2： 输入：N = 4, conections = [[1,2,3],[3,4,4]] 输出：-1 解释： 即使连通所有的边，也无法连接所有城市。 提示：
+1 &lt;= N &lt;= 10000 1 &lt;= conections.
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/optimize-water-distribution-in-a-village/readme/">1168. 水资源分配优化</a>
+  </dt>
+  <dd>
+    1168. 水资源分配优化 #  村里面一共有 n 栋房子。我们希望通过建造水井和铺设管道来为所有房子供水。
+对于每个房子 i，我们有两种可选的供水方案：
+一种是直接在房子内建造水井，成本为 wells[i]；
+另一种是从另一口井铺设管道引水，数组 pipes 给出了在房子间铺设管道的成本，
+其中每个 pipes[i] = [house1, house2, cost] 代表用管道将 house1 和 house2 连接在一起的成本。
+当然，连接是双向的。
+请你帮忙计算为所有房子都供水的最低总成本。
+示例： 输入：n = 3, wells = [1,2,2], pipes = [[1,2,1],[2,3,1]] 输出：3 解释： 上图展示了铺设管道连接房屋的成本。 最好的策略是在第一个房子里建造水井（成本为 1），然后将其他房子铺设管道连起来（成本为 2），所以总成本为 3。 提示： 1 &lt;= n &lt;= 10000 wells.length == n 0 &lt;= wells[i] &lt;= 10^5 1 &lt;= pipes.length &lt;= 10000 1 &lt;= pipes[i][0], pipes[i][1] &lt;= n 0 &lt;= pipes[i][2] &lt;= 10^5 pipes[i][0] !
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/smallest-string-with-swaps/readme/">1202. 交换字符串中的元素</a>
+  </dt>
+  <dd>
+    1202. 交换字符串中的元素 #  难度中等
+给你一个字符串 s，以及该字符串中的一些「索引对」数组 pairs，其中 pairs[i] = [a, b] 表示字符串中的两个索引（编号从 0 开始）。
+你可以 任意多次交换 在 pairs 中任意一对索引处的字符。
+返回在经过若干次交换后，s 可以变成的按字典序最小的字符串。
+示例 1:
+输入：s = &quot;dcab&quot;, pairs = [[0,3],[1,2]] 输出：&quot;bacd&quot; 解释： 交换 s[0] 和 s[3], s = &quot;bcad&quot; 交换 s[1] 和 s[2], s = &quot;bacd&quot; 示例 2：
+输入：s = &quot;dcab&quot;, pairs = [[0,3],[1,2],[0,2]] 输出：&quot;abcd&quot; 解释： 交换 s[0] 和 s[3], s = &quot;bcad&quot; 交换 s[0] 和 s[2], s = &quot;acbd&quot; 交换 s[1] 和 s[2], s = &quot;abcd&quot; 示例 3：
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/sort-items-by-groups-respecting-dependencies/readme/">1203. 项目管理</a>
+  </dt>
+  <dd>
+    1203. 项目管理 #  难度困难
+公司共有 n 个项目和 m 个小组，每个项目要不无人接手，要不就由 m 个小组之一负责。
+group[i] 表示第 i 个项目所属的小组，如果这个项目目前无人接手，那么 group[i] 就等于 -1。（项目和小组都是从零开始编号的）小组可能存在没有接手任何项目的情况。
+请你帮忙按要求安排这些项目的进度，并返回排序后的项目列表：
+ 同一小组的项目，排序后在列表中彼此相邻。 项目之间存在一定的依赖关系，我们用一个列表 beforeItems 来表示，其中 beforeItems[i] 表示在进行第 i 个项目前（位于第 i 个项目左侧）应该完成的所有项目。  如果存在多个解决方案，只需要返回其中任意一个即可。如果没有合适的解决方案，就请返回一个 空列表 。
+示例 1：
+
+输入：n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3,6],[],[],[]] 输出：[6,3,4,1,5,2,0,7] 示例 2：
+输入：n = 8, m = 2, group = [-1,-1,1,0,0,1,0,-1], beforeItems = [[],[6],[5],[6],[3],[],[4],[]] 输出：[] 解释：与示例 1 大致相同，但是在排序后的列表中，4 必须放在 6 的前面。 提示：
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/critical-and-pseudo-critical-edges-in-mst/readme/">1489. 找到最小生成树里的关键边和伪关键边</a>
+  </dt>
+  <dd>
+    1489. 找到最小生成树里的关键边和伪关键边 #  难度困难
+给你一个 n 个点的带权无向连通图，节点编号为 0 到 n-1 ，同时还有一个数组 edges ，其中 edges[i] = [fromi, toi, weighti] 表示在 fromi 和 toi 节点之间有一条带权无向边。最小生成树 (MST) 是给定图中边的一个子集，它连接了所有节点且没有环，而且这些边的权值和最小。
+请你找到给定图中最小生成树的所有关键边和伪关键边。如果从图中删去某条边，会导致最小生成树的权值和增加，那么我们就说它是一条关键边。伪关键边则是可能会出现在某些最小生成树中但不会出现在所有最小生成树中的边。
+请注意，你可以分别以任意顺序返回关键边的下标和伪关键边的下标。
+示例 1：
+输入：n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]] 输出：[[0,1],[2,3,4,5]] 解释：上图描述了给定图。 下图是所有的最小生成树。 注意到第 0 条边和第 1 条边出现在了所有最小生成树中，所以它们是关键边，我们将这两个下标作为输出的第一个列表。 边 2，3，4 和 5 是所有 MST 的剩余边，所以它们是伪关键边。我们将它们作为输出的第二个列表。 示例 2 ：
+输入：n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]] 输出：[[],[0,1,2,3]] 解释：可以观察到 4 条边都有相同的权值，任选它们中的 3 条可以形成一棵 MST 。所以 4 条边都是伪关键边。 提示：
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/remove-max-number-of-edges-to-keep-graph-fully-traversable/readme/">1579. 保证图可完全遍历</a>
+  </dt>
+  <dd>
+    1579. 保证图可完全遍历 #  难度困难
+Alice 和 Bob 共有一个无向图，其中包含 n 个节点和 3 种类型的边：
+ 类型 1：只能由 Alice 遍历。 类型 2：只能由 Bob 遍历。 类型 3：Alice 和 Bob 都可以遍历。  给你一个数组 edges ，其中 edges[i] = [typei, ui, vi] 表示节点 ui 和 vi 之间存在类型为 typei 的双向边。请你在保证图仍能够被 Alice和 Bob 完全遍历的前提下，找出可以删除的最大边数。如果从任何节点开始，Alice 和 Bob 都可以到达所有其他节点，则认为图是可以完全遍历的。
+返回可以删除的最大边数，如果 Alice 和 Bob 无法完全遍历图，则返回 -1 。
+示例 1：
+
+输入：n = 4, edges = [[3,1,2],[3,2,3],[1,1,3],[1,2,4],[1,1,2],[2,3,4]] 输出：2 解释：如果删除 [1,1,2] 和 [1,1,3] 这两条边，Alice 和 Bob 仍然可以完全遍历这个图。再删除任何其他的边都无法保证图可以完全遍历。所以可以删除的最大边数是 2 。 示例 2：
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/course-schedule-ii/readme/">210. 课程表 II</a>
+  </dt>
+  <dd>
+    210. 课程表 II #  现在你总共有 n 门课需要选，记为 0 到 n-1。
+在选修某些课程之前需要一些先修课程。
+例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: [0,1]
+给定课程总量以及它们的先决条件，返回你为了学完所有课程所安排的学习顺序。
+可能会有多个正确的顺序，你只要返回一种就可以了。如果不可能完成所有课程，返回一个空数组。
+示例 1: 输入: 2, [[1,0]] 输出: [0,1] 解释: 总共有 2 门课程。要学习课程 1，你需要先完成课程 0。因此，正确的课程顺序为 [0,1] 。 示例 2: 输入: 4, [[1,0],[2,0],[3,1],[3,2]] 输出: [0,1,2,3] or [0,2,1,3] 解释: 总共有 4 门课程。要学习课程 3，你应该先完成课程 1 和课程 2。 并且课程 1 和课程 2 都应该排在课程 0 之后。 因此，一个正确的课程顺序是 [0,1,2,3] 。另一个正确的排序是 [0,2,1,3] 。 说明: 输入的先决条件是由边缘列表表示的图形，而不是邻接矩阵。详情请参见图的表示法。 你可以假定输入的先决条件中没有重复的边。 提示: 这个问题相当于查找一个循环是否存在于有向图中。如果存在循环， 则不存在拓扑排序，因此不可能选取所有课程进行学习。 通过 DFS 进行拓扑排序 - 一个关于Coursera的精彩视频教程（21分钟），介绍拓扑排序的基本概念。 拓扑排序也可以通过 BFS 完成。]	分析 #  经典拓扑排序。
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/reconstruct-itinerary/readme/">332. 重新安排行程</a>
+  </dt>
+  <dd>
+    332. 重新安排行程 #  难度中等
+给定一个机票的字符串二维数组 [from, to]，子数组中的两个成员分别表示飞机出发和降落的机场地点，对该行程进行重新规划排序。所有这些机票都属于一个从 JFK（肯尼迪国际机场）出发的先生，所以该行程必须从 JFK 开始。
+提示：
+ 如果存在多种有效的行程，请你按字符自然排序返回最小的行程组合。例如，行程 [&ldquo;JFK&rdquo;, &ldquo;LGA&rdquo;] 与 [&ldquo;JFK&rdquo;, &ldquo;LGB&rdquo;] 相比就更小，排序更靠前 所有的机场都用三个大写字母表示（机场代码）。 假定所有机票至少存在一种合理的行程。 所有的机票必须都用一次 且 只能用一次。  示例 1：
+输入：[[&quot;MUC&quot;, &quot;LHR&quot;], [&quot;JFK&quot;, &quot;MUC&quot;], [&quot;SFO&quot;, &quot;SJC&quot;], [&quot;LHR&quot;, &quot;SFO&quot;]] 输出：[&quot;JFK&quot;, &quot;MUC&quot;, &quot;LHR&quot;, &quot;SFO&quot;, &quot;SJC&quot;] 示例 2：
+输入：[[&quot;JFK&quot;,&quot;SFO&quot;],[&quot;JFK&quot;,&quot;ATL&quot;],[&quot;SFO&quot;,&quot;ATL&quot;],[&quot;ATL&quot;,&quot;JFK&quot;],[&quot;ATL&quot;,&quot;SFO&quot;]] 输出：[&quot;JFK&quot;,&quot;ATL&quot;,&quot;JFK&quot;,&quot;SFO&quot;,&quot;ATL&quot;,&quot;SFO&quot;] 解释：另一种有效的行程是 [&quot;JFK&quot;,&quot;SFO&quot;,&quot;ATL&quot;,&quot;JFK&quot;,&quot;ATL&quot;,&quot;SFO&quot;]。但是它自然排序更大更靠后。 函数签名
+func findItinerary(tickets [][]string) []string 分析 #  这是数学里的欧拉“七桥问题”，即“一笔画”问题。主要难点在于图有环。
+先不考虑字符排序，尝试深度优先遍历。
+对于当前节点 x， 再向下有多于一种走法，需要优先把可能形成环的路径先走完。如下：
+ a &lt;- x -&gt; b ^ | \ v c 题目保证了有解，即对于 x ，在接下来的选择中可以有多个环路，但最多有一个非环路（死胡同），否则无法走完所有的边。
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/evaluate-division/readme/">399. 除法求值</a>
+  </dt>
+  <dd>
+    399. 除法求值 #  难度中等
+给你一个变量对数组 equations 和一个实数值数组 values 作为已知条件，其中 equations[i] = [Ai, Bi] 和 values[i] 共同表示等式 Ai / Bi = values[i] 。每个 Ai 或 Bi 是一个表示单个变量的字符串。
+另有一些以数组 queries 表示的问题，其中 queries[j] = [Cj, Dj] 表示第 j 个问题，请你根据已知条件找出 Cj / Dj = ? 的结果作为答案。
+返回 所有问题的答案 。如果存在某个无法确定的答案，则用 -1.0 替代这个答案。
+**注意：**输入总是有效的。你可以假设除法运算中不会出现除数为 0 的情况，且不存在任何矛盾的结果。
+示例 1：
+输入：equations = [[&quot;a&quot;,&quot;b&quot;],[&quot;b&quot;,&quot;c&quot;]], values = [2.0,3.0], queries = [[&quot;a&quot;,&quot;c&quot;],[&quot;b&quot;,&quot;a&quot;],[&quot;a&quot;,&quot;e&quot;],[&quot;a&quot;,&quot;a&quot;],[&quot;x&quot;,&quot;x&quot;]] 输出：[6.00000,0.50000,-1.00000,1.00000,-1.00000] 解释： 条件：a / b = 2.0, b / c = 3.
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/number-of-provinces/readme/">547. 省份数量</a>
+  </dt>
+  <dd>
+    547. 省份数量 #  难度中等
+有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。
+省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。
+给你一个 n x n 的矩阵 isConnected ，其中 isConnected[i][j] = 1 表示第 i 个城市和第 j 个城市直接相连，而 isConnected[i][j] = 0 表示二者不直接相连。
+返回矩阵中 省份 的数量。
+示例 1：
+输入：isConnected = [[1,1,0],[1,1,0],[0,0,1]] 输出：2 示例 2：
+输入：isConnected = [[1,0,0],[0,1,0],[0,0,1]] 输出：3 提示：
+ 1 &lt;= n &lt;= 200 n == isConnected.length n == isConnected[i].length isConnected[i][j] 为 1 或 0 isConnected[i][i] == 1 isConnected[i][j] == isConnected[j][i]  函数签名：
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/accounts-merge/readme/">721. 账户合并</a>
+  </dt>
+  <dd>
+    721. 账户合并 #  难度中等
+给定一个列表 accounts，每个元素 accounts[i] 是一个字符串列表，其中第一个元素 accounts[i][0] 是 名称 (name)，其余元素是 emails 表示该账户的邮箱地址。
+现在，我们想合并这些账户。如果两个账户都有一些共同的邮箱地址，则两个账户必定属于同一个人。请注意，即使两个账户具有相同的名称，它们也可能属于不同的人，因为人们可能具有相同的名称。一个人最初可以拥有任意数量的账户，但其所有账户都具有相同的名称。
+合并账户后，按以下格式返回账户：每个账户的第一个元素是名称，其余元素是按顺序排列的邮箱地址。账户本身可以以任意顺序返回。
+示例 1：
+输入： accounts = [[&quot;John&quot;, &quot;johnsmith@mail.com&quot;, &quot;john00@mail.com&quot;], [&quot;John&quot;, &quot;johnnybravo@mail.com&quot;], [&quot;John&quot;, &quot;johnsmith@mail.com&quot;, &quot;john_newyork@mail.com&quot;], [&quot;Mary&quot;, &quot;mary@mail.com&quot;]] 输出： [[&quot;John&quot;, 'john00@mail.com', 'john_newyork@mail.com', 'johnsmith@mail.com'], [&quot;John&quot;, &quot;johnnybravo@mail.com&quot;], [&quot;Mary&quot;, &quot;mary@mail.com&quot;]] 解释： 第一个和第三个 John 是同一个人，因为他们有共同的邮箱地址 &quot;johnsmith@mail.com&quot;。 第二个 John 和 Mary 是不同的人，因为他们的邮箱地址没有被其他帐户使用。 可以以任何顺序返回这些列表，例如答案 [['Mary'，'mary@mail.com']，['John'，'johnnybravo@mail.com']， ['John'，'john00@mail.com'，'john_newyork@mail.com'，'johnsmith@mail.com']] 也是正确的。 提示：
+ accounts的长度将在[1，1000]的范围内。 accounts[i]的长度将在[1，10]的范围内。 accounts[i][j]的长度将在[1，30]的范围内。  函数签名：
+func accountsMerge(accounts [][]string) [][]string 分析 #  每一行输入数据里的几个邮箱必定属于同一个人，不同行同一个邮箱一定属于同一个个人。这样从邮箱的维度统计就行。使用并查集比较方便。
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/cracking-the-safe/readme/">753. 破解保险箱</a>
+  </dt>
+  <dd>
+    753. 破解保险箱 #  有一个需要密码才能打开的保险箱。密码是 n 位数, 密码的每一位是 k 位序列 0, 1, &hellip;, k-1 中的一个 。
+你可以随意输入密码，保险箱会自动记住最后 n 位输入，如果匹配，则能够打开保险箱。
+举个例子，假设密码是 &ldquo;345&rdquo;，你可以输入 &ldquo;012345&rdquo; 来打开它，只是你输入了 6 个字符.
+请返回一个能打开保险箱的最短字符串。
+示例1: 输入: n = 1, k = 2 输出: &quot;01&quot; 说明: &quot;10&quot;也可以打开保险箱。 示例2: 输入: n = 2, k = 2 输出: &quot;00110&quot; 说明: &quot;01100&quot;, &quot;10011&quot;, &quot;11001&quot; 也能打开保险箱。 提示： n 的范围是 [1, 4]。 k 的范围是 [1, 10]。 k^n 最大可能为 4096。 分析 #  即需要穷举 n 位 k 进制数的排列。
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/bricks-falling-when-hit/readme/">803. 打砖块</a>
+  </dt>
+  <dd>
+    803. 打砖块 #  难度困难
+有一个 m x n 的二元网格，其中 1 表示砖块，0 表示空白。砖块 稳定（不会掉落）的前提是：
+ 一块砖直接连接到网格的顶部，或者 至少有一块相邻（4 个方向之一）砖块 稳定 不会掉落时  给你一个数组 hits ，这是需要依次消除砖块的位置。每当消除 hits[i] = (rowi, coli) 位置上的砖块时，对应位置的砖块（若存在）会消失，然后其他的砖块可能因为这一消除操作而掉落。一旦砖块掉落，它会立即从网格中消失（即，它不会落在其他稳定的砖块上）。
+返回一个数组 result ，其中 result[i] 表示第 i 次消除操作对应掉落的砖块数目。
+注意，消除可能指向是没有砖块的空白位置，如果发生这种情况，则没有砖块掉落。
+示例 1：
+输入：grid = [[1,0,0,0],[1,1,1,0]], hits = [[1,0]] 输出：[2] 解释： 网格开始为： [[1,0,0,0]， [1,1,1,0]] 消除 (1,0) 处加粗的砖块，得到网格： [[1,0,0,0] [0,1,1,0]] 两个加粗的砖不再稳定，因为它们不再与顶部相连，也不再与另一个稳定的砖相邻，因此它们将掉落。得到网格： [[1,0,0,0], [0,0,0,0]] 因此，结果为 [2] 。 示例 2：
+输入：grid = [[1,0,0,0],[1,1,0,0]], hits = [[1,1],[1,0]] 输出：[0,0] 解释： 网格开始为： [[1,0,0,0], [1,1,0,0]] 消除 (1,1) 处加粗的砖块，得到网格： [[1,0,0,0], [1,0,0,0]] 剩下的砖都很稳定，所以不会掉落。网格保持不变： [[1,0,0,0], [1,0,0,0]] 接下来消除 (1,0) 处加粗的砖块，得到网格： [[1,0,0,0], [0,0,0,0]] 剩下的砖块仍然是稳定的，所以不会有砖块掉落。 因此，结果为 [0,0] 。 提示：
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/most-stones-removed-with-same-row-or-column/readme/">947. 移除最多的同行或同列石头</a>
+  </dt>
+  <dd>
+    947. 移除最多的同行或同列石头 #  难度中等182收藏分享切换为英文接收动态反馈
+n 块石头放置在二维平面中的一些整数坐标点上。每个坐标点上最多只能有一块石头。
+如果一块石头的 同行或者同列 上有其他石头存在，那么就可以移除这块石头。
+给你一个长度为 n 的数组 stones ，其中 stones[i] = [xi, yi] 表示第 i 块石头的位置，返回 可以移除的石子 的最大数量。
+示例 1：
+输入：stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]] 输出：5 解释：一种移除 5 块石头的方法如下所示： 1. 移除石头 [2,2] ，因为它和 [2,1] 同行。 2. 移除石头 [2,1] ，因为它和 [0,1] 同列。 3. 移除石头 [1,2] ，因为它和 [1,0] 同行。 4. 移除石头 [1,0] ，因为它和 [0,0] 同列。 5. 移除石头 [0,1] ，因为它和 [0,0] 同行。 石头 [0,0] 不能移除，因为它没有与另一块石头同行/列。 示例 2：
+输入：stones = [[0,0],[0,2],[1,1],[2,0],[2,2]] 输出：3 解释：一种移除 3 块石头的方法如下所示： 1.
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/largest-component-size-by-common-factor/readme/">952. 按公因数计算最大组件大小</a>
+  </dt>
+  <dd>
+    952. 按公因数计算最大组件大小 #  难度困难
+给定一个由不同正整数的组成的非空数组 A，考虑下面的图：
+ 有 A.length 个节点，按从 A[0] 到 A[A.length - 1] 标记； 只有当 A[i] 和 A[j] 共用一个大于 1 的公因数时，A[i] 和 A[j] 之间才有一条边。  返回图中最大连通组件的大小。
+示例 1：
+输入：[4,6,15,35] 输出：4 示例 2：
+输入：[20,50,9,63] 输出：2 示例 3：
+输入：[2,3,6,7,4,12,21,39] 输出：8 提示：
+ 1 &lt;= A.length &lt;= 20000 1 &lt;= A[i] &lt;= 100000  函数签名：
+func largestComponentSize(A []int) int 分析 #  用并查集将极大简化问题。一个自然的思路是两重循环让数组里的元素两两相遇，再求下最大公约数 gcd，如果 gcd 大于 1，就把两个数字在并查集合并，最终统计并查集里每个连通分量的大小就行。
+不过这样做的复杂度较大，假设数组长度为 n，最大数字为 m， 并查集操作看成常数级别，那么复杂度将是 O(n^2*logm)。
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/satisfiability-of-equality-equations/readme/">990. 等式方程的可满足性</a>
+  </dt>
+  <dd>
+    990. 等式方程的可满足性 #  难度中等141
+给定一个由表示变量之间关系的字符串方程组成的数组，每个字符串方程 equations[i] 的长度为 4，并采用两种不同的形式之一：&quot;a==b&quot; 或 &quot;a!=b&quot;。在这里，a 和 b 是小写字母（不一定不同），表示单字母变量名。
+只有当可以将整数分配给变量名，以便满足所有给定的方程时才返回 true，否则返回 false。
+示例 1：
+输入：[&quot;a==b&quot;,&quot;b!=a&quot;] 输出：false 解释：如果我们指定，a = 1 且 b = 1，那么可以满足第一个方程，但无法满足第二个方程。没有办法分配变量同时满足这两个方程。 示例 2：
+输入：[&quot;b==a&quot;,&quot;a==b&quot;] 输出：true 解释：我们可以指定 a = 1 且 b = 1 以满足满足这两个方程。 示例 3：
+输入：[&quot;a==b&quot;,&quot;b==c&quot;,&quot;a==c&quot;] 输出：true 示例 4：
+输入：[&quot;a==b&quot;,&quot;b!=c&quot;,&quot;c==a&quot;] 输出：false 示例 5：
+输入：[&quot;c==c&quot;,&quot;b==d&quot;,&quot;x!=z&quot;] 输出：true 提示：
+ 1 &lt;= equations.length &lt;= 500 equations[i].length == 4 equations[i][0] 和 equations[i][3] 是小写字母 equations[i][1] 要么是 '='，要么是 '!
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/union-find/union-find/">UnionFind</a>
+  </dt>
+  <dd>
+    背景 #  为了解决图的连通性问题，聪明的程序员引入一个非常有用的数据结构：并查集。
+对于n个起初完全散落的点，不断将它们两两相连，在中间过程中，需要能迅速判断出两个节点是否已经相连，如果已经相连就不再连，没有则连接。
+一个有意思的说明 #  可以类比为江湖建立各种门派的过程：
+有个程序员写了个武侠游戏，设定了一个特别的江湖世界： 江湖中共有n位大侠，按照程序员的习惯编号为0、1、2、……、n-1。一开始，所有人互相陌生。逐渐，人们开始认识， 2和5成为朋友，5和8成为朋友…… 有朋友关系的大侠开始组建帮派，如上面的2、5、8就成为一个帮派，虽然2和8还不认识，但因为中间人5的关系，他们三个成了一个帮派。
+渐渐地，帮派越来越多，每个帮派的人数也越来越多。程序员设定了一些规则：每个人或者独行独往，或者最多加入一个门派，加入后不能退出，且仅仅认识帮派里自己的介绍人一个。那么要怎么迅速获知江湖里的两个人是不是属于同一个门派呢？
+程序员可以为每个帮派指定一个帮主，这样可以用帮主来标识该帮，比如2、5、8组成的帮派选5为帮主，那么他们的帮派可称为“帮派5”。
+起初，所有人独来独往，可以看成共n个帮派，每个帮派的帮主就是帮派里唯一的那一位。
+有一天，2主动找5组建帮派，对于新帮派，2是自己的介绍人，2就作为帮主；5只知道自己加入了一个帮派，介绍人是2，但不知道帮主是谁，帮里还有谁。又有一天，5和8成了好友，5介绍8进了自己的帮派，8只认识帮派里的5。
+类似地，1和4组建帮派，1成为帮主，后来1又认识并介绍7加入帮派，7只知道自己有组织了，介绍人是1，但不知道组织里还有哪些大侠。之后9认识了4，被4介绍进了帮派1。
+只有程序员有上帝视角，知道每个帮派的帮主，每个人的介绍人。每个帮派的帮主知道自己是帮主，别人都只知道自己的介绍人。
+有一天，大侠9遇到了大侠7，他们想知道对方是不是和自己同一个帮派的，是就把酒言欢，否就大打出手。9先打电话给自己的介绍人4，4打电话给自己的介绍人1，1说他们的帮派名叫做“帮派1”，4又回拨9告诉帮派的名字。7先打电话给自己的介绍人1，1说他们的帮派名叫做“帮派1”。9和7一对，发现大家都是帮派1的人，好，喝酒吃肉去。
+大侠们都很健忘，每次都只记得自己的介绍人，忘了帮派名。
+又有一天，9和5相遇了，他们分别打电话给自己唯一认识的人，最终分别知道了自己所在的帮派，原来9属于帮派1，5属于帮派2 9在帮派1，5在帮派2，两人一对，大打出手。
+程序员于心不忍，打打杀杀不好玩，不如两个帮派合成一派吧，帮派1有1、4、7、9四个人，帮派2有2、5、8三个人，让帮派二并入帮派1吧。只需要让帮派2的帮主大侠2记录自己的介绍人为帮派1的帮主大侠1即可，这样帮派2的所有人并入了帮派1。
+程序员虽然是这个世界的上帝，不过也有难题，比如怎么迅速判断两个人是否属于同一个组织呢？一层层找帮主，时间复杂度有点高。
+好在这是个聪明的程序员，用数组模拟了这个世界，且想了些办法把帮派合并和查找某个人的帮派这两个操作好好优化了下：
+实现 #  type UnionFind []int // 创建江湖世界 func NewUnionFind(n int) UnionFind { unionFind := make([]int, n) for i := range unionFind { unionFind[i] = i // 起初，每个人是自己的介绍人，也是自己的帮主 	} return unionFind } // x和y所在的两个帮派合并 func (uf UnionFind) Union(x, y int) { rootX, rootY := uf.
+  </dd>
+
+  <dt>
+    <a href="/docs/graph/redundant-connection/readme/">冗余连接</a>
+  </dt>
+  <dd>
+    684. 冗余连接 #  难度中等
+在本问题中, 树指的是一个连通且无环的无向图。
+输入一个图，该图由一个有着N个节点 (节点值不重复1, 2, &hellip;, N) 的树及一条附加的边构成。附加的边的两个顶点包含在1到N中间，这条附加的边不属于树中已存在的边。
+结果图是一个以边组成的二维数组。每一个边的元素是一对[u, v] ，满足 u &lt; v，表示连接顶点u 和v的无向图的边。
+返回一条可以删去的边，使得结果图是一个有着N个节点的树。如果有多个答案，则返回二维数组中最后出现的边。答案边 [u, v] 应满足相同的格式 u &lt; v。
+示例 1：
+输入: [[1,2], [1,3], [2,3]] 输出: [2,3] 解释: 给定的无向图为: 1 / \ 2 - 3 示例 2：
+输入: [[1,2], [2,3], [3,4], [1,4], [1,5]] 输出: [1,4] 解释: 给定的无向图为: 5 - 1 - 2 | | 4 - 3 注意:
+ 输入的二维数组大小在 3 到 1000。 二维数组中的整数在1到N之间，其中N是输入数组的大小。  更新(2017-09-26): 我们已经重新检查了问题描述及测试用例，明确图是无向 图。对于有向图详见**冗余连接II。**对于造成任何不便，我们深感歉意。
+  </dd>
+
+</dl>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/zrcoder/leetcode/edit/hugo/content/docs/graph/_index.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>编辑本页</span>
+    </a>
+  </div>
+
+</div>
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
