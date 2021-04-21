@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>链表 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/docs/linked-list/</link><description>Recent content in 链表 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>cn</language><lastBuildDate>Mon, 19 Apr 2021 22:55:40 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/docs/linked-list/index.xml" rel="self" type="application/rss+xml"/><item><title>2. 两数相加</title><link>https://zrcoder.github.io/leetcode/docs/linked-list/add_two_numbers/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/docs/linked-list/add_two_numbers/readme/</guid><description>2. 两数相加 # 给出两个 非空 的链表用来表示两个非负的整数。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>链表 on Leetcode 之旅</title><link>http://localhost:1313/docs/linked-list/</link><description>Recent content in 链表 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>cn</language><lastBuildDate>Mon, 19 Apr 2021 22:55:40 +0800</lastBuildDate><atom:link href="http://localhost:1313/docs/linked-list/index.xml" rel="self" type="application/rss+xml"/><item><title>2. 两数相加</title><link>http://localhost:1313/docs/linked-list/add_two_numbers/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>http://localhost:1313/docs/linked-list/add_two_numbers/readme/</guid><description>2. 两数相加 # 给出两个 非空 的链表用来表示两个非负的整数。
 其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。
 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
 示例： 输入：(2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4) 输出：7 -&amp;gt; 0 -&amp;gt; 8 原因：342 + 465 = 807 分析 # (2 -&amp;gt; 4 -&amp;gt; 3)是 342 (5 -&amp;gt; 6 -&amp;gt; 4)是 465 (7 -&amp;gt; 0 -&amp;gt; 8)是 807 342 + 465 = 807 所以，题目的本意是，把整数换了一种表达方式后，实现其加法。
 可以想一想为什么要逆序~~
 设计程序时候，需要处理的点有
-1). 位上的加法，需要处理进位问题 2).</description></item><item><title>23. 合并K个升序链表</title><link>https://zrcoder.github.io/leetcode/docs/linked-list/merge-k-sorted-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/docs/linked-list/merge-k-sorted-lists/readme/</guid><description>23. 合并K个升序链表 # 难度困难
+1). 位上的加法，需要处理进位问题 2).</description></item><item><title>23. 合并K个升序链表</title><link>http://localhost:1313/docs/linked-list/merge-k-sorted-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>http://localhost:1313/docs/linked-list/merge-k-sorted-lists/readme/</guid><description>23. 合并K个升序链表 # 难度困难
 给你一个链表数组，每个链表都已经按升序排列。
 请你将所有链表合并到一个升序链表中，返回合并后的链表。
 示例 1：

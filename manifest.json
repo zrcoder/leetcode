@@ -1,14 +1,14 @@
 {
   "name": "Leetcode 之旅",
   "short_name": "Leetcode 之旅",
-  "start_url": "/leetcode/",
-  "scope": "/leetcode/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "/leetcode/favicon.svg",
+      "src": "/favicon.svg",
       "sizes": "512x512"
     }
   ]
