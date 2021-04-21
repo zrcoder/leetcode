@@ -42,7 +42,7 @@
   [16, 7,10,11]
 ]
 </code></pre><h2 id=分析>分析
-<a class=anchor href=#%e5%88%86%e6%9e%90>#</a></h2><p><img src=/images/rotateMatrix.png alt><br>如图,对于点 p1(r, c), 顺时针旋转90°后到达点 p2, 其坐标是(c, n-1-r)；<br>类似地，p2 旋转后到达 p3，p3 旋转后到达 p4，p4旋转后恰恰到达p1，这样完成一个循环：</p><pre><code>p1 → p2
+<a class=anchor href=#%e5%88%86%e6%9e%90>#</a></h2><p><img src=../rotateMatrix.png alt><br>如图,对于点 p1(r, c), 顺时针旋转90°后到达点 p2, 其坐标是(c, n-1-r)；<br>类似地，p2 旋转后到达 p3，p3 旋转后到达 p4，p4旋转后恰恰到达p1，这样完成一个循环：</p><pre><code>p1 → p2
 ↑     ↓
 p4 ← p3
 </code></pre><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>rotate</span>(<span style=color:#a6e22e>matrix</span> [][]<span style=color:#66d9ef>int</span>) {
