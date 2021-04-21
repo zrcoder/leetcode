@@ -34,7 +34,7 @@ Morris 算法用到了线索二叉树（threaded binary tree）的概念。
     
 2.2 由于 2.1 的原因，node 的右指针可能是 cur，如果是 cur，说明 cur 的左子树已经遍历完成，
     将 node 右指针重新置为 nil 以恢复树结果，访问当前节点，cur 指向自己的右孩子。
-</code></pre><p>见如下例子：</p><p><img src=/images/morris-inorder.png alt></p><p>示例代码如下：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>inorderTraversalMorris</span>(<span style=color:#a6e22e>root</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>TreeNode</span>) {
+</code></pre><p>见如下例子：</p><p><img src=./morris-inorder.png alt></p><p>示例代码如下：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>inorderTraversalMorris</span>(<span style=color:#a6e22e>root</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>TreeNode</span>) {
 	<span style=color:#a6e22e>cur</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>root</span>
 	<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>pre</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>TreeNode</span>
 	<span style=color:#66d9ef>for</span> <span style=color:#a6e22e>cur</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
@@ -83,7 +83,7 @@ Morris 算法用到了线索二叉树（threaded binary tree）的概念。
 		}
 	}
 }
-</code></pre></div><p>可以看如下图示对比理解：</p><p><img src=/images/morris-preorder.png alt></p><h2 id=后序遍历>后序遍历
+</code></pre></div><p>可以看如下图示对比理解：</p><p><img src=./morris-preorder.png alt></p><h2 id=后序遍历>后序遍历
 <a class=anchor href=#%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86>#</a></h2><p>稍微复杂一些。<br>要建立一个哨兵节点 dummy，令其左孩子是 root。<br>并且还需要一个子过程，就是倒序输出 cur 左孩子到 cur 的前驱节点之间路径上所有节点。</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>postorderTraversalMorris</span>(<span style=color:#a6e22e>root</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>TreeNode</span>) {
 	<span style=color:#a6e22e>dummy</span> <span style=color:#f92672>:=</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>TreeNode</span>{<span style=color:#a6e22e>Left</span>: <span style=color:#a6e22e>root</span>}
 	<span style=color:#a6e22e>cur</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>dummy</span>
@@ -125,5 +125,5 @@ Morris 算法用到了线索二叉树（threaded binary tree）的概念。
 	}
 	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>prev</span>
 }
-</code></pre></div><p>图示：</p><p><img src=/images/morris-postorder.png alt></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/zrcoder/leetcode/edit/hugo/content/docs/tree/traversal/binary-tree-morris.md target=_blank rel=noopener><img src=/leetcode/svg/edit.svg class=book-icon alt=Edit>
+</code></pre></div><p>图示：</p><p><img src=./morris-postorder.png alt></p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/zrcoder/leetcode/edit/hugo/content/docs/tree/traversal/binary-tree-morris.md target=_blank rel=noopener><img src=/leetcode/svg/edit.svg class=book-icon alt=Edit>
 <span>编辑本页</span></a></div></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div></main></body></html>
