@@ -1,4 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>哈希表、数组 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/hashmap-array/</link><description>Recent content in 哈希表、数组 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Apr 2021 22:50:51 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/hashmap-array/index.xml" rel="self" type="application/rss+xml"/><item><title>1. 两数之和</title><link>https://zrcoder.github.io/leetcode/hashmap-array/two_sum/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/two_sum/readme/</guid><description>1. 两数之和 给定一个整数数组 nums 和一个目标值 target，
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>哈希表、数组 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/hashmap-array/</link><description>Recent content in 哈希表、数组 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Apr 2021 22:50:51 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/hashmap-array/index.xml" rel="self" type="application/rss+xml"/><item><title>554. 砖墙</title><link>https://zrcoder.github.io/leetcode/hashmap-array/brick-wall/readme/</link><pubDate>Thu, 22 Apr 2021 17:21:09 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/brick-wall/readme/</guid><description>554. 砖墙 难度中等
+你的面前有一堵矩形的、由多行砖块组成的砖墙。 这些砖块高度相同但是宽度不同。你现在要画一条自顶向下的、穿过最少砖块的垂线。
+砖墙由行的列表表示。 每一行都是一个代表从左至右每块砖的宽度的整数列表。
+如果你画的线只是从砖块的边缘经过，就不算穿过这块砖。你需要找出怎样画才能使这条线穿过的砖块数量最少，并且返回穿过的砖块数量。
+你不能沿着墙的两个垂直边缘之一画线，这样显然是没有穿过一块砖的。
+示例：
+输入: [[1,2,2,1], [3,1,2], [1,3,2], [2,4], [3,1,2], [1,3,1,1]] 输出: 2 解释: 提示：
+每一行砖块的宽度之和应该相等，并且不能超过 INT_MAX。 每一行砖块的数量在 [1,10,000] 范围内， 墙的高度在 [1,10,000] 范围内， 总的砖块数量不超过 20,000。 函数签名：
+func leastBricks(wall [][]int) int 分析 朴素解法 从每一行的空隙画一条竖线，看看穿过了多少块砖，时间复杂度是 O(vm)， v 是空隙数， m是墙的高度即行数。
+复杂度较高，且代码较繁琐。
+借助哈希表优化 每一个空隙，可以用其距离最左端的长度来表示。用一个哈希表，键为每个空隙距离左端的长度，值为空隙出现的次数。
+这样遍历完所有空隙后，哈希表里值最大的空隙即最优的划线处，墙的高度减去这个最大值就是结果。
+需要注意只有一行或所有行都只有一块砖的情况。
+const inf = math.MaxInt32 func leastBricks(wall [][]int) int { memo := make(map[int]int, 0) for _, row := range wall { sum := 0 for i := 0; i &amp;lt; len(row)-1; i++ { // 每行的最右侧不是空隙 sum += row[i] memo[sum]++ } } res := inf for _, c := range memo { res = min(res, len(wall)-c) } if res == inf { return len(wall) } return res }</description></item><item><title>1. 两数之和</title><link>https://zrcoder.github.io/leetcode/hashmap-array/two_sum/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/two_sum/readme/</guid><description>1. 两数之和 给定一个整数数组 nums 和一个目标值 target，
 请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
 示例:
@@ -44,17 +57,9 @@
 输入：nums = [3,30,34,5,9] 输出：&amp;quot;9534330&amp;quot; 示例 3：
 输入：nums = [1] 输出：&amp;quot;1&amp;quot; 示例 4：
 输入：nums = [10] 输出：&amp;quot;10&amp;quot; 提示：
-1 &amp;lt;= nums.length &amp;lt;= 100 0 &amp;lt;= nums[i] &amp;lt;= 109 分析 思路很简单，细节是魔鬼~
-尝试1： 将所有int转化成string，然后降序排序，再一一将这些string链接起来 问题：比如输入3,30那么预期应该是330而不是303 尝试2： 多考虑一下，其实排序的依据是这样： 对于两个string， a和b 如果a+b &amp;gt; b+a， 那么应该把a排在前边~ 问题： 输入一堆0， 预期输出0，而不是一堆0 最终，踩完这些坑后，终于成了~ 时间复杂度O(nlgn),空间复杂度O(n) func largestNumber(nums []int) string { strs := make([]string, len(nums)) for i, v := range nums { strs[i] = strconv.</description></item><item><title>406. 根据身高重建队列</title><link>https://zrcoder.github.io/leetcode/hashmap-array/queue-reconstruction-by-height/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/queue-reconstruction-by-height/readme/</guid><description>406. 根据身高重建队列 难度中等
-假设有打乱顺序的一群人站成一个队列。 每个人由一个整数对(h, k)表示，其中h是这个人的身高，k是排在这个人前面且身高大于或等于h的人数。 编写一个算法来重建这个队列。
-注意： 总人数少于1100人。
-示例
-输入: [[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]] 输出: [[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]] 函数签名如下：
-func reconstructQueue(people [][]int) [][]int 分析 题意有点不好理解，这样想一下：
-本来所有人站成一队（不一定有序），这时候统计下每个人前边有几个身高大于等于自己的人 突然，打乱了这些人的顺序~~~ 问题是恢复这些人的顺序 想起学生时代排队跑操~
-很自然的贪心思路：
-先按照k升序排序（或者按照身高降序排序），再微调， 原地排序。
-func reconstructQueue(people [][]int) [][]int { // 先根据k从小到大排序 sort.Slice(people, func(i, j int) bool { return people[i][1] &amp;lt; people[j][1] }) // 由h、k微调顺序 for i := 1; i &amp;lt; len(people); i++ { // 如果一开始是按照身高降序排序的，这里微调需要从后往前调整 p := people[i] k := p[1] countK := 0 // 统计前边比p高的人数 j := 0 // 如果countK 大于 k，需要把这个娃往前移动，j记录需要移动到的位置 // 如果countK 等于 k，则无需移动;因一开始排序的原因 // 不会出现countK 小于 k的情况 for ; j &amp;lt; i; j++ { if people[j][0] &amp;gt;= p[0] { countK++ if countK &amp;gt; k { break } } } if countK &amp;gt; k { _ = copy(people[j+1:i+1], people[j:i]) people[j] = p } } return people } 时间复杂度O(n^2),空间复杂度O(1)</description></item><item><title>424. 替换后的最长重复字符</title><link>https://zrcoder.github.io/leetcode/hashmap-array/longest-repeating-character-replacement/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/longest-repeating-character-replacement/readme/</guid><description>424. 替换后的最长重复字符 难度中等
+1 &amp;lt;= nums.length &amp;lt;= 100 0 &amp;lt;= nums[i] &amp;lt;= 109 分析 整体思路就是排序，但是要确定好排序的标准。
+思路很简单，细节是魔鬼~
+尝试1： 将所有int转化成string，然后降序排序，再一一将这些string链接起来 问题：比如输入3,30那么预期应该是330而不是303 尝试2： 多考虑一下，其实排序的依据是这样： 对于两个string， a和b 如果a+b &amp;gt; b+a， 那么应该把a排在前边~ 问题： 输入一堆0， 预期输出0，而不是一堆0 最终，踩完这些坑后，终于成了~ 时间复杂度O(nlgn),空间复杂度O(n) func largestNumber(nums []int) string { strs := make([]string, len(nums)) for i, v := range nums { strs[i] = strconv.</description></item><item><title>424. 替换后的最长重复字符</title><link>https://zrcoder.github.io/leetcode/hashmap-array/longest-repeating-character-replacement/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/longest-repeating-character-replacement/readme/</guid><description>424. 替换后的最长重复字符 难度中等
 给你一个仅由大写英文字母组成的字符串，你可以将任意位置上的字符替换成另外的字符，总共可最多替换 k 次。在执行上述操作后，找到包含重复字母的最长子串的长度。
 **注意：**字符串长度 和 k 不会超过 10^4。
 示例 1：
@@ -84,9 +89,12 @@ func longestPalindrome1(s string) string { result := &amp;#34;&amp;#34; for i :=
 输入: s1= &amp;quot;ab&amp;quot; s2 = &amp;quot;eidboaoo&amp;quot; 输出: False 注意：
 输入的字符串只包含小写字母 两个字符串的长度都在 [1, 10,000] 之间 函数签名：
 func checkInclusion(s1 string, s2 string) bool 分析 定长滑动窗口 只需统计 s1 里各个字符的个数，再用一个长度固定为 s1 的长度的滑动窗口，统计窗口里的字符及个数，与之前对 s1 的统计比较，完全相等即返回 true，字符串里只有 26 个小写字母，统计、比较字符个数用一个数据就行。
-func checkInclusion(s1 string, s2 string) bool { m, n := len(s1), len(s2) if m &amp;gt; n { return false } memo1 := [26]int{} memo2 := [26]int{} for i, v := range s1 { memo1[v-&amp;#39;a&amp;#39;]++ memo2[s2[i]-&amp;#39;a&amp;#39;]++ } if memo2 == memo1 { return true } for i := m; i &amp;lt; len(s2); i++ { memo2[s2[i-m]-&amp;#39;a&amp;#39;]-- memo2[s2[i]-&amp;#39;a&amp;#39;]++ if memo2 == memo1 { return true } } return false } 时间复杂度就是 O(Σ+m+(n-m)*Σ)。空间复杂度常数级 O(Σ) 。其中 Σ 是字符集大小，这里是 26。</description></item><item><title>632. 最小区间</title><link>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</guid><description>632. 最小区间 你有 k 个升序排列的整数数组。找到一个最小区间，使得 k 个列表中的每个列表至少有一个数包含在其中。
+func checkInclusion(s1 string, s2 string) bool { m, n := len(s1), len(s2) if m &amp;gt; n { return false } memo1 := [26]int{} memo2 := [26]int{} for i, v := range s1 { memo1[v-&amp;#39;a&amp;#39;]++ memo2[s2[i]-&amp;#39;a&amp;#39;]++ } if memo2 == memo1 { return true } for i := m; i &amp;lt; len(s2); i++ { memo2[s2[i-m]-&amp;#39;a&amp;#39;]-- memo2[s2[i]-&amp;#39;a&amp;#39;]++ if memo2 == memo1 { return true } } return false } 时间复杂度就是 O(Σ+m+(n-m)*Σ)。空间复杂度常数级 O(Σ) 。其中 Σ 是字符集大小，这里是 26。</description></item><item><title>632. 最小区间</title><link>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</guid><description>632. 最小区间 难度困难
+你有 k 个 非递减排列 的整数列表。找到一个 最小 区间，使得 k 个列表中的每个列表至少有一个数包含在其中。
 我们定义如果 b-a &amp;lt; d-c 或者在 b-a == d-c 时 a &amp;lt; c，则区间 [a,b] 比 [c,d] 小。
-示例 1: 输入:[[4,10,15,24,26], [0,9,12,20], [5,18,22,30]] 输出: [20,24] 解释: 列表 1：[4, 10, 15, 24, 26]，24 在区间 [20,24] 中。 列表 2：[0, 9, 12, 20]，20 在区间 [20,24] 中。 列表 3：[5, 18, 22, 30]，22 在区间 [20,24] 中。 注意: 给定的列表可能包含重复元素，所以在这里升序表示 &amp;gt;= 。 1 &amp;lt;= k &amp;lt;= 3500 -10^5 &amp;lt;= 元素的值 &amp;lt;= 10^5 对于使用Java的用户，请注意传入类型已修改为List&amp;lt;List&amp;lt;Integer&amp;gt;&amp;gt;。重置代码模板后可以看到这项改动。 分析 贪心策略。参考如下借助堆的方法和借助哈希表的滑动窗口解法。</description></item><item><title>992. K 个不同整数的子数组</title><link>https://zrcoder.github.io/leetcode/hashmap-array/subarrays-with-k-different-integers/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/subarrays-with-k-different-integers/readme/</guid><description>992. K 个不同整数的子数组 难度困难
+示例 1：
+输入：nums = [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]] 输出：[20,24] 解释： 列表 1：[4, 10, 15, 24, 26]，24 在区间 [20,24] 中。 列表 2：[0, 9, 12, 20]，20 在区间 [20,24] 中。 列表 3：[5, 18, 22, 30]，22 在区间 [20,24] 中。 示例 2：
+输入：nums = [[1,2,3],[1,2,3],[1,2,3]] 输出：[1,1] 示例 3：</description></item><item><title>992. K 个不同整数的子数组</title><link>https://zrcoder.github.io/leetcode/hashmap-array/subarrays-with-k-different-integers/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/subarrays-with-k-different-integers/readme/</guid><description>992. K 个不同整数的子数组 难度困难
 给定一个正整数数组 A，如果 A 的某个子数组中不同整数的个数恰好为 K，则称 A 的这个连续、不一定独立的子数组为好子数组。
 （例如，[1,2,3,1,2] 中有 3 个不同的整数：1，2，以及 3。）
 返回 A 中好子数组的数目。
@@ -95,27 +103,17 @@ func checkInclusion(s1 string, s2 string) bool { m, n := len(s1), len(s2) if m &
 输入：A = [1,2,1,3,4], K = 3 输出：3 解释：恰好由 3 个不同整数组成的子数组：[1,2,1,3], [2,1,3], [1,3,4]. 提示：
 1 &amp;lt;= A.length &amp;lt;= 20000 1 &amp;lt;= A[i] &amp;lt;= A.length 1 &amp;lt;= K &amp;lt;= A.length 函数签名：</description></item><item><title>搜索有序二维数组</title><link>https://zrcoder.github.io/leetcode/hashmap-array/search-a-2d-matrix/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/search-a-2d-matrix/readme/</guid><description>编写一个高效的算法来判断 m x n 数组中，是否存在一个目标值。数组按照一定规则排序。
 74. 搜索二维矩阵 逐行遍历，整体单调递增
-示例 1: 输入: matrix = [ [1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 50] ] target = 3 输出: true 示例 2: 输入: matrix = [ [1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 50] ] target = 13 输出: false 二分法 如果把这个矩阵压平成一个一维数组，则是一个递增的一维数组，可以用二分法来做
+示例 1: 输入: matrix = [ [1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 50] ] target = 3 输出: true 示例 2: 输入: matrix = [ [1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 50] ] target = 13 输出: false 分析 二分法 如果把这个矩阵压平成一个一维数组，则是一个递增的一维数组，可以用二分法来做
 实际并不用真正转换一个一维数组，矩阵本身可以看做一行行拼接的一维数组
 从0到M*N-1遍历， 对于i，可以容易得到在矩阵里对应的行和列：r = i/N, c = i%N
 时间复杂度O(lg(M*N))=O(lgM + lgN), 空间复杂度O(1)</description></item><item><title>遍历二维矩阵</title><link>https://zrcoder.github.io/leetcode/hashmap-array/matrix-traversal/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/matrix-traversal/readme/</guid><description>对于二维矩阵，可以按照有趣的顺序遍历， 如下所示的“方形水波”、螺旋、对角线等几种遍历方法。
-[1030]方形水波遍历 给出 R 行 C 列的矩阵，其中的单元格的整数坐标为 (r, c)，满足 0 &amp;lt;= r &amp;lt; R 且 0 &amp;lt;= c &amp;lt; C。 另外，我们在该矩阵中给出了一个坐标为 (r0, c0) 的单元格。 返回矩阵中的所有单元格的坐标，并按到 (r0, c0) 的距离从最小到最大的顺序排， 其中，两单元格(r1, c1) 和 (r2, c2) 之间的距离是曼哈顿距离，|r1 - r2| + |c1 - c2|。 （你可以按任何满足此条件的顺序返回答案。） 示例 1： 输入：R = 1, C = 2, r0 = 0, c0 = 0 输出：[[0,0],[0,1]] 解释：从 (r0, c0) 到其他单元格的距离为：[0,1] 示例 2： 输入：R = 2, C = 2, r0 = 0, c0 = 1 输出：[[0,1],[0,0],[1,1],[1,0]] 解释：从 (r0, c0) 到其他单元格的距离为：[0,1,1,2] [[0,1],[1,1],[0,0],[1,0]] 也会被视作正确答案。 示例 3： 输入：R = 2, C = 3, r0 = 1, c0 = 2 输出：[[1,2],[0,2],[1,1],[0,1],[1,0],[0,0]] 解释：从 (r0, c0) 到其他单元格的距离为：[0,1,1,2,2,3] 其他满足题目要求的答案也会被视为正确，例如 [[1,2],[1,1],[0,2],[1,0],[0,1],[0,0]]。 提示： 1 &amp;lt;= R &amp;lt;= 100 1 &amp;lt;= C &amp;lt;= 100 0 &amp;lt;= r0 &amp;lt; R 0 &amp;lt;= c0 &amp;lt; C 可以借助哈希表，键为各个点到给定点的曼哈顿距离，值为那些点的集合；也可以一股脑将各个点加入结果后再排序最好的也是最直观的解决方法，可以起一个名字：方形水波遍历：</description></item><item><title>零钱兑换</title><link>https://zrcoder.github.io/leetcode/hashmap-array/coin-change/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/coin-change/readme/</guid><description>322. 零钱兑换 给定不同面额的硬币 coins 和一个总金额 amount。 编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
+1030. 距离顺序排列矩阵单元格 难度简单
+给出 R 行 C 列的矩阵，其中的单元格的整数坐标为 (r, c)，满足 0 &amp;lt;= r &amp;lt; R 且 0 &amp;lt;= c &amp;lt; C。
+另外，我们在该矩阵中给出了一个坐标为 (r0, c0) 的单元格。
+返回矩阵中的所有单元格的坐标，并按到 (r0, c0) 的距离从最小到最大的顺序排，其中，两单元格(r1, c1) 和 (r2, c2) 之间的距离是曼哈顿距离，|r1 - r2| + |c1 - c2|。（你可以按任何满足此条件的顺序返回答案。）
+示例 1：
+输入：R = 1, C = 2, r0 = 0, c0 = 0 输出：[[0,0],[0,1]] 解释：从 (r0, c0) 到其他单元格的距离为：[0,1] 示例 2：
+输入：R = 2, C = 2, r0 = 0, c0 = 1 输出：[[0,1],[0,0],[1,1],[1,0]] 解释：从 (r0, c0) 到其他单元格的距离为：[0,1,1,2] [[0,1],[1,1],[0,0],[1,0]] 也会被视作正确答案。 示例 3：</description></item><item><title>零钱兑换</title><link>https://zrcoder.github.io/leetcode/hashmap-array/coin-change/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/coin-change/readme/</guid><description>322. 零钱兑换 给定不同面额的硬币 coins 和一个总金额 amount。 编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。
 示例 1: 输入: coins = [1, 2, 5], amount = 11 输出: 3 解释: 11 = 5 + 5 + 1 示例 2: 输入: coins = [2], amount = 3 输出: -1 说明: 你可以认为每种硬币的数量是无限的。 函数签名：
 func coinChange(coins []int, amount int) int 分析 不求 max 而求 min 的完全背包问题
-func coinChange(coins []int, amount int) int { infinityAmount := amount + 1 dp := make([]int, amount+1) for i := range dp { dp[i] = infinityAmount } dp[0] = 0 for _, v := range coins { for j := v; j &amp;lt;= amount; j++ { dp[j] = min(dp[j], dp[j-v]+1) } } if dp[amount] == infinityAmount { return -1 } return dp[amount] } 518.</description></item><item><title>面试题 17.08. 马戏团人塔</title><link>https://zrcoder.github.io/leetcode/hashmap-array/circus-tower-lcci/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/circus-tower-lcci/readme/</guid><description>面试题 17.08. 马戏团人塔 有个马戏团正在设计叠罗汉的表演节目，一个人要站在另一人的肩膀上。
-出于实际和美观的考虑，在上面的人要比下面的人矮一点且轻一点。
-已知马戏团每个人的身高和体重，请编写代码计算叠罗汉最多能叠几个人。
-示例： 输入：height = [65,70,56,75,60,68] weight = [100,150,90,190,95,110] 输出：6 解释：从上往下数，叠罗汉最多能叠 6 层：(56,90), (60,95), (65,100), (68,110), (70,150), (75,190) 提示： height.length == weight.length &amp;lt;= 10000 解析 总体思路同[406] 根据身高重建队列，先粗排再细排
-细排的思路同[300] 最长上升子序列中贪心+二分搜索的解法
-1.粗处理 排序，依据为：身高降序（这里就是人塔从下向上身高递减）
-身高相等则体重轻的在前边（从下向上体重升序）——问题1：这里不符而直觉，直觉应该体重也是降序才对，看完下边步骤再回来看
-2.细处理 遍历排序结果，将当前的人p放入到结果数组result中
-当然result的所有元素符合题意，即前一个人的身高体重均比后一个人大
-从前向后搜索result，找到第一个不应该排在p之前的人（即身高或体重不大于p的身高体重）
-2.1 没找到，直接把`p`追加到`result`结尾 2.2 找到的话，把这个人排除，替换成`p` ——这是这个问题的关键所在，是个贪心策略，可以想一想为什么这样是合理的 最后的result数组即为所求；另外在搜索result的时候，用二分法会更快
-回头看问题1： 考虑有身高相同的几个人，显然最终结果这几个人里最多有一个入选（也可能都不会入选），
-贪心策略，根据步骤2的处理，应该保留体重最大的人入选
-所以一开始粗排，身高相等的情况下，体重升序，是为了2细排的时候能保留体重最重的那个人
-初步实现 辅助代码
-type Person struct { height, weight int } 主体代码
-func bestSeqAtIndex(height []int, weight []int) int { n := len(height) if n == 0 { return 0 } persons := make([]Person, n) for i := range persons { persons[i].</description></item></channel></rss>
+func coinChange(coins []int, amount int) int { infinityAmount := amount + 1 dp := make([]int, amount+1) for i := range dp { dp[i] = infinityAmount } dp[0] = 0 for _, v := range coins { for j := v; j &amp;lt;= amount; j++ { dp[j] = min(dp[j], dp[j-v]+1) } } if dp[amount] == infinityAmount { return -1 } return dp[amount] } 518.</description></item></channel></rss>

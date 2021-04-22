@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>排序 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E6%8E%92%E5%BA%8F/</link><description>Recent content in 排序 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Apr 2021 22:04:56 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E6%8E%92%E5%BA%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>1365. 有多少小于当前数字的数字</title><link>https://zrcoder.github.io/leetcode/hashmap-array/how-many-numbers-are-smaller-than-the-current-number/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/how-many-numbers-are-smaller-than-the-current-number/readme/</guid><description>1365. 有多少小于当前数字的数字 难度简单
+给你一个数组 nums，对于其中每个元素 nums[i]，请你统计数组中比它小的所有数字的数目。
+换而言之，对于每个 nums[i] 你必须计算出有效的 j 的数量，其中 j 满足 j != i 且 nums[j] &amp;lt; nums[i] 。
+以数组形式返回答案。
+示例 1：
+输入：nums = [8,1,2,2,3] 输出：[4,0,1,1,3] 解释： 对于 nums[0]=8 存在四个比它小的数字：（1，2，2 和 3）。 对于 nums[1]=1 不存在比它小的数字。 对于 nums[2]=2 存在一个比它小的数字：（1）。 对于 nums[3]=2 存在一个比它小的数字：（1）。 对于 nums[4]=3 存在三个比它小的数字：（1，2 和 2）。 示例 2：
+输入：nums = [6,5,4,8] 输出：[2,1,0,3] 示例 3：
+输入：nums = [7,7,7,7] 输出：[0,0,0,0] 提示：
+2 &amp;lt;= nums.length &amp;lt;= 500 0 &amp;lt;= nums[i] &amp;lt;= 100 函数签名：</description></item><item><title>179. 最大数</title><link>https://zrcoder.github.io/leetcode/hashmap-array/largest-number/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/largest-number/readme/</guid><description>179. 最大数 难度中等
+给定一组非负整数 nums，重新排列它们每位数字的顺序使之组成一个最大的整数。
+注意： 输出结果可能非常大，所以你需要返回一个字符串而不是整数。
+示例 1：
+输入：nums = [10,2] 输出：&amp;quot;210&amp;quot; 示例 2：
+输入：nums = [3,30,34,5,9] 输出：&amp;quot;9534330&amp;quot; 示例 3：
+输入：nums = [1] 输出：&amp;quot;1&amp;quot; 示例 4：
+输入：nums = [10] 输出：&amp;quot;10&amp;quot; 提示：
+1 &amp;lt;= nums.length &amp;lt;= 100 0 &amp;lt;= nums[i] &amp;lt;= 109 分析 整体思路就是排序，但是要确定好排序的标准。
+思路很简单，细节是魔鬼~
+尝试1： 将所有int转化成string，然后降序排序，再一一将这些string链接起来 问题：比如输入3,30那么预期应该是330而不是303 尝试2： 多考虑一下，其实排序的依据是这样： 对于两个string， a和b 如果a+b &amp;gt; b+a， 那么应该把a排在前边~ 问题： 输入一堆0， 预期输出0，而不是一堆0 最终，踩完这些坑后，终于成了~ 时间复杂度O(nlgn),空间复杂度O(n) func largestNumber(nums []int) string { strs := make([]string, len(nums)) for i, v := range nums { strs[i] = strconv.</description></item><item><title>二维排序问题</title><link>https://zrcoder.github.io/leetcode/sort/sort2d/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/sort/sort2d/</guid><description>让我们从经典的 lis 即最长递增子序列问题开始：
+300. 最长递增子序列 难度中等
+给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
+子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
+示例 1：
+输入：nums = [10,9,2,5,3,7,101,18] 输出：4 解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。 示例 2：
+输入：nums = [0,1,0,3,2,3] 输出：4 示例 3：
+输入：nums = [7,7,7,7,7,7,7] 输出：1 函数签名：
+func lengthOfLIS(nums []int) int 分析 动态规划 这个问题用动态规划是经典解法。如下，简单了解下就好：
+func lengthOfLIS(nums []int) int { dp := make([]int, len(nums)) // dp[i]代表以nums[i]结尾的子序列长度 maxLen := 0 for i, v := range nums { dp[i] = 1 // 一个元素算递增长度为1 for j := 0; j &amp;lt; i; j++ { if nums[j] &amp;lt; v { dp[i] = max(dp[i], dp[j]+1) } } maxLen = max(maxLen, dp[i]) } return maxLen } 时间复杂度 O(n^2)，空间复杂度 O(n)。</description></item></channel></rss>

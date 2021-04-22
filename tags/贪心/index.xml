@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>贪心 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E8%B4%AA%E5%BF%83/</link><description>Recent content in 贪心 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 22 Apr 2021 17:21:09 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E8%B4%AA%E5%BF%83/index.xml" rel="self" type="application/rss+xml"/><item><title>554. 砖墙</title><link>https://zrcoder.github.io/leetcode/hashmap-array/brick-wall/readme/</link><pubDate>Thu, 22 Apr 2021 17:21:09 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/brick-wall/readme/</guid><description>554. 砖墙 难度中等
+你的面前有一堵矩形的、由多行砖块组成的砖墙。 这些砖块高度相同但是宽度不同。你现在要画一条自顶向下的、穿过最少砖块的垂线。
+砖墙由行的列表表示。 每一行都是一个代表从左至右每块砖的宽度的整数列表。
+如果你画的线只是从砖块的边缘经过，就不算穿过这块砖。你需要找出怎样画才能使这条线穿过的砖块数量最少，并且返回穿过的砖块数量。
+你不能沿着墙的两个垂直边缘之一画线，这样显然是没有穿过一块砖的。
+示例：
+输入: [[1,2,2,1], [3,1,2], [1,3,2], [2,4], [3,1,2], [1,3,1,1]] 输出: 2 解释: 提示：
+每一行砖块的宽度之和应该相等，并且不能超过 INT_MAX。 每一行砖块的数量在 [1,10,000] 范围内， 墙的高度在 [1,10,000] 范围内， 总的砖块数量不超过 20,000。 函数签名：
+func leastBricks(wall [][]int) int 分析 朴素解法 从每一行的空隙画一条竖线，看看穿过了多少块砖，时间复杂度是 O(vm)， v 是空隙数， m是墙的高度即行数。
+复杂度较高，且代码较繁琐。
+借助哈希表优化 每一个空隙，可以用其距离最左端的长度来表示。用一个哈希表，键为每个空隙距离左端的长度，值为空隙出现的次数。
+这样遍历完所有空隙后，哈希表里值最大的空隙即最优的划线处，墙的高度减去这个最大值就是结果。
+需要注意只有一行或所有行都只有一块砖的情况。
+const inf = math.MaxInt32 func leastBricks(wall [][]int) int { memo := make(map[int]int, 0) for _, row := range wall { sum := 0 for i := 0; i &amp;lt; len(row)-1; i++ { // 每行的最右侧不是空隙 sum += row[i] memo[sum]++ } } res := inf for _, c := range memo { res = min(res, len(wall)-c) } if res == inf { return len(wall) } return res }</description></item><item><title>632. 最小区间</title><link>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</guid><description>632. 最小区间 难度困难
+你有 k 个 非递减排列 的整数列表。找到一个 最小 区间，使得 k 个列表中的每个列表至少有一个数包含在其中。
+我们定义如果 b-a &amp;lt; d-c 或者在 b-a == d-c 时 a &amp;lt; c，则区间 [a,b] 比 [c,d] 小。
+示例 1：
+输入：nums = [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]] 输出：[20,24] 解释： 列表 1：[4, 10, 15, 24, 26]，24 在区间 [20,24] 中。 列表 2：[0, 9, 12, 20]，20 在区间 [20,24] 中。 列表 3：[5, 18, 22, 30]，22 在区间 [20,24] 中。 示例 2：
+输入：nums = [[1,2,3],[1,2,3],[1,2,3]] 输出：[1,1] 示例 3：</description></item><item><title>二维排序问题</title><link>https://zrcoder.github.io/leetcode/sort/sort2d/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/sort/sort2d/</guid><description>让我们从经典的 lis 即最长递增子序列问题开始：
+300. 最长递增子序列 难度中等
+给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。
+子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
+示例 1：
+输入：nums = [10,9,2,5,3,7,101,18] 输出：4 解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。 示例 2：
+输入：nums = [0,1,0,3,2,3] 输出：4 示例 3：
+输入：nums = [7,7,7,7,7,7,7] 输出：1 函数签名：
+func lengthOfLIS(nums []int) int 分析 动态规划 这个问题用动态规划是经典解法。如下，简单了解下就好：
+func lengthOfLIS(nums []int) int { dp := make([]int, len(nums)) // dp[i]代表以nums[i]结尾的子序列长度 maxLen := 0 for i, v := range nums { dp[i] = 1 // 一个元素算递增长度为1 for j := 0; j &amp;lt; i; j++ { if nums[j] &amp;lt; v { dp[i] = max(dp[i], dp[j]+1) } } maxLen = max(maxLen, dp[i]) } return maxLen } 时间复杂度 O(n^2)，空间复杂度 O(n)。</description></item></channel></rss>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>堆 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E5%A0%86/</link><description>Recent content in 堆 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Apr 2021 22:04:56 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E5%A0%86/index.xml" rel="self" type="application/rss+xml"/><item><title>632. 最小区间</title><link>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</guid><description>632. 最小区间 难度困难
+你有 k 个 非递减排列 的整数列表。找到一个 最小 区间，使得 k 个列表中的每个列表至少有一个数包含在其中。
+我们定义如果 b-a &amp;lt; d-c 或者在 b-a == d-c 时 a &amp;lt; c，则区间 [a,b] 比 [c,d] 小。
+示例 1：
+输入：nums = [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]] 输出：[20,24] 解释： 列表 1：[4, 10, 15, 24, 26]，24 在区间 [20,24] 中。 列表 2：[0, 9, 12, 20]，20 在区间 [20,24] 中。 列表 3：[5, 18, 22, 30]，22 在区间 [20,24] 中。 示例 2：
+输入：nums = [[1,2,3],[1,2,3],[1,2,3]] 输出：[1,1] 示例 3：</description></item></channel></rss>
