@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>设计 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/design/</link><description>Recent content in 设计 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 20 Apr 2021 09:26:32 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/design/index.xml" rel="self" type="application/rss+xml"/><item><title>1670. 设计前中后队列</title><link>https://zrcoder.github.io/leetcode/design/design-front-middle-back-queue/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/design-front-middle-back-queue/readme/</guid><description>1670. 设计前中后队列 难度中等
+请你设计一个队列，支持在前，中，后三个位置的 push 和 pop 操作。
+请你完成 FrontMiddleBack 类：
+FrontMiddleBack() 初始化队列。 void pushFront(int val) 将 val 添加到队列的 最前面 。 void pushMiddle(int val) 将 val 添加到队列的 正中间 。 void pushBack(int val) 将 val 添加到队里的 最后面 。 int popFront() 将 最前面 的元素从队列中删除并返回值，如果删除之前队列为空，那么返回 -1 。 int popMiddle() 将 正中间 的元素从队列中删除并返回值，如果删除之前队列为空，那么返回 -1 。 int popBack() 将 最后面 的元素从队列中删除并返回值，如果删除之前队列为空，那么返回 -1 。 请注意当有 两个 中间位置的时候，选择靠前面的位置进行操作。比方说：
+将 6 添加到 [1, 2, 3, 4, 5] 的中间位置，结果数组为 [1, 2, **6**, 3, 4, 5] 。 从 [1, 2, **3**, 4, 5, 6] 的中间位置弹出元素，返回 3 ，数组变为 [1, 2, 4, 5, 6] 。 示例 1：</description></item><item><title>295. 数据流的中位数</title><link>https://zrcoder.github.io/leetcode/design/find-median-from-data-stream/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/find-median-from-data-stream/readme/</guid><description>295. 数据流的中位数 难度困难
+中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。
+例如，
+[2,3,4] 的中位数是 3
+[2,3] 的中位数是 (2 + 3) / 2 = 2.5
+设计一个支持以下两种操作的数据结构：
+void addNum(int num) - 从数据流中添加一个整数到数据结构中。 double findMedian() - 返回目前所有元素的中位数。 示例：
+addNum(1) addNum(2) findMedian() -&amp;gt; 1.5 addNum(3) findMedian() -&amp;gt; 2 进阶:
+如果数据流中所有整数都在 0 到 100 范围内，你将如何优化你的算法？ 如果数据流中 99% 的整数都在 0 到 100 范围内，你将如何优化你的算法？ 分析 朴素实现 维护一个有序的切片，这样可以在常数时间找到中位数，但是添加元素需要 O(n) 的复杂度，n 是已有元素的总数。
+添加元素的复杂度不理想，实现代码略。
+BST Treap 是较平衡的 BST, AVL或红黑树平衡性更理想。在平衡的 BST 里增删查元素是对数级的复杂度，同样，查找第 k 小的数字也是对数时间复杂度。</description></item><item><title>341. 扁平化嵌套列表迭代器</title><link>https://zrcoder.github.io/leetcode/design/flatten-nested-list-iterator/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/flatten-nested-list-iterator/readme/</guid><description>341. 扁平化嵌套列表迭代器 难度中等
+给你一个嵌套的整型列表。请你设计一个迭代器，使其能够遍历这个整型列表中的所有整数。
+列表中的每一项或者为一个整数，或者是另一个列表。其中列表的元素也可能是整数或是其他列表。
+示例 1:
+输入: [[1,1],2,[1,1]] 输出: [1,1,2,1,1] 解释: 通过重复调用 next 直到 hasNext 返回 false，next 返回的元素的顺序应该是: [1,1,2,1,1]。 示例 2:
+输入: [1,[4,[6]]] 输出: [1,4,6] 解释: 通过重复调用 next 直到 hasNext 返回 false，next 返回的元素的顺序应该是: [1,4,6]。 已有的 NestedInteger 相关 API（实现不给出）：
+type NestedInteger struct {} // Return true if this NestedInteger holds a single integer, rather than a nested list. func (ni NestedInteger) IsInteger() bool {} // Return the single integer that this NestedInteger holds, if it holds a single integer // The result is undefined if this NestedInteger holds a nested list // So before calling this method, you should have a check func (ni NestedInteger) GetInteger() int {} // Set this NestedInteger to hold a single integer.</description></item><item><title>855. 考场就座</title><link>https://zrcoder.github.io/leetcode/design/exam-room/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/exam-room/readme/</guid><description>855. 考场就座 在考场里，一排有 N 个座位，分别编号为 0, 1, 2, &amp;hellip;, N-1 。
+当学生进入考场后，他必须坐在能够使他与离他最近的人之间的距离达到最大化的座位上。
+如果有多个这样的座位，他会坐在编号最小的座位上。(另外，如果考场里没有人，那么学生就坐在 0 号座位上。)
+返回 ExamRoom(int N) 类，它有两个公开的函数：其中，函数 ExamRoom.seat() 会返回一个 int （整型数据），代表学生坐的位置；
+函数 ExamRoom.leave(int p) 代表坐在座位 p 上的学生现在离开了考场。每次调用 ExamRoom.leave(p) 时都保证有学生坐在座位 p 上。
+示例： 输入：[&amp;quot;ExamRoom&amp;quot;,&amp;quot;seat&amp;quot;,&amp;quot;seat&amp;quot;,&amp;quot;seat&amp;quot;,&amp;quot;seat&amp;quot;,&amp;quot;leave&amp;quot;,&amp;quot;seat&amp;quot;], [[10],[],[],[],[],[4],[]] 输出：[null,0,9,4,2,null,5] 解释： ExamRoom(10) -&amp;gt; null seat() -&amp;gt; 0，没有人在考场里，那么学生坐在 0 号座位上。 seat() -&amp;gt; 9，学生最后坐在 9 号座位上。 seat() -&amp;gt; 4，学生最后坐在 4 号座位上。 seat() -&amp;gt; 2，学生最后坐在 2 号座位上。 leave(4) -&amp;gt; null seat() -&amp;gt; 5，学生最后坐在 5 号座位上。 提示： 1 &amp;lt;= N &amp;lt;= 10^9 在所有的测试样例中 ExamRoom.</description></item><item><title>二维区域子矩阵和</title><link>https://zrcoder.github.io/leetcode/design/range-sum-query-2d-matrix/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/range-sum-query-2d-matrix/readme/</guid><description>给定一个二维矩阵，计算其子矩形范围内元素的总和，该子矩阵的左上角为 (row1, col1) ，右下角为 (row2, col2)
+304. 二维区域和检索 - 矩阵不可变 示例: 给定 matrix = [ [3, 0, 1, 4, 2], [5, 6, 3, 2, 1], [1, 2, 0, 1, 5], [4, 1, 0, 1, 7], [1, 0, 3, 0, 5] ] sumRegion(2, 1, 4, 3) -&amp;gt; 8 sumRegion(1, 1, 2, 2) -&amp;gt; 11 sumRegion(1, 2, 2, 4) -&amp;gt; 12 说明: 你可以假设矩阵不可变。 会多次调用 sumRegion 方法。 你可以假设 row1 ≤ row2 且 col1 ≤ col2。 前缀和技巧 1.</description></item><item><title>前缀树</title><link>https://zrcoder.github.io/leetcode/design/implement-trie-prefix-tree/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/implement-trie-prefix-tree/readme/</guid><description>208. 实现 Trie (前缀树) 实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。
+示例: Trie trie = new Trie(); trie.insert(&amp;quot;apple&amp;quot;); trie.search(&amp;quot;apple&amp;quot;); // 返回 true trie.search(&amp;quot;app&amp;quot;); // 返回 false trie.startsWith(&amp;quot;app&amp;quot;); // 返回 true trie.insert(&amp;quot;app&amp;quot;); trie.search(&amp;quot;app&amp;quot;); // 返回 true 说明: 你可以假设所有的输入都是由小写字母 a-z 构成的。 保证所有输入均为非空字符串。 type Trie struct { links map[byte]*Trie // 这道题保证了输入的都是小写字母，links也可用大小为26的数组实现 IsEnd bool } func Constructor() Trie { return Trie{ links: map[byte]*Trie{}, } } /** Inserts a word into the trie. Time complexity : O(m), where m is the key length.</description></item><item><title>我的日程安排表</title><link>https://zrcoder.github.io/leetcode/design/my-calendar/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/my-calendar/readme/</guid><description>729 我的日程安排表 I 难度中等
+实现一个 MyCalendar 类来存放你的日程安排。如果要添加的时间内没有其他安排，则可以存储这个新的日程安排。
+MyCalendar 有一个 book(int start, int end)方法。它意味着在 start 到 end 时间内增加一个日程安排，注意，这里的时间是半开区间，即 [start, end), 实数 x 的范围为， start &amp;lt;= x &amp;lt; end。
+当两个日程安排有一些时间上的交叉时（例如两个日程安排都在同一时间内），就会产生重复预订。
+每次调用 MyCalendar.book方法时，如果可以将日程安排成功添加到日历中而不会导致重复预订，返回 true。否则，返回 false 并且不要将该日程安排添加到日历中。
+请按照以下步骤调用 MyCalendar 类: MyCalendar cal = new MyCalendar(); MyCalendar.book(start, end)
+示例 1:
+MyCalendar(); MyCalendar.book(10, 20); // returns true MyCalendar.book(15, 25); // returns false MyCalendar.book(20, 30); // returns true 解释: 第一个日程安排可以添加到日历中. 第二个日程安排不能添加到日历中，因为时间 15 已经被第一个日程安排预定了。 第三个日程安排可以添加到日历中，因为第一个日程安排并不包含时间 20 。 说明:</description></item><item><title>设计推特</title><link>https://zrcoder.github.io/leetcode/design/design-twitter/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/design-twitter/readme/</guid><description>355. 设计推特 设计一个简化版的推特(Twitter)，可以让用户实现发送推文，关注/取消关注其他用户，
+能够看见关注人（包括自己）的最近十条推文。
+你的设计需要支持以下的几个功能：
+postTweet(userId, tweetId): 创建一条新的推文 getNewsFeed(userId): 检索最近的十条推文。每个推文都必须是由此用户关注的人或者是用户自己发出的。 推文必须按照时间顺序由最近的开始排序。 follow(followerId, followeeId): 关注一个用户 unfollow(followerId, followeeId): 取消关注一个用户 示例: Twitter twitter = new Twitter(); // 用户1发送了一条新推文 (用户id = 1, 推文id = 5). twitter.postTweet(1, 5); // 用户1的获取推文应当返回一个列表，其中包含一个id为5的推文. twitter.getNewsFeed(1); // 用户1关注了用户2. twitter.follow(1, 2); // 用户2发送了一个新推文 (推文id = 6). twitter.postTweet(2, 6); // 用户1的获取推文应当返回一个列表，其中包含两个推文，id分别为 -&amp;gt; [6, 5]. // 推文id6应当在推文id5之前，因为它是在5之后发送的. twitter.getNewsFeed(1); // 用户1取消关注了用户2. twitter.unfollow(1, 2); // 用户1的获取推文应当返回一个列表，其中包含一个id为5的推文. // 因为用户1已经不再关注用户2. twitter.getNewsFeed(1); 面向对象的设计，主要逻辑在User类；
+比较难实现的是getNewsFeed， 可用优先队列（小顶堆）来实现design1；
+注意优化，从后向前遍历用户的tweet列表，如果优先队列里已经有10个元素，
+当前tweet的时间不大于堆顶tweet的元素，可以不再遍历该用户的tweet列表
+也可以直接对所有tweet数组排序，注意到所有数组本来是已经排序的, 只是遍历下从后向前取前10个design2；</description></item></channel></rss>

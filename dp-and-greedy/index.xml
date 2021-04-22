@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>动态规划、贪心 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/</link><description>Recent content in 动态规划、贪心 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 20 Apr 2021 09:23:21 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/dp-and-greedy/index.xml" rel="self" type="application/rss+xml"/><item><title>1024. 视频剪辑</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/video-stitching/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/video-stitching/readme/</guid><description>1024. 视频剪辑 你将会获得一系列视频片段，这些片段来自于一项持续时长为 T 秒的体育赛事。这些片段可能有所重叠，也可能长度不一。
+视频片段 clips[i] 都用区间进行表示：开始于 clips[i][0] 并于 clips[i][1] 结束。我们甚至可以对这些片段自由地再剪辑，例如片段 [0, 7] 可以剪切成 [0, 1] + [1, 3] + [3, 7] 三部分。
+我们需要将这些片段进行再剪辑，并将剪辑后的内容拼接成覆盖整个运动过程的片段（[0, T]）。返回所需片段的最小数目，如果无法完成该任务，则返回 -1 。
+ 示例 1： 输入：clips = [[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], T = 10 输出：3 解释： 我们选中 [0,2], [8,10], [1,9] 这三个片段。 然后，按下面的方案重制比赛片段： 将 [1,9] 再剪辑为 [1,2] + [2,8] + [8,9] 。 现在我们手上有 [0,2] + [2,8] + [8,10]，而这些涵盖了整场比赛 [0, 10]。 示例 2： 输入：clips = [[0,1],[1,2]], T = 5 输出：-1 解释： 我们无法只用 [0,1] 和 [1,2] 覆盖 [0,5] 的整个过程。 示例 3： 输入：clips = [[0,1],[6,8],[0,2],[5,6],[0,4],[0,3],[6,7],[1,3],[4,7],[1,4],[2,5],[2,6],[3,4],[4,5],[5,7],[6,9]], T = 9 输出：3 解释： 我们选取片段 [0,4], [4,7] 和 [6,9] 。 示例 4： 输入：clips = [[0,4],[2,8]], T = 5 输出：2 解释： 注意，你可能录制超过比赛结束时间的视频。 提示： 1 &amp;lt;= clips.</description></item><item><title>131. 分割回文串</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/palindrome-partitioning/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/palindrome-partitioning/readme/</guid><description>131. 分割回文串 难度中等
+给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是 回文串 。返回 s 所有可能的分割方案。
+回文串 是正着读和反着读都一样的字符串。
+示例 1：
+输入：s = &amp;quot;aab&amp;quot; 输出：[[&amp;quot;a&amp;quot;,&amp;quot;a&amp;quot;,&amp;quot;b&amp;quot;],[&amp;quot;aa&amp;quot;,&amp;quot;b&amp;quot;]] 示例 2：
+输入：s = &amp;quot;a&amp;quot; 输出：[[&amp;quot;a&amp;quot;]] 提示：
+1 &amp;lt;= s.length &amp;lt;= 16 s 仅由小写英文字母组成 函数签名：
+func partition(s string) [][]string 分析 穷举回溯 假设 s 长度为n，则需要在 n 个字符的空档中做分割，需要保证分割后的所有子串为回文串。
+代码框架如下：
+func partition(s string) [][]string { var res [][]string var cur []string var backtrack func(start int) backtrack = func(start int) { if start == len(s) { res = append(res, append([]string{}, cur.</description></item><item><title>1675. 数组的最小偏移量</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/minimize-deviation-in-array/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/minimize-deviation-in-array/readme/</guid><description>1675. 数组的最小偏移量 难度困难
+给你一个由 n 个正整数组成的数组 nums 。
+你可以对数组的任意元素执行任意次数的两类操作：
+如果元素是偶数，除以 2
+例如，如果数组是 [1,2,3,4] ，那么你可以对最后一个元素执行此操作，使其变成 [1,2,3,**2**] 如果元素是奇数，乘上 2
+例如，如果数组是 [1,2,3,4] ，那么你可以对第一个元素执行此操作，使其变成 [**2**,2,3,4] 数组的 偏移量 是数组中任意两个元素之间的 最大差值 。
+返回数组在执行某些操作之后可以拥有的 最小偏移量 。
+示例 1：
+输入：nums = [1,2,3,4] 输出：1 解释：你可以将数组转换为 [1,2,3,2]，然后转换成 [2,2,3,2]，偏移量是 3 - 2 = 1 示例 2：
+输入：nums = [4,1,5,20,3] 输出：3 解释：两次操作后，你可以将数组转换为 [4,2,5,5,3]，偏移量是 5 - 2 = 3 示例 3：
+输入：nums = [2,10,8] 输出：3 提示：</description></item><item><title>456. 132 模式</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/132-pattern/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/132-pattern/readme/</guid><description>456. 132 模式 难度中等
+给你一个整数数组 nums ，数组中共有 n 个整数。132 模式的子序列 由三个整数 nums[i]、nums[j] 和 nums[k] 组成，并同时满足：i &amp;lt; j &amp;lt; k 和 nums[i] &amp;lt; nums[k] &amp;lt; nums[j] 。
+如果 nums 中存在 132 模式的子序列 ，返回 true ；否则，返回 false 。
+**进阶：**很容易想到时间复杂度为 O(n^2) 的解决方案，你可以设计一个时间复杂度为 O(n logn) 或 O(n) 的解决方案吗？
+示例 1：
+输入：nums = [1,2,3,4] 输出：false 解释：序列中不存在 132 模式的子序列。 示例 2：
+输入：nums = [3,1,4,2] 输出：true 解释：序列中有 1 个 132 模式的子序列： [1, 4, 2] 。 示例 3：</description></item><item><title>474. 一和零</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/ones-and-zeroes/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/ones-and-zeroes/readme/</guid><description>474. 一和零 难度中等
+给你一个二进制字符串数组 strs 和两个整数 m 和 n 。
+请你找出并返回 strs 的最大子集的大小，该子集中 最多 有 m 个 0 和 n 个 1 。
+如果 x 的所有元素也是 y 的元素，集合 x 是集合 y 的 子集 。
+示例 1：
+输入：strs = [&amp;quot;10&amp;quot;, &amp;quot;0001&amp;quot;, &amp;quot;111001&amp;quot;, &amp;quot;1&amp;quot;, &amp;quot;0&amp;quot;], m = 5, n = 3 输出：4 解释：最多有 5 个 0 和 3 个 1 的最大子集是 {&amp;quot;10&amp;quot;,&amp;quot;0001&amp;quot;,&amp;quot;1&amp;quot;,&amp;quot;0&amp;quot;} ，因此答案是 4 。 其他满足题意但较小的子集包括 {&amp;quot;0001&amp;quot;,&amp;quot;1&amp;quot;} 和 {&amp;quot;10&amp;quot;,&amp;quot;1&amp;quot;,&amp;quot;0&amp;quot;} 。{&amp;quot;111001&amp;quot;} 不满足题意，因为它含 4 个 1 ，大于 n 的值 3 。 示例 2：</description></item><item><title>486. 预测赢家</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/predict-the-winner/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/predict-the-winner/readme/</guid><description>486. 预测赢家 给定一个表示分数的非负整数数组。 玩家 1 从数组任意一端拿取一个分数，
+随后玩家 2 继续从剩余数组任意一端拿取分数，然后玩家 1 拿，…… 。
+每次一个玩家只能拿取一个分数，分数被拿取之后不再可取。
+直到没有剩余分数可取时游戏结束。最终获得分数总和最多的玩家获胜。
+给定一个表示分数的数组，预测玩家1是否会成为赢家。你可以假设每个玩家的玩法都会使他的分数最大化。
+示例 1： 输入：[1, 5, 2] 输出：False 解释：一开始，玩家1可以从1和2中进行选择。 如果他选择 2（或者 1 ），那么玩家 2 可以从 1（或者 2 ）和 5 中进行选择。如果玩家 2 选择了 5 ，那么玩家 1 则只剩下 1（或者 2 ）可选。 所以，玩家 1 的最终分数为 1 + 2 = 3，而玩家 2 为 5 。 因此，玩家 1 永远不会成为赢家，返回 False 。 示例 2： 输入：[1, 5, 233, 7] 输出：True 解释：玩家 1 一开始选择 1 。然后玩家 2 必须从 5 和 7 中进行选择。无论玩家 2 选择了哪个，玩家 1 都可以选择 233 。 最终，玩家 1（234 分）比玩家 2（12 分）获得更多的分数，所以返回 True，表示玩家 1 可以成为赢家。 提示： 1 &amp;lt;= 给定的数组长度 &amp;lt;= 20.</description></item><item><title>870. 优势洗牌</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/advantage-shuffle/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/advantage-shuffle/readme/</guid><description>870. 优势洗牌 难度中等
+给定两个大小相等的数组 A 和 B，A 相对于 B 的优势可以用满足 A[i] &amp;gt; B[i] 的索引 i 的数目来描述。
+返回 A 的任意排列，使其相对于 B 的优势最大化。
+示例 1：
+输入：A = [2,7,11,15], B = [1,10,4,11] 输出：[2,11,7,15] 示例 2：
+输入：A = [12,24,8,32], B = [13,25,32,11] 输出：[24,32,8,12] 提示：
+1 &amp;lt;= A.length = B.length &amp;lt;= 10000 0 &amp;lt;= A[i] &amp;lt;= 10^9 0 &amp;lt;= B[i] &amp;lt;= 10^9 函数签名：
+func advantageCount(A []int, B []int) []int 分析 想到两种贪心策略。
+借助 BST 对于 B 里的元素 x，需要在 A 中查找 y，比 x 大且要最小，如果 y 不存在（即没有比 x 大的元素），那么需要查找 A 中最小的元素 z，y/z 就是 x 对应的答案，当然遍历处理 B 中 x 找到答案后要在 A 中删除对应的元素。</description></item><item><title>936. 戳印序列</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/stamping-the-sequence/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/stamping-the-sequence/readme/</guid><description>936. 戳印序列 难度困难
+你想要用小写字母组成一个目标字符串 target。
+开始的时候，序列由 target.length 个 '?' 记号组成。而你有一个小写字母印章 stamp。
+在每个回合，你可以将印章放在序列上，并将序列中的每个字母替换为印章上的相应字母。你最多可以进行 10 * target.length 个回合。
+举个例子，如果初始序列为 &amp;ldquo;?????&amp;quot;，而你的印章 stamp 是 &amp;quot;abc&amp;quot;，那么在第一回合，你可以得到 &amp;ldquo;abc??&amp;quot;、&amp;quot;?abc?&amp;quot;、&amp;rdquo;??abc&amp;rdquo;。（请注意，印章必须完全包含在序列的边界内才能盖下去。）
+如果可以印出序列，那么返回一个数组，该数组由每个回合中被印下的最左边字母的索引组成。如果不能印出序列，就返回一个空数组。
+例如，如果序列是 &amp;ldquo;ababc&amp;rdquo;，印章是 &amp;quot;abc&amp;quot;，那么我们就可以返回与操作 &amp;ldquo;?????&amp;rdquo; -&amp;gt; &amp;ldquo;abc??&amp;rdquo; -&amp;gt; &amp;ldquo;ababc&amp;rdquo; 相对应的答案 [0, 2]；
+另外，如果可以印出序列，那么需要保证可以在 10 * target.length 个回合内完成。任何超过此数字的答案将不被接受。
+示例 1：
+输入：stamp = &amp;quot;abc&amp;quot;, target = &amp;quot;ababc&amp;quot; 输出：[0,2] （[1,0,2] 以及其他一些可能的结果也将作为答案被接受） 示例 2：
+输入：stamp = &amp;quot;abca&amp;quot;, target = &amp;quot;aabcaca&amp;quot; 输出：[3,0,1] 提示：
+1 &amp;lt;= stamp.length &amp;lt;= target.length &amp;lt;= 1000 stamp 和 target 只包含小写字母。 函数签名：</description></item><item><title>978. 最长湍流子数组</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/longest-turbulent-subarray/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/longest-turbulent-subarray/readme/</guid><description>978. 最长湍流子数组 难度中等
+当 A 的子数组 A[i], A[i+1], ..., A[j] 满足下列条件时，我们称其为湍流子数组：
+若 i &amp;lt;= k &amp;lt; j，当 k 为奇数时， A[k] &amp;gt; A[k+1]，且当 k 为偶数时，A[k] &amp;lt; A[k+1]； 或 若 i &amp;lt;= k &amp;lt; j，当 k 为偶数时，A[k] &amp;gt; A[k+1] ，且当 k 为奇数时， A[k] &amp;lt; A[k+1]。 也就是说，如果比较符号在子数组中的每个相邻元素对之间翻转，则该子数组是湍流子数组。
+返回 A 的最大湍流子数组的长度。
+示例 1：
+输入：[9,4,2,10,7,8,8,1,9] 输出：5 解释：(A[1] &amp;gt; A[2] &amp;lt; A[3] &amp;gt; A[4] &amp;lt; A[5]) 示例 2：
+输入：[4,8,12,16] 输出：2 示例 3：
+输入：[100] 输出：1 提示：</description></item><item><title>LCP 13. 寻宝</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/xunbao/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/xunbao/readme/</guid><description>LCP 13. 寻宝 难度困难
+我们得到了一副藏宝图，藏宝图显示，在一个迷宫中存在着未被世人发现的宝藏。
+迷宫是一个二维矩阵，用一个字符串数组表示。它标识了唯一的入口（用 &amp;lsquo;S&amp;rsquo; 表示），和唯一的宝藏地点（用 &amp;lsquo;T&amp;rsquo; 表示）。但是，宝藏被一些隐蔽的机关保护了起来。在地图上有若干个机关点（用 &amp;lsquo;M&amp;rsquo; 表示），只有所有机关均被触发，才可以拿到宝藏。
+要保持机关的触发，需要把一个重石放在上面。迷宫中有若干个石堆（用 &amp;lsquo;O&amp;rsquo; 表示），每个石堆都有无限个足够触发机关的重石。但是由于石头太重，我们一次只能搬一个石头到指定地点。
+迷宫中同样有一些墙壁（用 &amp;lsquo;#&amp;rsquo; 表示），我们不能走入墙壁。剩余的都是可随意通行的点（用 &amp;lsquo;.&amp;rsquo; 表示）。石堆、机关、起点和终点（无论是否能拿到宝藏）也是可以通行的。
+我们每步可以选择向上/向下/向左/向右移动一格，并且不能移出迷宫。搬起石头和放下石头不算步数。那么，从起点开始，我们最少需要多少步才能最后拿到宝藏呢？如果无法拿到宝藏，返回 -1 。
+示例 1：
+输入： [&amp;ldquo;S#O&amp;rdquo;, &amp;ldquo;M..&amp;rdquo;, &amp;ldquo;M.T&amp;rdquo;]
+输出：16
+解释：最优路线为： S-&amp;gt;O, cost = 4, 去搬石头 O-&amp;gt;第二行的M, cost = 3, M机关触发 第二行的M-&amp;gt;O, cost = 3, 我们需要继续回去 O 搬石头。 O-&amp;gt;第三行的M, cost = 4, 此时所有机关均触发 第三行的M-&amp;gt;T, cost = 2，去T点拿宝藏。 总步数为16。 示例 2：
+输入： [&amp;ldquo;S#O&amp;rdquo;, &amp;ldquo;M.#&amp;rdquo;, &amp;ldquo;M.T&amp;rdquo;]
+输出：-1
+解释：我们无法搬到石头触发机关
+示例 3：</description></item><item><title>去掉 k 个字符使结果保持一定顺序</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/remove-k-digits/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/remove-k-digits/readme/</guid><description>以下几个问题类似，都可以使用贪心策略解决，具体实施时使用类似单调栈的思路降低时间复杂度和代码复杂度。
+402. 移掉K位数字 难度中等
+给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。
+注意:
+num 的长度小于 10002 且 ≥ k。 num 不会包含任何前导零。 示例 1 :
+输入: num = &amp;quot;1432219&amp;quot;, k = 3 输出: &amp;quot;1219&amp;quot; 解释: 移除掉三个数字 4, 3, 和 2 形成一个新的最小的数字 1219。 示例 2 :
+输入: num = &amp;quot;10200&amp;quot;, k = 1 输出: &amp;quot;200&amp;quot; 解释: 移掉首位的 1 剩下的数字为 200. 注意输出不能有任何前导零。 示例 3 :
+输入: num = &amp;quot;10&amp;quot;, k = 2 输出: &amp;quot;0&amp;quot; 解释: 从原数字移除所有的数字，剩余为空就是0。 函数定义如下：</description></item><item><title>在树上动态规划</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/special-dp/dp-in-a-tree/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/special-dp/dp-in-a-tree/</guid><description>LeetCode 上有两个问题，挺有意思：
+337. 打家劫舍 III 在上次打劫完一条街道之后和一圈房屋后，小偷又发现了一个新的可行窃的地区。 这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。 一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。 计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。 示例 1: 输入: [3,2,3,null,3,null,1] 3 / \ 2 3 \ \ 3 1 输出: 7 解释: 小偷一晚能够盗取的最高金额 = 3 + 3 + 1 = 7. 示例 2: 输入: [3,4,5,1,3,null,1] 3 / \ 4 5 / \ \ 1 3 1 输出: 9 解释: 小偷一晚能够盗取的最高金额 = 4 + 5 = 9. 968. 监控二叉树 给定一个二叉树，我们在树的节点上安装摄像头。 节点上的每个摄影头都可以监视其父对象、自身及其直接子对象。 计算监控树的所有节点所需的最小摄像头数量。 示例 1： 0 / 📸 / \ 0 0 输入：[0,0,null,0,0] 输出：1 解释：如图所示，一台摄像头足以监控所有节点。 示例 2： 0 / 📸 / 0 / 📸 \ 0 输入：[0,0,null,0,null,0,null,null,0] 输出：2 解释：需要至少两个摄像头来监视树的所有节点。 上图显示了摄像头放置的有效位置之一。 提示： 给定树的节点数的范围是 [1, 1000]。 每个节点的值都是 0。 分析 树上打劫 让我们从简单一点的第一个问题开始</description></item><item><title>最大子序和</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/maximum-subarray/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/maximum-subarray/readme/</guid><description>53. 最大子序和 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+示例: 输入: [-2,1,-3,4,-1,2,1,-5,4], 输出: 6 解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。 进阶: 如果你已经实现复杂度为 O(n) 的解法，尝试使用更为精妙的分治法求解。 动态规划一 定义 dp[i] 表示以 nums[i] 结尾且包含 nums[i] 的连续子数组最大和
+则 dp[i] = max(0, dp[i-1]) + nums[i]
+最终的结果即遍历dp后的最大元素
+首先可以在确定dp数组的每个元素时更新最终结果，不一定要完全确定了dp数组再遍历获取最终结果
+其次，每次dp只跟上次的dp值有关，dp数组可以优化为一个变量
+时间复杂度O(n), 空间复杂度O(1)
+动态规划二 dp也可定义为当前为止连续子数组的和，如果 dp 小于 0了，说明之前的元素对后边新元素的和没有正向贡献，可以重新开始计算和，dp 置为0
+func maxSubArray(nums []int) int { if len(nums) == 0 { return 0 } dp, res := 0, nums[0] for _, v := range nums { dp = max(0, dp) + v res = max(res, dp) } return res } func maxSubArray1(nums []int) int { if len(nums) == 0 { return 0 } dp, res := 0, nums[0] for _, v := range nums { dp += v res = max(res, dp) if dp &amp;lt; 0 { dp = 0 } } return res} 1191.</description></item><item><title>柱状图中接雨水、找方块</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/trapping-rain-water/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/trapping-rain-water/readme/</guid><description>42. 接雨水 难度困难
+给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+示例 1：
+输入：height = [0,1,0,2,1,0,1,3,2,1,2,1] 输出：6 解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 示例 2：
+输入：height = [4,2,0,3,2,5] 输出：9 提示：
+n == height.length 0 &amp;lt;= n &amp;lt;= 3 * 104 0 &amp;lt;= height[i] &amp;lt;= 105 分析 考虑每个位置能接到的雨水量 遍历数组，对于位置 i，考虑可以接到多少雨水。
+显然这由左右两侧比当前位置高的柱子的高度来决定，实际生要找到左右两侧最高的柱子。如果知道左侧最高的高度 leftMax 和右侧最高的高度 rightMax，那么 i 处能接到雨水量为 min(leftMax, rightMax)-height[i]。
+注意，可能左右侧最高的柱子也没有当前柱子 height[i] 高，接到雨水量为 0。这样的话可以让 leftMax 或 rightMax 等于 height[i]，不影响结果。
+为了降低复杂度，可以事先用动态规划的方式计算出前缀最大值和后缀最大值数组，再遍历一遍得到结果，这样会使线性复杂度。
+func trap(height []int) int { n := len(height) if n == 0 { return 0 } prefixMax := make([]int, n) prefixMax[0] = height[0] for i := 1; i &amp;lt; n; i++ { prefixMax[i] = max(prefixMax[i-1], height[i]) } suffixMax := make([]int, n) suffixMax[n-1] = height[n-1] for i := n - 2; i &amp;gt;= 0; i-- { suffixMax[i] = max(suffixMax[i+1], height[i]) } res := 0 for i, h := range height { res += min(prefixMax[i], suffixMax[i]) - h } return res } 时空复杂度都是O(n)，其中 n 是数组长度。</description></item><item><title>石子游戏</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/stone-game/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/stone-game/readme/</guid><description>石子游戏非常有意思，可以和小朋友玩。以下几个石子游戏问题，用程序来做计算也非常有意思。
+877. 石子游戏 难度中等
+亚历克斯和李用几堆石子在做游戏。偶数堆石子排成一行，每堆都有正整数颗石子 piles[i] 。
+游戏以谁手中的石子最多来决出胜负。石子的总数是奇数，所以没有平局。
+亚历克斯和李轮流进行，亚历克斯先开始。 每回合，玩家从行的开始或结束处取走整堆石头。 这种情况一直持续到没有更多的石子堆为止，此时手中石子最多的玩家获胜。
+假设亚历克斯和李都发挥出最佳水平，当亚历克斯赢得比赛时返回 true ，当李赢得比赛时返回 false 。
+示例：
+输入：[5,3,4,5] 输出：true 解释： 亚历克斯先开始，只能拿前 5 颗或后 5 颗石子 。 假设他取了前 5 颗，这一行就变成了 [3,4,5] 。 如果李拿走前 3 颗，那么剩下的是 [4,5]，亚历克斯拿走后 5 颗赢得 10 分。 如果李拿走后 5 颗，那么剩下的是 [3,4]，亚历克斯拿走后 4 颗赢得 9 分。 这表明，取前 5 颗石子对亚历克斯来说是一个胜利的举动，所以我们返回 true 。 提示：
+2 &amp;lt;= piles.length &amp;lt;= 500 piles.length 是偶数。 1 &amp;lt;= piles[i] &amp;lt;= 500 sum(piles) 是奇数。 函数签名：</description></item><item><title>股票收益问题</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/best-time-to-buy-and-sell-stock/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/best-time-to-buy-and-sell-stock/readme/</guid><description>LeetCode 上有六道股票收益类问题，给定一只股票每天的价格，计算在一定限制下的最大收益。
+问题共性：
+仅有一支股票，且每天手上最多持有一股。
+不同之处：
+每个问题对交易次数有限制，或者附加了交易冷冻期，或增加了交易费用。
+让我们从最具一般性的问题开始
+188. 买卖股票的最佳时机 IV 这个问题给出了交易次数的上限 k
+分析 类似背包问题，可以分析天数、完成的交易数和是否持有股票这三个状态，找到其转移方程。
+定义dp[i][k][s]表示第i天，交易了k次，持有或不持有股票所能得到的最大收益；为了方便处理边界, dp 大小为 (n+1) * (k+1) * 2
+假设共n天，最大交易次数为k，则所有的状态共（n * k * 2）种
+for 1 &amp;lt;= i &amp;lt;= n { for 1 &amp;lt;= j &amp;lt;= k { for 0 &amp;lt;= s &amp;lt;= 1 { dp[i][j][s] = max(buy, sell, rest) // 买入、卖出或啥也不做 最终的答案就是dp[n][k][0]，即最后一天且不持有股票所获得的收益，注意k取最大值
+因为一直都是同一支股票，dp的递推关系为：
+第i天不持有股票的情况有两种：前一天没有股票，今天不买；或前一天有股票，今天卖了；选择收益最大的做法即可 dp[i][j][0] = max(dp[i-1][j][0], dp[i-1][j][1] + price[i]) 第i天持有股票的情况，与上边类似: 前一天有股票， 今天不卖，或前一天没有股票，今天买入； 买入则收益减少 prices[i] dp[i][j][1] = max(dp[i-1][j][1], dp[i-1][j-1][0] - prices[i]) 注意买入我们会将j减去1，卖出则不会；改成卖出时j-1，而买入时不变也是可以的，只是初始情况略有不同</description></item><item><title>背包问题</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/special-dp/pack/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/special-dp/pack/</guid><description>一类精巧的动态规划
+问题雏形, 01背包 有 N 件物品，一个容量为 C 的背包。 第i件物品的重量是 W[i], 价值是 V[i]。 在不超过背包容量的情况下，怎么装物品使得装入的总价值最大？求出最大总价值。 分析 看一个具体的例子：
+假设背包的大小是 10，有 4 个物品， 体积分别是 [2,3,5,7]， 价值分别是 [2,5,2,5]。 1、如果仅考虑将前一个物品放入背包，只要背包容量大于2，都可以获取价值为2的最大价值
+表格首列为物品编号+(物品体积，物品价值）
+物品\容量 0 1 2 3 4 5 6 7 8 9 10 1 (2,2) 0 0 2 2 2 2 2 2 2 2 2 2 (3,5) 3 (5,2) 4 (7,5) 2、现在考虑仅将前两个物品放入背包, 如果背包容量不小于5就可以把两个物品都放入，获得价值2+5=7; 如果不能全部放入，就需要选择体积不超，价值最大的物品</description></item><item><title>跳跃游戏</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/jump-game/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/jump-game/readme/</guid><description>55. 跳跃游戏 给定一个非负整数数组，你最初位于数组的第一个位置。
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
+判断你是否能够到达最后一个位置。
+示例 1: 输入: [2,3,1,1,4] 输出: true 解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。 示例 2: 输入: [3,2,1,0,4] 输出: false 解释: 无论怎样，你总会到达索引为 3 的位置。但该位置的最大跳跃长度是 0 ， 所以你永远不可能到达最后一个位置。 直观贪心、自底向上dp及自顶向下dp。 参考解答
+45. 跳跃游戏 II 给定一个非负整数数组，你最初位于数组的第一个位置。
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
+假设你总是可以到达数组的最后一个位置。你的目标是使用最少的跳跃次数到达数组的最后一个位置。
+示例: 输入: [2,3,1,1,4] 输出: 2 解释: 跳到最后一个位置的最小跳跃数是 2。 从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。 动态规划的解法会在最后一个用例超出时间限制；这里需要贪心策略。
+值得一提的是另一个最坏情况时间复杂度O(n^2)的实现，思路直观，且并不超时。参考解答</description></item><item><title>重排使相同元素至少间隔k</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/rearrange-k-distance-apart/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/rearrange-k-distance-apart/readme/</guid><description>621. 任务调度器 给定一个用字符数组表示的 CPU 需要执行的任务列表。
+其中包含使用大写的 A - Z 字母表示的26 种不同种类的任务。
+任务可以以任意顺序执行，并且每个任务都可以在 1 个单位时间内执行完。
+CPU 在任何一个单位时间内都可以执行一个任务，或者在待命状态。
+然而，两个相同种类的任务之间必须有长度为 n 的冷却时间，
+因此至少有连续 n 个单位时间内 CPU 在执行不同的任务，或者在待命状态。
+你需要计算完成所有任务所需要的最短时间。
+示例 ： 输入：tasks = [&amp;quot;A&amp;quot;,&amp;quot;A&amp;quot;,&amp;quot;A&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;B&amp;quot;,&amp;quot;B&amp;quot;], n = 2 输出：8 解释：A -&amp;gt; B -&amp;gt; (待命) -&amp;gt; A -&amp;gt; B -&amp;gt; (待命) -&amp;gt; A -&amp;gt; B. 在本示例中，两个相同类型任务之间必须间隔长度为 n = 2 的冷却时间， 而执行一个任务只需要一个单位时间，所以中间出现了（待命）状态。 提示： 任务的总个数为 [1, 10000]。 n 的取值范围为 [0, 100]。 分析 有一个明显的贪心策略，即优先安排数量大的任务。下边解法都是基于这个贪心策略。
+模拟 先统计每个任务的数量。
+以n+1个任务为一轮，同一轮中一个任务最多被安排一次。
+每一轮中，将当前任务按照剩余次数降序排列，再选择剩余次数最多的n+1个任务一次执行
+如果任务的种类 t 少于 n + 1 个，就只选择全部的 t 种任务，其余的时间空闲。</description></item></channel></rss>
