@@ -1,6 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>堆 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E5%A0%86/</link><description>Recent content in 堆 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Apr 2021 22:04:56 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E5%A0%86/index.xml" rel="self" type="application/rss+xml"/><item><title>632. 最小区间</title><link>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</guid><description>632. 最小区间 难度困难
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>堆 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E5%A0%86/</link><description>Recent content in 堆 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Apr 2021 22:04:56 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E5%A0%86/index.xml" rel="self" type="application/rss+xml"/><item><title>295. 数据流的中位数</title><link>https://zrcoder.github.io/leetcode/design/find-median-from-data-stream/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/find-median-from-data-stream/readme/</guid><description>295. 数据流的中位数 难度困难
+中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。
+例如，
+[2,3,4] 的中位数是 3
+[2,3] 的中位数是 (2 + 3) / 2 = 2.5
+设计一个支持以下两种操作的数据结构：
+void addNum(int num) - 从数据流中添加一个整数到数据结构中。 double findMedian() - 返回目前所有元素的中位数。 示例：
+addNum(1) addNum(2) findMedian() -&amp;gt; 1.5 addNum(3) findMedian() -&amp;gt; 2 进阶:
+如果数据流中所有整数都在 0 到 100 范围内，你将如何优化你的算法？ 如果数据流中 99% 的整数都在 0 到 100 范围内，你将如何优化你的算法？ 分析 朴素实现 维护一个有序的切片，这样可以在常数时间找到中位数，但是添加元素需要 O(n) 的复杂度，n 是已有元素的总数。
+添加元素的复杂度不理想，实现代码略。
+BST Treap 是较平衡的 BST, AVL或红黑树平衡性更理想。在平衡的 BST 里增删查元素是对数级的复杂度，同样，查找第 k 小的数字也是对数时间复杂度。</description></item><item><title>632. 最小区间</title><link>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</guid><description>632. 最小区间 难度困难
 你有 k 个 非递减排列 的整数列表。找到一个 最小 区间，使得 k 个列表中的每个列表至少有一个数包含在其中。
 我们定义如果 b-a &amp;lt; d-c 或者在 b-a == d-c 时 a &amp;lt; c，则区间 [a,b] 比 [c,d] 小。
 示例 1：
 输入：nums = [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]] 输出：[20,24] 解释： 列表 1：[4, 10, 15, 24, 26]，24 在区间 [20,24] 中。 列表 2：[0, 9, 12, 20]，20 在区间 [20,24] 中。 列表 3：[5, 18, 22, 30]，22 在区间 [20,24] 中。 示例 2：
-输入：nums = [[1,2,3],[1,2,3],[1,2,3]] 输出：[1,1] 示例 3：</description></item></channel></rss>
+输入：nums = [[1,2,3],[1,2,3],[1,2,3]] 输出：[1,1] 示例 3：</description></item><item><title>设计推特</title><link>https://zrcoder.github.io/leetcode/design/design-twitter/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/design-twitter/readme/</guid><description>355. 设计推特 设计一个简化版的推特(Twitter)，可以让用户实现发送推文，关注/取消关注其他用户，
+能够看见关注人（包括自己）的最近十条推文。
+你的设计需要支持以下的几个功能：
+postTweet(userId, tweetId): 创建一条新的推文 getNewsFeed(userId): 检索最近的十条推文。每个推文都必须是由此用户关注的人或者是用户自己发出的。 推文必须按照时间顺序由最近的开始排序。 follow(followerId, followeeId): 关注一个用户 unfollow(followerId, followeeId): 取消关注一个用户 示例: Twitter twitter = new Twitter(); // 用户1发送了一条新推文 (用户id = 1, 推文id = 5). twitter.postTweet(1, 5); // 用户1的获取推文应当返回一个列表，其中包含一个id为5的推文. twitter.getNewsFeed(1); // 用户1关注了用户2. twitter.follow(1, 2); // 用户2发送了一个新推文 (推文id = 6). twitter.postTweet(2, 6); // 用户1的获取推文应当返回一个列表，其中包含两个推文，id分别为 -&amp;gt; [6, 5]. // 推文id6应当在推文id5之前，因为它是在5之后发送的. twitter.getNewsFeed(1); // 用户1取消关注了用户2. twitter.unfollow(1, 2); // 用户1的获取推文应当返回一个列表，其中包含一个id为5的推文. // 因为用户1已经不再关注用户2. twitter.getNewsFeed(1); 分析 面向对象的设计，主要逻辑在User类。
+借助堆 比较难实现的是getNewsFeed， 可用优先队列（小顶堆）来实现，代码略；
+注意优化，从后向前遍历用户的tweet列表，如果优先队列里已经有10个元素，</description></item></channel></rss>

@@ -5,4 +5,10 @@
 另外，我们使用的除法是地板除法（floor division），所以 10 * 9 / 8 等于 11。这保证结果是一个整数。
 实现上面定义的笨函数：给定一个整数 N，它返回 N 的笨阶乘。
 示例 1：
-输入：4 输出：7 解释：7 = 4 * 3 / 2 + 1 示例 2：</description></item></channel></rss>
+输入：4 输出：7 解释：7 = 4 * 3 / 2 + 1 示例 2：</description></item><item><title>855. 考场就座</title><link>https://zrcoder.github.io/leetcode/design/exam-room/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/exam-room/readme/</guid><description>855. 考场就座 难度中等
+在考场里，一排有 N 个座位，分别编号为 0, 1, 2, ..., N-1 。
+当学生进入考场后，他必须坐在能够使他与离他最近的人之间的距离达到最大化的座位上。如果有多个这样的座位，他会坐在编号最小的座位上。(另外，如果考场里没有人，那么学生就坐在 0 号座位上。)
+返回 ExamRoom(int N) 类，它有两个公开的函数：其中，函数 ExamRoom.seat() 会返回一个 int （整型数据），代表学生坐的位置；函数 ExamRoom.leave(int p) 代表坐在座位 p 上的学生现在离开了考场。每次调用 ExamRoom.leave(p) 时都保证有学生坐在座位 p 上。
+示例：
+输入：[&amp;quot;ExamRoom&amp;quot;,&amp;quot;seat&amp;quot;,&amp;quot;seat&amp;quot;,&amp;quot;seat&amp;quot;,&amp;quot;seat&amp;quot;,&amp;quot;leave&amp;quot;,&amp;quot;seat&amp;quot;], [[10],[],[],[],[],[4],[]] 输出：[null,0,9,4,2,null,5] 解释： ExamRoom(10) -&amp;gt; null seat() -&amp;gt; 0，没有人在考场里，那么学生坐在 0 号座位上。 seat() -&amp;gt; 9，学生最后坐在 9 号座位上。 seat() -&amp;gt; 4，学生最后坐在 4 号座位上。 seat() -&amp;gt; 2，学生最后坐在 2 号座位上。 leave(4) -&amp;gt; null seat() -&amp;gt; 5，学生最后坐在 5 号座位上。 提示：
+1 &amp;lt;= N &amp;lt;= 10^9 在所有的测试样例中 ExamRoom.</description></item></channel></rss>

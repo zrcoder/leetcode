@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>有序集合 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88/</link><description>Recent content in 有序集合 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Apr 2021 22:04:56 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88/index.xml" rel="self" type="application/rss+xml"/><item><title>295. 数据流的中位数</title><link>https://zrcoder.github.io/leetcode/design/find-median-from-data-stream/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/design/find-median-from-data-stream/readme/</guid><description>295. 数据流的中位数 难度困难
+中位数是有序列表中间的数。如果列表长度是偶数，中位数则是中间两个数的平均值。
+例如，
+[2,3,4] 的中位数是 3
+[2,3] 的中位数是 (2 + 3) / 2 = 2.5
+设计一个支持以下两种操作的数据结构：
+void addNum(int num) - 从数据流中添加一个整数到数据结构中。 double findMedian() - 返回目前所有元素的中位数。 示例：
+addNum(1) addNum(2) findMedian() -&amp;gt; 1.5 addNum(3) findMedian() -&amp;gt; 2 进阶:
+如果数据流中所有整数都在 0 到 100 范围内，你将如何优化你的算法？ 如果数据流中 99% 的整数都在 0 到 100 范围内，你将如何优化你的算法？ 分析 朴素实现 维护一个有序的切片，这样可以在常数时间找到中位数，但是添加元素需要 O(n) 的复杂度，n 是已有元素的总数。
+添加元素的复杂度不理想，实现代码略。
+BST Treap 是较平衡的 BST, AVL或红黑树平衡性更理想。在平衡的 BST 里增删查元素是对数级的复杂度，同样，查找第 k 小的数字也是对数时间复杂度。</description></item></channel></rss>
