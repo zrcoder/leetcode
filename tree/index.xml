@@ -78,25 +78,4 @@ func inorderTraversal1(root *TreeNode) []int { var res []int stack := list.</des
 对位于 (x, y) 的每个结点而言，其左右子结点分别位于 (x - 1, y - 1) 和 (x + 1, y - 1) 。
 二叉树 垂序遍历 是由从左到右每个唯一 x 坐标的非空 报告 形成的列表，报告 是一个包含给定 x 坐标下所有节点的列表，其中节点需要按 y 坐标从最高到最低排序。如果 报告 中任意两个节点的 y 坐标相同，则值较小的节点应排在前面。
 示例 1：
-输入：root = [3,9,20,null,null,15,7] 输出：[[9],[3,15],[20],[7]] 解释： 在不丧失其普遍性的情况下，我们可以假设根结点位于 (0, 0)： 然后，值为 9 的结点出现在 (-1, -1)； 值为 3 和 15 的两个结点分别出现在 (0, 0) 和 (0, -2)； 值为 20 的结点出现在 (1, -1)； 值为 7 的结点出现在 (2, -2)。 示例 2：</description></item><item><title>Morris 遍历二叉树</title><link>https://zrcoder.github.io/leetcode/tree/traversal/binary-tree-morris/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/tree/traversal/binary-tree-morris/</guid><description>这个算法是 KMP 算法作者之一 Morris 提出的，空间复杂度非常优秀，同时和常规实现的时间复杂度相当。
-利用了树本身的空间，在遍历过程中会修改树结构，但是遍历完能恢复。
-中序遍历 不失一般性，先给出如下二叉树定义：
-type TreeNode struct { Val int Left *TreeNode Right *TreeNode } 要保证整个算法只使用常数级的额外空间，难点在于：遍历到子节点时怎么返回父节点。
-Morris 算法用到了线索二叉树（threaded binary tree）的概念。
-中间过程利用叶子节点的右孩子空指针来指向其后继节点。
-具体过程：
-用变量 cur 代表当前节点，一开始其值为根节点
-1.如果 cur 左孩子为空，访问 cur 并 将 cur 指向其右孩子
-2.否则，找到 cur 的前驱节点 node，实际为左子树最右叶子节点
-2.1 如果 node 的右指针为空，这说明是第一次来找前驱节点， 现在将 node 的右指针指向 cur，cur 指向自己的左孩子。 2.2 由于 2.1 的原因，node 的右指针可能是 cur，如果是 cur，说明 cur 的左子树已经遍历完成， 将 node 右指针重新置为 nil 以恢复树结果，访问当前节点，cur 指向自己的右孩子。 见如下例子：
-示例代码如下：
-func inorderTraversalMorris(root *TreeNode) { cur := root var pre *TreeNode for cur !</description></item><item><title>一般树的 BFS 层次遍历</title><link>https://zrcoder.github.io/leetcode/tree/traversal/tree-traversal-levelorder/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/tree/traversal/tree-traversal-levelorder/</guid><description>func simpleLevelOrder(root *TreeNode) []string { if root == nil { return nil } var result []string currLever := []*TreeNode{root} for len(currLever) &amp;gt; 0 { var nextLever []*TreeNode for _, v := range currLever { result = append(result, v.Val) for _, c := range v.Children { nextLever = append(nextLever, c) } } currLever = nextLever } return result } 上面是基础层次遍历，下面稍微精确控制了下，需要返回一个数组，包含每一层的结点
-// 迭代版。借助一个queue实现，或者用数组也可以 func levelOrder(root *TreeNode) [][]string { if root == nil { return nil } var result [][]string queue := list.</description></item><item><title>一般树的 DFS 深度遍历</title><link>https://zrcoder.github.io/leetcode/tree/traversal/tree-traversal-dfs/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/tree/traversal/tree-traversal-dfs/</guid><description>不妨以前序遍历为例，需注意多叉树没有中序遍历
-递归版
-func preorder(root *TreeNode) []string { var result []string var dfs func(node *TreeNode) dfs = func(node *TreeNode) { if node == nil { return } result = append(result, node.Val) for _, v := range node.Children { dfs(v) } } dfs(root) return result } 迭代版，借助一个栈实现
-func preorder1(root *TreeNode) []string { if root == nil { return nil } var result []string stack := list.New() stack.PushBack(root) for stack.Len() &amp;gt; 0 { node := stack.</description></item><item><title>树的遍历</title><link>https://zrcoder.github.io/leetcode/tree/traversal/tree-traversal/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/tree/traversal/tree-traversal/</guid><description>一般树 不妨假设每个结点的值是一个字符串
-A / | \ B C D /| | E F G /|\ H I J type TreeNode struct { Children []*TreeNode Val string } 也可以用数组或哈希表来代表结点，如Trie前缀树的一个实现及树的路径和问题探讨中getPath函数的入参relations
-BFS层次遍历 DFS深度遍历 二叉树 对于二叉树，DFS又可细分为前序、中序、后序遍历
-层次遍历 之字形层次遍历 先序遍历 中序遍历 后序遍历 二叉树 morris 遍历 限定条件遍历 在遍历时，可以有一些限定条件，比如统计从根结点到叶子结点路径和为定值的路径；
-这里可以增加额外辅助数据结构如栈来记录路径，同时做好回溯。
-参考树的路径和问题探讨</description></item></channel></rss>
+输入：root = [3,9,20,null,null,15,7] 输出：[[9],[3,15],[20],[7]] 解释： 在不丧失其普遍性的情况下，我们可以假设根结点位于 (0, 0)： 然后，值为 9 的结点出现在 (-1, -1)； 值为 3 和 15 的两个结点分别出现在 (0, 0) 和 (0, -2)； 值为 20 的结点出现在 (1, -1)； 值为 7 的结点出现在 (2, -2)。 示例 2：</description></item></channel></rss>
