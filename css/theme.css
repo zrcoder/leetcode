@@ -480,6 +480,35 @@ blockquote cite {
     color: #666;
     font-size: 1.2rem;
 }
+
+div.hint {
+    margin: 2rem 0;
+    position: relative;
+}
+div.hint p {
+    padding: 15px;
+    display: block;
+    font-size: 1rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+}
+div.hint.tip p {
+    color: rgb(92, 184, 92);
+    background:rgba(92, 184, 92, 0.1);
+}
+div.hint.info p {
+    color: rgb(102,187,255);
+    background:rgba(102,187,255, 0.1);
+}
+div.hint.warning p {
+    color: rgb(255,221,102);
+    background: rgba(255,221,102, 0.1);
+}
+div.hint.danger p {
+    color: rgb(255,102,102);
+    background: rgba(255,102,102, 0.1);
+}
+
 div.notices {
     margin: 2rem 0;
     position: relative;
