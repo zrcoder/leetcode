@@ -6,19 +6,19 @@
 示例：
 输入: [[1,2,2,1], [3,1,2], [1,3,2], [2,4], [3,1,2], [1,3,1,1]] 输出: 2 解释: 提示：
 每一行砖块的宽度之和应该相等，并且不能超过 INT_MAX。 每一行砖块的数量在 [1,10,000] 范围内， 墙的高度在 [1,10,000] 范围内， 总的砖块数量不超过 20,000。 函数签名：
-func leastBricks(wall [][]int) int 分析 朴素解法 从每一行的空隙画一条竖线，看看穿过了多少块砖，时间复杂度是 O(vm)， v 是空隙数， m是墙的高度即行数。
+1func leastBricks(wall [][]int) int 分析 朴素解法 从每一行的空隙画一条竖线，看看穿过了多少块砖，时间复杂度是 O(vm)， v 是空隙数， m是墙的高度即行数。
 复杂度较高，且代码较繁琐。
 借助哈希表优化 每一个空隙，可以用其距离最左端的长度来表示。用一个哈希表，键为每个空隙距离左端的长度，值为空隙出现的次数。
 这样遍历完所有空隙后，哈希表里值最大的空隙即最优的划线处，墙的高度减去这个最大值就是结果。
 需要注意只有一行或所有行都只有一块砖的情况。
-const inf = math.MaxInt32 func leastBricks(wall [][]int) int { memo := make(map[int]int, 0) for _, row := range wall { sum := 0 for i := 0; i &amp;lt; len(row)-1; i++ { // 每行的最右侧不是空隙 sum += row[i] memo[sum]++ } } res := inf for _, c := range memo { res = min(res, len(wall)-c) } if res == inf { return len(wall) } return res }</description></item><item><title>1. 两数之和</title><link>https://zrcoder.github.io/leetcode/hashmap-array/two_sum/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/two_sum/readme/</guid><description>1. 两数之和 给定一个整数数组 nums 和一个目标值 target，
+1const inf = math.MaxInt32 2 3func leastBricks(wall [][]int) int { 4 memo := make(map[int]int, 0) 5 for _, row := range wall { 6 sum := 0 7 for i := 0; i &amp;lt; len(row)-1; i++ { // 每行的最右侧不是空隙 8 sum += row[i] 9 memo[sum]++ 10 } 11 } 12 res := inf 13 for _, c := range memo { 14 res = min(res, len(wall)-c) 15 } 16 if res == inf { 17 return len(wall) 18 } 19 return res 20}</description></item><item><title>1. 两数之和</title><link>https://zrcoder.github.io/leetcode/hashmap-array/two_sum/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/two_sum/readme/</guid><description>1. 两数之和 给定一个整数数组 nums 和一个目标值 target，
 请你在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。
 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
 示例:
 给定 nums = [2, 7, 11, 15], target = 9
 因为 nums[0] + nums[1] = 2 + 7 = 9
 所以返回 [0, 1]
-分析 朴素实现， O(n^2)复杂度 func twoSum(nums []int, target int) []int { for i := 0; i &amp;lt; len(nums)-1; i++ { for j := i + 1; j &amp;lt; len(nums); j ++ { if nums[i]+nums[j] == target { return []int{i, j} } } } return nil } 经典哈希表解法 时间O(n), 空间O(n)的实现 在遍历中，如果i在结果中，target-nums[i]必在nums中，否则i不满足要求 为了迅速查找target-nums[i]是否在nums中，我们可以构造一个map，其键为nums里的元素，值为元素的索引 构造需要遍历一遍nums，注意构造过程中，考虑有nums元素重复的情况 查找另需一遍遍历 func twoSum(nums []int, target int) []int { index := make(map[int]int, len(nums)) for i, element := range nums { index[element] = i } for i, element := range nums { if j, found := index[target-element]; found &amp;amp;&amp;amp; i !</description></item><item><title>1658. 将 x 减到 0 的最小操作数</title><link>https://zrcoder.github.io/leetcode/hashmap-array/longest-sub-arr-with-fixed-sum/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/longest-sub-arr-with-fixed-sum/readme/</guid><description>1658. 将 x 减到 0 的最小操作数 难度中等
+分析 朴素实现， O(n^2)复杂度 1func twoSum(nums []int, target int) []int { 2 for i := 0; i &amp;lt; len(nums)-1; i++ { 3 for j := i + 1; j &amp;lt; len(nums); j ++ { 4 if nums[i]+nums[j] == target { 5 return []int{i, j} 6 } 7 } 8 } 9 return nil 10} 经典哈希表解法 时间O(n), 空间O(n)的实现 在遍历中，如果i在结果中，target-nums[i]必在nums中，否则i不满足要求 为了迅速查找target-nums[i]是否在nums中，我们可以构造一个map，其键为nums里的元素，值为元素的索引 构造需要遍历一遍nums，注意构造过程中，考虑有nums元素重复的情况 查找另需一遍遍历 1func twoSum(nums []int, target int) []int { 2 index := make(map[int]int, len(nums)) 3 for i, element := range nums { 4 index[element] = i 5 } 6 for i, element := range nums { 7 if j, found := index[target-element]; found &amp;amp;&amp;amp; i !</description></item><item><title>1658. 将 x 减到 0 的最小操作数</title><link>https://zrcoder.github.io/leetcode/hashmap-array/longest-sub-arr-with-fixed-sum/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/longest-sub-arr-with-fixed-sum/readme/</guid><description>1658. 将 x 减到 0 的最小操作数 难度中等
 给你一个整数数组 nums 和一个整数 x 。每一次操作时，你应当移除数组 nums 最左边或最右边的元素，然后从 x 中减去该元素的值。请注意，需要 修改 数组以供接下来的操作使用。
 如果可以将 x 恰好 减到 0 ，返回 最小操作数 ；否则，返回 -1 。
 ​

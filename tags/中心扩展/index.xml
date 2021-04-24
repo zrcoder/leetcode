@@ -2,4 +2,4 @@
 Example:
 Input: &amp;quot;babad&amp;quot; Output: &amp;quot;bab&amp;quot; Note: &amp;quot;aba&amp;quot; is also a valid answer. Example:
 Input: &amp;quot;cbbd&amp;quot; Output: &amp;quot;bb&amp;quot; 1. 朴素实现 时间复杂度O(n^3)，空间复杂度O(1)
-func longestPalindrome1(s string) string { result := &amp;#34;&amp;#34; for i := 0; i &amp;lt; len(s); i++ { for j := i; j &amp;lt; len(s); j++ { sub := s[i : j+1] if isPalindromic(sub) &amp;amp;&amp;amp; len(result) &amp;lt; j-i+1 { result = sub } } } return result } func isPalindromic(s string) bool { for i := 0; i &amp;lt; len(s)/2; i++ { if s[i] !</description></item></channel></rss>
+1func longestPalindrome1(s string) string { 2 result := &amp;#34;&amp;#34; 3 for i := 0; i &amp;lt; len(s); i++ { 4 for j := i; j &amp;lt; len(s); j++ { 5 sub := s[i : j+1] 6 if isPalindromic(sub) &amp;amp;&amp;amp; len(result) &amp;lt; j-i+1 { 7 result = sub 8 } 9 } 10 } 11 return result 12} 13 14func isPalindromic(s string) bool { 15 for i := 0; i &amp;lt; len(s)/2; i++ { 16 if s[i] !</description></item></channel></rss>

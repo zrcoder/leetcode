@@ -11,6 +11,6 @@
 图中阴影部分为所能勾勒出的最大矩形面积，其面积为 10 个单位。
 示例:
 输入: [2,1,5,6,2,3] 输出: 10 函数签名：
-func largestRectangleArea(heights []int) int 分析 朴素实现 可以枚举所有的宽，对每个宽找到最小对高度求出面积；也可以枚举所有的高（柱子），对每个柱子，向左、向右分别找到不低于当前柱子对柱子，也就确定了宽度，进而可以计算面积。
+1func largestRectangleArea(heights []int) int 分析 朴素实现 可以枚举所有的宽，对每个宽找到最小对高度求出面积；也可以枚举所有的高（柱子），对每个柱子，向左、向右分别找到不低于当前柱子对柱子，也就确定了宽度，进而可以计算面积。
 枚举宽度大体实现：
-func largestRectangleArea(heights []int) int { res := 0 for i := 0; i &amp;lt; len(heights); i++ { for j := i; j &amp;lt; len(heights); j++ { width := j-i+1 // 找到闭区间 [i, j] 中对最小高度 height := min(heights[i:j+1]) res = max(res, width*height) } } return res } 枚举高度大体实现：</description></item></channel></rss>
+1func largestRectangleArea(heights []int) int { 2 res := 0 3 for i := 0; i &amp;lt; len(heights); i++ { 4 for j := i; j &amp;lt; len(heights); j++ { 5 width := j-i+1 6 // 找到闭区间 [i, j] 中对最小高度 7 height := min(heights[i:j+1]) 8 res = max(res, width*height) 9 } 10 } 11 return res 12} 枚举高度大体实现：</description></item></channel></rss>

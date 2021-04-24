@@ -5,7 +5,7 @@
 示例： 输入：(2 -&amp;gt; 4 -&amp;gt; 3) + (5 -&amp;gt; 6 -&amp;gt; 4) 输出：7 -&amp;gt; 0 -&amp;gt; 8 原因：342 + 465 = 807 分析 (2 -&amp;gt; 4 -&amp;gt; 3)是 342 (5 -&amp;gt; 6 -&amp;gt; 4)是 465 (7 -&amp;gt; 0 -&amp;gt; 8)是 807 342 + 465 = 807 所以，题目的本意是，把整数换了一种表达方式后，实现其加法。
 可以想一想为什么要逆序~~
 设计程序时候，需要处理的点有
-1). 位上的加法，需要处理进位问题 2). 如何进入下一位运算 3). 按位相加结束后，也还需要处理进位问题 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { result := &amp;amp;ListNode{} current := result carry := 0 // must be 0 or 1 for l1 !</description></item><item><title>23. 合并K个升序链表</title><link>https://zrcoder.github.io/leetcode/linked-list/merge-k-sorted-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/linked-list/merge-k-sorted-lists/readme/</guid><description>23. 合并K个升序链表 难度困难
+1). 位上的加法，需要处理进位问题 2). 如何进入下一位运算 3). 按位相加结束后，也还需要处理进位问题 1func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode { 2 result := &amp;amp;ListNode{} 3 current := result 4 carry := 0 // must be 0 or 1 5 for l1 !</description></item><item><title>23. 合并K个升序链表</title><link>https://zrcoder.github.io/leetcode/linked-list/merge-k-sorted-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/linked-list/merge-k-sorted-lists/readme/</guid><description>23. 合并K个升序链表 难度困难
 给你一个链表数组，每个链表都已经按升序排列。
 请你将所有链表合并到一个升序链表中，返回合并后的链表。
 示例 1：
@@ -13,4 +13,4 @@
 输入：lists = [] 输出：[] 示例 3：
 输入：lists = [[]] 输出：[] 提示：
 k == lists.length 0 &amp;lt;= k &amp;lt;= 10^4 0 &amp;lt;= lists[i].length &amp;lt;= 500 -10^4 &amp;lt;= lists[i][j] &amp;lt;= 10^4 lists[i] 按 升序 排列 lists[i].length 的总和不超过 10^4 链表定义：
-type ListNode struct { Val int Next *ListNode } 函数签名：</description></item></channel></rss>
+1type ListNode struct { 2 Val int 3 Next *ListNode 4} 函数签名：</description></item></channel></rss>

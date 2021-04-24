@@ -5,12 +5,12 @@
 输入：s = &amp;quot;leetcodeisgreat&amp;quot; 输出：5 解释：最长子字符串是 &amp;quot;leetc&amp;quot; ，其中包含 2 个 e 。 示例 3：
 输入：s = &amp;quot;bcbcbc&amp;quot; 输出：6 解释：这个示例中，字符串 &amp;quot;bcbcbc&amp;quot; 本身就是最长的，因为所有的元音 a，e，i，o，u 都出现了 0 次。 提示：
 1 &amp;lt;= s.length &amp;lt;= 5 x 10^5 s 只包含小写英文字母。 函数签名：
-func findTheLongestSubstring(s string) int 分析 朴素做法是 O(n^2)的复杂度。可以考虑前缀和技巧，先遍历一遍得到从开头到每个位置的前缀字串各个元音字母出现的个数，然后枚举所有子串，可以用前缀和数组通过减法迅速计算出子串中元音字母的个数。但是枚举所有子串也是O(n^2)的复杂度。</description></item><item><title>剑指 Offer 20. 表示数值的字符串</title><link>https://zrcoder.github.io/leetcode/others/is-string-a-number/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/is-string-a-number/readme/</guid><description>剑指 Offer 20. 表示数值的字符串 难度中等
+1func findTheLongestSubstring(s string) int 分析 朴素做法是 O(n^2)的复杂度。可以考虑前缀和技巧，先遍历一遍得到从开头到每个位置的前缀字串各个元音字母出现的个数，然后枚举所有子串，可以用前缀和数组通过减法迅速计算出子串中元音字母的个数。但是枚举所有子串也是O(n^2)的复杂度。</description></item><item><title>剑指 Offer 20. 表示数值的字符串</title><link>https://zrcoder.github.io/leetcode/others/is-string-a-number/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/is-string-a-number/readme/</guid><description>剑指 Offer 20. 表示数值的字符串 难度中等
 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串&amp;quot;+100&amp;quot;、&amp;ldquo;5e2&amp;rdquo;、&amp;quot;-123&amp;quot;、&amp;ldquo;3.1416&amp;rdquo;、&amp;quot;-1E-16&amp;quot;、&amp;ldquo;0123&amp;quot;都表示数值，但&amp;quot;12e&amp;rdquo;、&amp;ldquo;1a3.14&amp;rdquo;、&amp;ldquo;1.2.3&amp;rdquo;、&amp;quot;+-5&amp;quot;及&amp;quot;12e+5.4&amp;quot;都不是。
 函数签名：
-func isNumber(s string) bool 分析 题目描述非常模糊，到底什么样的字符串能表示数值只举了几个例子，并没有给出精确规范。查看题解，精确规范如下：
+1func isNumber(s string) bool 分析 题目描述非常模糊，到底什么样的字符串能表示数值只举了几个例子，并没有给出精确规范。查看题解，精确规范如下：
 在 C++ 文档中，描述了一个合法的数值字符串应当具有的格式。具体而言，它包含以下部分： 符号位，即 +、− 两种符号 整数部分，即由若干字符 0−9 组成的字符串 小数点 小数部分，其构成与整数部分相同 指数部分，其中包含开头的字符 e（大写小写均可）、可选的符号位，和整数部分 相比于 C++ 文档而言，本题还有一点额外的不同，即允许字符串首末两端有一些额外的空格。 在上面描述的五个部分中，每个部分都不是必需的，但也受一些额外规则的制约，如： 如果符号位存在，其后面必须跟着数字或小数点。 小数点的前后两侧，至少有一侧是数字。 朴素实现 首尾空格可以事先去除。一个数字字符串包含符号、数字、e、小数点四种元素，可以用 4 个 bool 变量维护这四种元素是否已经出现过，在遍历过程中发现违反规则的情况直接返回 false。
-func isNumber(s string) bool { s = strings.TrimSpace(s) if len(s) == 0 { return false } var signSeen, digitSeen, eSeen, dotSeen bool for _, v := range s { switch { case v == &amp;#39;+&amp;#39; || v == &amp;#39;-&amp;#39;: // 全局最多一个符号、且必须在数字和小数点之前。（注意允许在 e 或 E 之后，e 或 E 比较特殊） if signSeen || digitSeen || dotSeen { return false } signSeen = true case v &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; v &amp;lt;= &amp;#39;9&amp;#39;: // 任意位置都可以出现数字 digitSeen = true case v == &amp;#39;e&amp;#39; || v == &amp;#39;E&amp;#39;: // e/E 最多只能出现一次，且之前必须有数字 if eSeen || !</description></item><item><title>找到中间态，避免穷举</title><link>https://zrcoder.github.io/leetcode/others/vowel-spellchecker/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/vowel-spellchecker/readme/</guid><description>869. 重新排序得到 2 的幂 难度中等
+1func isNumber(s string) bool { 2 s = strings.TrimSpace(s) 3 if len(s) == 0 { 4 return false 5 } 6 var signSeen, digitSeen, eSeen, dotSeen bool 7 for _, v := range s { 8 switch { 9 case v == &amp;#39;+&amp;#39; || v == &amp;#39;-&amp;#39;: 10 // 全局最多一个符号、且必须在数字和小数点之前。（注意允许在 e 或 E 之后，e 或 E 比较特殊） 11 if signSeen || digitSeen || dotSeen { 12 return false 13 } 14 signSeen = true 15 case v &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; v &amp;lt;= &amp;#39;9&amp;#39;: 16 // 任意位置都可以出现数字 17 digitSeen = true 18 case v == &amp;#39;e&amp;#39; || v == &amp;#39;E&amp;#39;: 19 // e/E 最多只能出现一次，且之前必须有数字 20 if eSeen || !</description></item><item><title>找到中间态，避免穷举</title><link>https://zrcoder.github.io/leetcode/others/vowel-spellchecker/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/vowel-spellchecker/readme/</guid><description>869. 重新排序得到 2 的幂 难度中等
 给定正整数 N ，我们按任何顺序（包括原始顺序）将数字重新排序，注意其前导数字不能为零。
 如果我们可以通过上述方式得到 2 的幂，返回 true；否则，返回 false。
 示例 1：
@@ -20,6 +20,6 @@ func isNumber(s string) bool { s = strings.TrimSpace(s) if len(s) == 0 { return 
 输入：24 输出：false 示例 5：
 输入：46 输出：true 提示：
 1 &amp;lt;= N &amp;lt;= 10^9 函数签名：
-func reorderedPowerOf2(N int) bool 分析 如果真的去穷举 N 重新排列各位数组的情况，时间复杂度会比较高。
+1func reorderedPowerOf2(N int) bool 分析 如果真的去穷举 N 重新排列各位数组的情况，时间复杂度会比较高。
 十进制数字 N 的每一位由 0~9 这些数字组成，可以统计所有位中，0~9这些数字的个数，用一个长度为 10 的数组记录结果即可。
 其次，2 的幂从二进制看，就是 1 左移若干位得到的数字，从输入限制看，最大不会超过 32 整数。这样可以查看 1 &amp;laquo; 0 到 1 &amp;laquo; 31 这32个数字，对每个数字，同样计算十进制角度看所有位中 0~9这些数字的个数。如果发现统计出的数组和对 N 统计得到的数组相等，就意味着 N 重排各位后能得到 2 的幂。</description></item></channel></rss>

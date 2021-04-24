@@ -481,32 +481,21 @@ blockquote cite {
     font-size: 1.2rem;
 }
 
-div.hint {
-    margin: 2rem 0;
-    position: relative;
-}
-div.hint p {
-    padding: 15px;
-    display: block;
-    font-size: 1rem;
-    margin-top: 0rem;
-    margin-bottom: 0rem;
-}
 div.hint.tip p {
-    color: rgb(92, 184, 92);
-    background:rgba(92, 184, 92, 0.1);
+    color: rgba(92, 184, 92, 0.8);
+    /* background:#E6F9E6; */
+}
+div.hint.note p {
+    color:  #6AB0DE;
+    /* background: #E7F2FA; */
 }
 div.hint.info p {
-    color: rgb(102,187,255);
-    background:rgba(102,187,255, 0.1);
+    color: #F0B37E;
+    /* background: #FFF2DB; */
 }
 div.hint.warning p {
-    color: rgb(255,221,102);
-    background: rgba(255,221,102, 0.1);
-}
-div.hint.danger p {
-    color: rgb(255,102,102);
-    background: rgba(255,102,102, 0.1);
+    color: rgba(217, 83, 79, 0.8);
+    /* background: #FAE2E2; */
 }
 
 div.notices {
@@ -521,6 +510,7 @@ div.notices p {
     margin-bottom: 0rem;
     color: #666;
 }
+
 div.notices p:first-child:before {
     position: absolute;
     top: 2px;
@@ -536,6 +526,21 @@ div.notices p:first-child:after {
     color: #fff;
     left: 2rem;
 }
+
+div.notices.tip p {
+    border-top: 30px solid rgba(92, 184, 92, 0.8);
+    background: #E6F9E6;
+}
+div.notices.tip p:first-child:after {
+    content: 'Tip';
+}
+div.notices.note p {
+    border-top: 30px solid #6AB0DE;
+    background: #E7F2FA;
+}
+div.notices.note p:first-child:after {
+    content: 'Note';
+}
 div.notices.info p {
     border-top: 30px solid #F0B37E;
     background: #FFF2DB;
@@ -549,20 +554,6 @@ div.notices.warning p {
 }
 div.notices.warning p:first-child:after {
     content: 'Warning';
-}
-div.notices.note p {
-    border-top: 30px solid #6AB0DE;
-    background: #E7F2FA;
-}
-div.notices.note p:first-child:after {
-    content: 'Note';
-}
-div.notices.tip p {
-    border-top: 30px solid rgba(92, 184, 92, 0.8);
-    background: #E6F9E6;
-}
-div.notices.tip p:first-child:after {
-    content: 'Tip';
 }
 
 /* attachments shortcode */
