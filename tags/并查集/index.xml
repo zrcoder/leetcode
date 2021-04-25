@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>并查集 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/</link><description>Recent content in 并查集 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 19 Apr 2021 22:04:56 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/index.xml" rel="self" type="application/rss+xml"/><item><title>1489. 找到最小生成树里的关键边和伪关键边</title><link>https://zrcoder.github.io/leetcode/graph/critical-and-pseudo-critical-edges-in-mst/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/graph/critical-and-pseudo-critical-edges-in-mst/readme/</guid><description>1489. 找到最小生成树里的关键边和伪关键边 难度困难
+给你一个 n 个点的带权无向连通图，节点编号为 0 到 n-1 ，同时还有一个数组 edges ，其中 edges[i] = [fromi, toi, weighti] 表示在 fromi 和 toi 节点之间有一条带权无向边。最小生成树 (MST) 是给定图中边的一个子集，它连接了所有节点且没有环，而且这些边的权值和最小。
+请你找到给定图中最小生成树的所有关键边和伪关键边。如果从图中删去某条边，会导致最小生成树的权值和增加，那么我们就说它是一条关键边。伪关键边则是可能会出现在某些最小生成树中但不会出现在所有最小生成树中的边。
+请注意，你可以分别以任意顺序返回关键边的下标和伪关键边的下标。
+示例 1：
+输入：n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]] 输出：[[0,1],[2,3,4,5]] 解释：上图描述了给定图。 下图是所有的最小生成树。 注意到第 0 条边和第 1 条边出现在了所有最小生成树中，所以它们是关键边，我们将这两个下标作为输出的第一个列表。 边 2，3，4 和 5 是所有 MST 的剩余边，所以它们是伪关键边。我们将它们作为输出的第二个列表。 示例 2 ：
+输入：n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]] 输出：[[],[0,1,2,3]] 解释：可以观察到 4 条边都有相同的权值，任选它们中的 3 条可以形成一棵 MST 。所以 4 条边都是伪关键边。 提示：
+2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item></channel></rss>
