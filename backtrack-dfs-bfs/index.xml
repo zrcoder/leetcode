@@ -39,15 +39,15 @@ candidates 中的数字可以无限制重复被选取。
 输入: [1,2,3]
 输出:
 [ [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1] ] 分析 自然的思路 递归，在已有n-1大小的排列的每个空隙插入最后一个元素
-1func permute(nums []int) [][]int { 2 if len(nums) &amp;lt; 2 { 3 return [][]int{nums} 4 } 5 var result [][]int 6 for _, v := range permute(nums[:len(nums)-1]) { 7 for i := 0; i &amp;lt;= len(v); i++ { 8 t := append(append(v[:i:i], nums[len(nums)-1]), v[i:]...) 9 result = append(result, t) 10 } 11 } 12 return result 13} 指定 DFS 递归的起始位置 深度优先搜索，先固定前边几个元素，然后开始尝试排列后边的，这样能逐步降低问题规模。</description></item><item><title>划分为k个相等的子集</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/partition-to-k-equal-sum-subsets/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/partition-to-k-equal-sum-subsets/readme/</guid><description>这几个问题，缩小视野、限于特例就会变得困难，如果跳出来发现一般形式，问题反而更明朗，更容易解决。
+func permute(nums []int) [][]int { if len(nums) &amp;lt; 2 { return [][]int{nums} } var result [][]int for _, v := range permute(nums[:len(nums)-1]) { for i := 0; i &amp;lt;= len(v); i++ { t := append(append(v[:i:i], nums[len(nums)-1]), v[i:]...) result = append(result, t) } } return result } 指定 DFS 递归的起始位置 深度优先搜索，先固定前边几个元素，然后开始尝试排列后边的，这样能逐步降低问题规模。</description></item><item><title>划分为k个相等的子集</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/partition-to-k-equal-sum-subsets/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/partition-to-k-equal-sum-subsets/readme/</guid><description>这几个问题，缩小视野、限于特例就会变得困难，如果跳出来发现一般形式，问题反而更明朗，更容易解决。
 让我们从最普遍的问题开始：
 698. 划分为k个相等的子集 给定一个整数数组 nums 和一个正整数 k，找出是否有可能把这个数组分成 k 个非空子集，其总和都相等。
 示例 1： 输入： nums = [4, 3, 2, 3, 5, 2, 1], k = 4 输出： True 说明： 有可能将其分成 4 个子集（5），（1,4），（2,3），（2,3）等于总和。 注意: 1 &amp;lt;= k &amp;lt;= len(nums) &amp;lt;= 16 0 &amp;lt; nums[i] &amp;lt; 10000 函数定义如下：
-1func canPartitionKSubsets(nums []int, k int) bool 分析 穷举搜索，适时回溯：
+func canPartitionKSubsets(nums []int, k int) bool 分析 穷举搜索，适时回溯：
 对于 nums 中的每个数字，可以将其添加到 k 个子集中的一个，只要该子集的和不会超过目标值;
 在不满足预期的时候做好回溯。
 程序框架：
-1func canPartitionKSubsets(nums []int, k int) bool { 2 sum, max := 0, 0 // 注意到输入限制为非负，且和不会溢出 3 for _, v := range nums { 4 sum += v 5 if v &amp;gt; max { 6 max = v 7 } 8 } 9 target := sum / k // 尝试把所有元素放到k个组中，每组元素和为target 10 if sum%k !</description></item><item><title>单词接龙</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/word-ladder/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/word-ladder/readme/</guid><description>127. 单词接龙 难度中等
+func canPartitionKSubsets(nums []int, k int) bool { sum, max := 0, 0 // 注意到输入限制为非负，且和不会溢出 for _, v := range nums { sum += v if v &amp;gt; max { max = v } } target := sum / k // 尝试把所有元素放到k个组中，每组元素和为target if sum%k !</description></item><item><title>单词接龙</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/word-ladder/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/word-ladder/readme/</guid><description>127. 单词接龙 难度中等
 给定两个单词（beginWord 和 endWord）和一个字典，找到从 beginWord 到 endWord 的最短转换序列的长度。转换需遵循如下规则：
 每次转换只能改变一个字母。 转换过程中的中间单词必须是字典中的单词。 说明:
 如果不存在这样的转换序列，返回 0。 所有单词具有相同的长度。 所有单词只由小写字母组成。 字典中不存在重复的单词。 你可以假设 beginWord 和 endWord 是非空的，且二者不相同。 示例 1:
@@ -55,8 +55,8 @@ candidates 中的数字可以无限制重复被选取。
 输入: beginWord = &amp;quot;hit&amp;quot; endWord = &amp;quot;cog&amp;quot; wordList = [&amp;quot;hot&amp;quot;,&amp;quot;dot&amp;quot;,&amp;quot;dog&amp;quot;,&amp;quot;lot&amp;quot;,&amp;quot;log&amp;quot;] 输出: 0 解释: endWord &amp;quot;cog&amp;quot; 不在字典中，所以无法进行转换。 分析 常规 BFS</description></item><item><title>子集</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/subsets/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/subsets/readme/</guid><description>378. 子集 给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
 说明：解集不能包含重复的子集。
 示例: 输入: nums = [1,2,3] 输出: [ [3], [1], [2], [1,2,3], [1,3], [2,3], [1,2], [] ] 分析 朴素实现 时空复杂度均为 O(n*2^n)
-1func subsets(nums []int) [][]int { 2 res := [][]int{{}} // 空集也是子集之一 3 for _, num := range nums { 4 for _, r := range res { 5 res = append(res, append(getCopy(r), num)) 6 } 7 } 8 return res 9} 其中 getCopy 函数用于深拷贝切片：
-1func getCopy(s []int) []int { 2 res := make([]int, len(s)) 3 copy(res, s) 4 return res 5} 也可以这样来拷贝一个切片：</description></item><item><title>自由之路</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/freedom-trail/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/freedom-trail/readme/</guid><description>514. 自由之路 难度困难
+func subsets(nums []int) [][]int { res := [][]int{{}} // 空集也是子集之一 for _, num := range nums { for _, r := range res { res = append(res, append(getCopy(r), num)) } } return res } 其中 getCopy 函数用于深拷贝切片：
+func getCopy(s []int) []int { res := make([]int, len(s)) copy(res, s) return res } 也可以这样来拷贝一个切片：</description></item><item><title>自由之路</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/freedom-trail/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/freedom-trail/readme/</guid><description>514. 自由之路 难度困难
 视频游戏“辐射4”中，任务“通向自由”要求玩家到达名为“Freedom Trail Ring”的金属表盘，并使用表盘拼写特定关键词才能开门。
 给定一个字符串 ring，表示刻在外环上的编码；给定另一个字符串 key，表示需要拼写的关键词。您需要算出能够拼写关键词中所有字符的最少步数。
 最初，ring 的第一个字符与12:00方向对齐。您需要顺时针或逆时针旋转 ring 以使 key 的一个字符在 12:00 方向对齐，然后按下中心按钮，以此逐个拼写完 key 中的所有字符。

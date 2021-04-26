@@ -7,5 +7,5 @@
 示例 1：
 输入：n = 4, connections = [[0,1],[1,2],[2,0],[1,3]] 输出：[[1,3]] 解释：[[3,1]] 也是正确的。 提示：
 1 &amp;lt;= n &amp;lt;= 10^5 n-1 &amp;lt;= connections.length &amp;lt;= 10^5 connections[i][0] != connections[i][1] 不存在重复的连接 函数签名：
-1func criticalConnections(n int, connections [][]int) [][]int 分析 朴素解法（超时） 类似 1489-找到最小生成树里的关键边和伪关键边，最容易想到的解法是：枚举每一条边，检查不使用这条边，只用剩余的边能不能把所有点联通，可以借助并查集检查。
-1func criticalConnections(n int, connections [][]int) [][]int { 2 // 忽略边 conn 是否能联通所有节点 3 canConnectWithout := func(conn int) bool { 4 uf := NewUnionFind(n) 5 for i, v := range connections { 6 if i == conn { 7 continue 8 } 9 uf.</description></item></channel></rss>
+func criticalConnections(n int, connections [][]int) [][]int 分析 朴素解法（超时） 类似 1489-找到最小生成树里的关键边和伪关键边，最容易想到的解法是：枚举每一条边，检查不使用这条边，只用剩余的边能不能把所有点联通，可以借助并查集检查。
+func criticalConnections(n int, connections [][]int) [][]int { // 忽略边 conn 是否能联通所有节点 canConnectWithout := func(conn int) bool { uf := NewUnionFind(n) for i, v := range connections { if i == conn { continue } uf.</description></item></channel></rss>
