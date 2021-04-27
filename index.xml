@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 27 Apr 2021 08:08:17 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>在 D 天内送达包裹的能力</title><link>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</link><pubDate>Tue, 27 Apr 2021 08:08:17 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</guid><description>1011. 在 D 天内送达包裹的能力 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 27 Apr 2021 20:47:20 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>在 D 天内送达包裹的能力</title><link>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</link><pubDate>Tue, 27 Apr 2021 08:08:17 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</guid><description>1011. 在 D 天内送达包裹的能力 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。
 传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。
 返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。
 示例 1：
@@ -787,7 +787,13 @@ func singleNumber(nums []int) int { result := 0 for i := uint(0); i &amp;lt; 64;
 示例 1：
 输入：n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]] 输出：[[0,1],[2,3,4,5]] 解释：上图描述了给定图。 下图是所有的最小生成树。 注意到第 0 条边和第 1 条边出现在了所有最小生成树中，所以它们是关键边，我们将这两个下标作为输出的第一个列表。 边 2，3，4 和 5 是所有 MST 的剩余边，所以它们是伪关键边。我们将它们作为输出的第二个列表。 示例 2 ：
 输入：n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]] 输出：[[],[0,1,2,3]] 解释：可以观察到 4 条边都有相同的权值，任选它们中的 3 条可以形成一棵 MST 。所以 4 条边都是伪关键边。 提示：
-2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>1192. 查找集群内的「关键连接」</title><link>https://zrcoder.github.io/leetcode/graph/critical-connections-in-a-network/readme/</link><pubDate>Sun, 25 Apr 2021 11:24:37 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/graph/critical-connections-in-a-network/readme/</guid><description>1192. 查找集群内的「关键连接 难度困难
+2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>1642. 可以到达的最远建筑</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</link><pubDate>Tue, 27 Apr 2021 20:47:20 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</guid><description>1642. 可以到达的最远建筑 难度中等
+给你一个整数数组 heights ，表示建筑物的高度。另有一些砖块 bricks 和梯子 ladders 。
+你从建筑物 0 开始旅程，不断向后面的建筑物移动，期间可能会用到砖块或梯子。
+当从建筑物 i 移动到建筑物 i+1（下标 从 0 开始 ）时：
+如果当前建筑物的高度 大于或等于 下一建筑物的高度，则不需要梯子或砖块 如果当前建筑的高度 小于 下一个建筑的高度，您可以使用 一架梯子 或 (h[i+1] - h[i]) 个砖块 如果以最佳方式使用给定的梯子和砖块，返回你可以到达的最远建筑物的下标（下标 从 0 开始 ）。
+示例 1：
+输入：heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1 输出：4 解释：从建筑物 0 出发，你可以按此方案完成旅程： - 不使用砖块或梯子到达建筑物 1 ，因为 4 &amp;gt;= 2 - 使用 5 个砖块到达建筑物 2 。你必须使用砖块或梯子，因为 2 &amp;lt; 7 - 不使用砖块或梯子到达建筑物 3 ，因为 7 &amp;gt;= 6 - 使用唯一的梯子到达建筑物 4 。你必须使用砖块或梯子，因为 6 &amp;lt; 9 无法越过建筑物 4 ，因为没有更多砖块或梯子。 示例 2：</description></item><item><title>1192. 查找集群内的「关键连接」</title><link>https://zrcoder.github.io/leetcode/graph/critical-connections-in-a-network/readme/</link><pubDate>Sun, 25 Apr 2021 11:24:37 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/graph/critical-connections-in-a-network/readme/</guid><description>1192. 查找集群内的「关键连接 难度困难
 力扣数据中心有 n 台服务器，分别按从 0 到 n-1 的方式进行了编号。
 它们之间以「服务器到服务器」点对点的形式相互连接组成了一个内部集群，其中连接 connections 是无向的。
 从形式上讲，connections[i] = [a, b] 表示服务器 a 和 b 之间形成连接。任何服务器都可以直接或者间接地通过网络到达任何其他服务器。
