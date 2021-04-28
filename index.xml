@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 27 Apr 2021 20:47:20 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>在 D 天内送达包裹的能力</title><link>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</link><pubDate>Tue, 27 Apr 2021 08:08:17 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</guid><description>1011. 在 D 天内送达包裹的能力 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。
-传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。
-返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。
-示例 1：
-输入：weights = [1,2,3,4,5,6,7,8,9,10], D = 5 输出：15 解释： 船舶最低载重 15 就能够在 5 天内送达所有包裹，如下所示： 第 1 天：1, 2, 3, 4, 5 第 2 天：6, 7 第 3 天：8 第 4 天：9 第 5 天：10 请注意，货物必须按照给定的顺序装运，因此使用载重能力为 14 的船舶并将包装分成 (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) 是不允许的。 示例 2：
-输入：weights = [3,2,2,4,1,4], D = 3 输出：6 解释： 船舶最低载重 6 就能够在 3 天内送达所有包裹，如下所示： 第 1 天：3, 2 第 2 天：2, 4 第 3 天：1, 4 示例 3：</description></item><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 28 Apr 2021 19:47:33 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
 给定一个字符串 s，计算具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是连续的。
 重复出现的子串要计算它们出现的次数。
 示例 1 :
@@ -780,7 +775,16 @@ func exchangeBits(num int) int { s := strconv.FormatUint(uint64(num), 2) if len(
 找出那个只出现了一次的元素。
 func singleNumber(nums []int) int { result := 0 for _, v := range nums { result ^= v } return result } 137. 只出现一次的数字 II 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现了三次。
 找出那个只出现了一次的元素。
-func singleNumber(nums []int) int { result := 0 for i := uint(0); i &amp;lt; 64; i++ { ones := 0 // 统计第i位1出现的个数 for _, v := range nums { ones += (v &amp;gt;&amp;gt; i) &amp;amp; 1 } result |= (ones%3) &amp;lt;&amp;lt; i } return result } 260.</description></item><item><title>1489. 找到最小生成树里的关键边和伪关键边</title><link>https://zrcoder.github.io/leetcode/graph/critical-and-pseudo-critical-edges-in-mst/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/graph/critical-and-pseudo-critical-edges-in-mst/readme/</guid><description>1489. 找到最小生成树里的关键边和伪关键边 难度困难
+func singleNumber(nums []int) int { result := 0 for i := uint(0); i &amp;lt; 64; i++ { ones := 0 // 统计第i位1出现的个数 for _, v := range nums { ones += (v &amp;gt;&amp;gt; i) &amp;amp; 1 } result |= (ones%3) &amp;lt;&amp;lt; i } return result } 260.</description></item><item><title>875. 爱吃香蕉的珂珂</title><link>https://zrcoder.github.io/leetcode/binary-search/koko-eating-bananas/readme/</link><pubDate>Wed, 28 Apr 2021 19:47:33 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/koko-eating-bananas/readme/</guid><description>875. 爱吃香蕉的珂珂 难度中等
+珂珂喜欢吃香蕉。这里有 N 堆香蕉，第 i 堆中有 piles[i] 根香蕉。警卫已经离开了，将在 H 小时后回来。
+珂珂可以决定她吃香蕉的速度 K （单位：根/小时）。每个小时，她将会选择一堆香蕉，从中吃掉 K 根。如果这堆香蕉少于 K 根，她将吃掉这堆的所有香蕉，然后这一小时内不会再吃更多的香蕉。
+珂珂喜欢慢慢吃，但仍然想在警卫回来前吃掉所有的香蕉。
+返回她可以在 H 小时内吃掉所有香蕉的最小速度 K（K 为整数）。
+示例 1：
+输入: piles = [3,6,7,11], H = 8 输出: 4 示例 2：
+输入: piles = [30,11,23,4,20], H = 5 输出: 30 示例 3：
+输入: piles = [30,11,23,4,20], H = 6 输出: 23 提示：
+1 &amp;lt;= piles.length &amp;lt;= 10^4 piles.length &amp;lt;= H &amp;lt;= 10^9 1 &amp;lt;= piles[i] &amp;lt;= 10^9 函数签名：</description></item><item><title>1489. 找到最小生成树里的关键边和伪关键边</title><link>https://zrcoder.github.io/leetcode/graph/critical-and-pseudo-critical-edges-in-mst/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/graph/critical-and-pseudo-critical-edges-in-mst/readme/</guid><description>1489. 找到最小生成树里的关键边和伪关键边 难度困难
 给你一个 n 个点的带权无向连通图，节点编号为 0 到 n-1 ，同时还有一个数组 edges ，其中 edges[i] = [fromi, toi, weighti] 表示在 fromi 和 toi 节点之间有一条带权无向边。最小生成树 (MST) 是给定图中边的一个子集，它连接了所有节点且没有环，而且这些边的权值和最小。
 请你找到给定图中最小生成树的所有关键边和伪关键边。如果从图中删去某条边，会导致最小生成树的权值和增加，那么我们就说它是一条关键边。伪关键边则是可能会出现在某些最小生成树中但不会出现在所有最小生成树中的边。
 请注意，你可以分别以任意顺序返回关键边的下标和伪关键边的下标。
@@ -793,7 +797,12 @@ func singleNumber(nums []int) int { result := 0 for i := uint(0); i &amp;lt; 64;
 当从建筑物 i 移动到建筑物 i+1（下标 从 0 开始 ）时：
 如果当前建筑物的高度 大于或等于 下一建筑物的高度，则不需要梯子或砖块 如果当前建筑的高度 小于 下一个建筑的高度，您可以使用 一架梯子 或 (h[i+1] - h[i]) 个砖块 如果以最佳方式使用给定的梯子和砖块，返回你可以到达的最远建筑物的下标（下标 从 0 开始 ）。
 示例 1：
-输入：heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1 输出：4 解释：从建筑物 0 出发，你可以按此方案完成旅程： - 不使用砖块或梯子到达建筑物 1 ，因为 4 &amp;gt;= 2 - 使用 5 个砖块到达建筑物 2 。你必须使用砖块或梯子，因为 2 &amp;lt; 7 - 不使用砖块或梯子到达建筑物 3 ，因为 7 &amp;gt;= 6 - 使用唯一的梯子到达建筑物 4 。你必须使用砖块或梯子，因为 6 &amp;lt; 9 无法越过建筑物 4 ，因为没有更多砖块或梯子。 示例 2：</description></item><item><title>1192. 查找集群内的「关键连接」</title><link>https://zrcoder.github.io/leetcode/graph/critical-connections-in-a-network/readme/</link><pubDate>Sun, 25 Apr 2021 11:24:37 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/graph/critical-connections-in-a-network/readme/</guid><description>1192. 查找集群内的「关键连接 难度困难
+输入：heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1 输出：4 解释：从建筑物 0 出发，你可以按此方案完成旅程： - 不使用砖块或梯子到达建筑物 1 ，因为 4 &amp;gt;= 2 - 使用 5 个砖块到达建筑物 2 。你必须使用砖块或梯子，因为 2 &amp;lt; 7 - 不使用砖块或梯子到达建筑物 3 ，因为 7 &amp;gt;= 6 - 使用唯一的梯子到达建筑物 4 。你必须使用砖块或梯子，因为 6 &amp;lt; 9 无法越过建筑物 4 ，因为没有更多砖块或梯子。 示例 2：</description></item><item><title>在 D 天内送达包裹的能力</title><link>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</link><pubDate>Tue, 27 Apr 2021 08:08:17 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</guid><description>1011. 在 D 天内送达包裹的能力 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。
+传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。
+返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。
+示例 1：
+输入：weights = [1,2,3,4,5,6,7,8,9,10], D = 5 输出：15 解释： 船舶最低载重 15 就能够在 5 天内送达所有包裹，如下所示： 第 1 天：1, 2, 3, 4, 5 第 2 天：6, 7 第 3 天：8 第 4 天：9 第 5 天：10 请注意，货物必须按照给定的顺序装运，因此使用载重能力为 14 的船舶并将包装分成 (2, 3, 4, 5), (1, 6, 7), (8), (9), (10) 是不允许的。 示例 2：
+输入：weights = [3,2,2,4,1,4], D = 3 输出：6 解释： 船舶最低载重 6 就能够在 3 天内送达所有包裹，如下所示： 第 1 天：3, 2 第 2 天：2, 4 第 3 天：1, 4 示例 3：</description></item><item><title>1192. 查找集群内的「关键连接」</title><link>https://zrcoder.github.io/leetcode/graph/critical-connections-in-a-network/readme/</link><pubDate>Sun, 25 Apr 2021 11:24:37 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/graph/critical-connections-in-a-network/readme/</guid><description>1192. 查找集群内的「关键连接 难度困难
 力扣数据中心有 n 台服务器，分别按从 0 到 n-1 的方式进行了编号。
 它们之间以「服务器到服务器」点对点的形式相互连接组成了一个内部集群，其中连接 connections 是无向的。
 从形式上讲，connections[i] = [a, b] 表示服务器 a 和 b 之间形成连接。任何服务器都可以直接或者间接地通过网络到达任何其他服务器。
