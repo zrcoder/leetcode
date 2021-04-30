@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 28 Apr 2021 19:47:33 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 30 Apr 2021 17:52:25 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
 给定一个字符串 s，计算具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是连续的。
 重复出现的子串要计算它们出现的次数。
 示例 1 :
@@ -791,7 +791,12 @@ func singleNumber(nums []int) int { result := 0 for i := uint(0); i &amp;lt; 64;
 示例 1：
 输入：n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]] 输出：[[0,1],[2,3,4,5]] 解释：上图描述了给定图。 下图是所有的最小生成树。 注意到第 0 条边和第 1 条边出现在了所有最小生成树中，所以它们是关键边，我们将这两个下标作为输出的第一个列表。 边 2，3，4 和 5 是所有 MST 的剩余边，所以它们是伪关键边。我们将它们作为输出的第二个列表。 示例 2 ：
 输入：n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]] 输出：[[],[0,1,2,3]] 解释：可以观察到 4 条边都有相同的权值，任选它们中的 3 条可以形成一棵 MST 。所以 4 条边都是伪关键边。 提示：
-2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>1642. 可以到达的最远建筑</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</link><pubDate>Tue, 27 Apr 2021 20:47:20 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</guid><description>1642. 可以到达的最远建筑 难度中等
+2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>970. 强整数</title><link>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</link><pubDate>Fri, 30 Apr 2021 17:52:25 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</guid><description>970. 强整数 难度中等
+给定两个正整数 x 和 y，如果某一整数等于 x^i + y^j，其中整数 i &amp;gt;= 0 且 j &amp;gt;= 0，那么我们认为该整数是一个强整数。
+返回值小于或等于 bound 的所有强整数组成的列表。
+你可以按任何顺序返回答案。在你的回答中，每个值最多出现一次。
+示例 1：
+输入：x = 2, y = 3, bound = 10 输出：[2,3,4,5,7,9,10] 解释： 2 = 2^0 + 3^0 3 = 2^1 + 3^0 4 = 2^0 + 3^1 5 = 2^1 + 3^1 7 = 2^2 + 3^1 9 = 2^3 + 3^0 10 = 2^0 + 3^2 示例 2：</description></item><item><title>1642. 可以到达的最远建筑</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</link><pubDate>Tue, 27 Apr 2021 20:47:20 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</guid><description>1642. 可以到达的最远建筑 难度中等
 给你一个整数数组 heights ，表示建筑物的高度。另有一些砖块 bricks 和梯子 ladders 。
 你从建筑物 0 开始旅程，不断向后面的建筑物移动，期间可能会用到砖块或梯子。
 当从建筑物 i 移动到建筑物 i+1（下标 从 0 开始 ）时：
