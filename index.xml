@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 30 Apr 2021 17:52:25 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 01 May 2021 21:36:54 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
 给定一个字符串 s，计算具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是连续的。
 重复出现的子串要计算它们出现的次数。
 示例 1 :
@@ -791,7 +791,18 @@ func singleNumber(nums []int) int { result := 0 for i := uint(0); i &amp;lt; 64;
 示例 1：
 输入：n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]] 输出：[[0,1],[2,3,4,5]] 解释：上图描述了给定图。 下图是所有的最小生成树。 注意到第 0 条边和第 1 条边出现在了所有最小生成树中，所以它们是关键边，我们将这两个下标作为输出的第一个列表。 边 2，3，4 和 5 是所有 MST 的剩余边，所以它们是伪关键边。我们将它们作为输出的第二个列表。 示例 2 ：
 输入：n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]] 输出：[[],[0,1,2,3]] 解释：可以观察到 4 条边都有相同的权值，任选它们中的 3 条可以形成一棵 MST 。所以 4 条边都是伪关键边。 提示：
-2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>970. 强整数</title><link>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</link><pubDate>Fri, 30 Apr 2021 17:52:25 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</guid><description>970. 强整数 难度中等
+2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>745. 前缀和后缀搜索</title><link>https://zrcoder.github.io/leetcode/hashmap-array/prefix-and-suffix-search/readme/</link><pubDate>Sat, 01 May 2021 21:36:54 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/prefix-and-suffix-search/readme/</guid><description>745. 前缀和后缀搜索 给定多个 words，words[i] 的权重为 i 。
+设计一个类 WordFilter 实现函数WordFilter.f(String prefix, String suffix)。这个函数将返回具有前缀 prefix 和后缀suffix 的词的最大权重。如果没有这样的词，返回 -1。
+例子:
+输入: WordFilter([&amp;quot;apple&amp;quot;]) WordFilter.f(&amp;quot;a&amp;quot;, &amp;quot;e&amp;quot;) // 返回 0 WordFilter.f(&amp;quot;b&amp;quot;, &amp;quot;&amp;quot;) // 返回 -1 注意:
+words的长度在[1, 15000]之间。 对于每个测试用例，最多会有words.length次对WordFilter.f的调用。 words[i]的长度在[1, 10]之间。 prefix, suffix的长度在[0, 10]之前。 words[i]和prefix, suffix只包含小写字母。 分析 朴素实现 一开始没有太好的思路，先写朴素实现，虽然超时了～
+type WordFilter struct { words []string } func Constructor(words []string) WordFilter { return WordFilter{words: words} } func (f *WordFilter) F(prefix string, suffix string) int { for i := len(f.</description></item><item><title>403. 青蛙过河</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/frog-jump/readme/</link><pubDate>Sat, 01 May 2021 11:03:06 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/frog-jump/readme/</guid><description>403. 青蛙过河 一只青蛙想要过河。 假定河流被等分为若干个单元格，并且在每一个单元格内都有可能放有一块石子（也有可能没有）。 青蛙可以跳上石子，但是不可以跳入水中。
+给你石子的位置列表 stones（用单元格序号 升序 表示）， 请判定青蛙能否成功过河（即能否在最后一步跳至最后一块石子上）。
+开始时， 青蛙默认已站在第一块石子上，并可以假定它第一步只能跳跃一个单位（即只能从单元格 1 跳至单元格 2 ）。
+如果青蛙上一步跳跃了 k 个单位，那么它接下来的跳跃距离只能选择为 k - 1、k 或 k + 1 个单位。 另请注意，青蛙只能向前方（终点的方向）跳跃。
+示例 1：
+输入：stones = [0,1,3,5,6,8,12,17] 输出：true 解释：青蛙可以成功过河，按照如下方案跳跃：跳 1 个单位到第 2 块石子, 然后跳 2 个单位到第 3 块石子, 接着 跳 2 个单位到第 4 块石子, 然后跳 3 个单位到第 6 块石子, 跳 4 个单位到第 7 块石子, 最后，跳 5 个单位到第 8 个石子（即最后一块石子）。 示例 2：
+输入：stones = [0,1,2,3,4,8,9,11] 输出：false 解释：这是因为第 5 和第 6 个石子之间的间距太大，没有可选的方案供青蛙跳跃过去。 提示：</description></item><item><title>970. 强整数</title><link>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</link><pubDate>Fri, 30 Apr 2021 17:52:25 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</guid><description>970. 强整数 难度中等
 给定两个正整数 x 和 y，如果某一整数等于 x^i + y^j，其中整数 i &amp;gt;= 0 且 j &amp;gt;= 0，那么我们认为该整数是一个强整数。
 返回值小于或等于 bound 的所有强整数组成的列表。
 你可以按任何顺序返回答案。在你的回答中，每个值最多出现一次。
