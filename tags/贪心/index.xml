@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>贪心 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E8%B4%AA%E5%BF%83/</link><description>Recent content in 贪心 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 02 May 2021 19:57:09 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E8%B4%AA%E5%BF%83/index.xml" rel="self" type="application/rss+xml"/><item><title>632. 最小区间</title><link>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</guid><description>632. 最小区间 难度困难
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>贪心 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E8%B4%AA%E5%BF%83/</link><description>Recent content in 贪心 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 27 Apr 2021 20:47:20 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E8%B4%AA%E5%BF%83/index.xml" rel="self" type="application/rss+xml"/><item><title>632. 最小区间</title><link>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/smallest-range-covering-elements-from-k-lists/readme/</guid><description>632. 最小区间 难度困难
 你有 k 个 非递减排列 的整数列表。找到一个 最小 区间，使得 k 个列表中的每个列表至少有一个数包含在其中。
 我们定义如果 b-a &amp;lt; d-c 或者在 b-a == d-c 时 a &amp;lt; c，则区间 [a,b] 比 [c,d] 小。
 示例 1：
@@ -11,8 +11,8 @@
 输入：nums = [10,9,2,5,3,7,101,18] 输出：4 解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。 示例 2：
 输入：nums = [0,1,0,3,2,3] 输出：4 示例 3：
 输入：nums = [7,7,7,7,7,7,7] 输出：1 函数签名：
-func lengthOfLIS(nums []int) int 分析 动态规划 这个问题用动态规划是经典解法。如下，简单了解下就好：
-func lengthOfLIS(nums []int) int { dp := make([]int, len(nums)) // dp[i]代表以nums[i]结尾的子序列长度 maxLen := 0 for i, v := range nums { dp[i] = 1 // 一个元素算递增长度为1 for j := 0; j &amp;lt; i; j++ { if nums[j] &amp;lt; v { dp[i] = max(dp[i], dp[j]+1) } } maxLen = max(maxLen, dp[i]) } return maxLen } 时间复杂度 O(n^2)，空间复杂度 O(n)。</description></item><item><title>554. 砖墙</title><link>https://zrcoder.github.io/leetcode/hashmap-array/brick-wall/readme/</link><pubDate>Thu, 22 Apr 2021 17:21:09 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/brick-wall/readme/</guid><description>554. 砖墙 难度中等
+func lengthOfLIS(nums []int) int 分析 动态规划 这个问题用动态规划是经典解法。如下：
+func lengthOfLIS(nums []int) int { dp := make([]int, len(nums)) // dp[i]代表以nums[i]结尾的递增子序列长度 maxLen := 0 for i, v := range nums { dp[i] = 1 // 一个元素算递增长度为1 for j := 0; j &amp;lt; i; j++ { if nums[j] &amp;lt; v { dp[i] = max(dp[i], dp[j]+1) } } maxLen = max(maxLen, dp[i]) } return maxLen } 时间复杂度 O(n^2)，空间复杂度 O(n)。</description></item><item><title>554. 砖墙</title><link>https://zrcoder.github.io/leetcode/hashmap-array/brick-wall/readme/</link><pubDate>Thu, 22 Apr 2021 17:21:09 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/brick-wall/readme/</guid><description>554. 砖墙 难度中等
 你的面前有一堵矩形的、由多行砖块组成的砖墙。 这些砖块高度相同但是宽度不同。你现在要画一条自顶向下的、穿过最少砖块的垂线。
 砖墙由行的列表表示。 每一行都是一个代表从左至右每块砖的宽度的整数列表。
 如果你画的线只是从砖块的边缘经过，就不算穿过这块砖。你需要找出怎样画才能使这条线穿过的砖块数量最少，并且返回穿过的砖块数量。
@@ -32,11 +32,7 @@ func leastBricks(wall [][]int) int { memo := make(map[int]int, 0) maxCnt := 0 fo
 示例 1：
 输入：n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]] 输出：[[0,1],[2,3,4,5]] 解释：上图描述了给定图。 下图是所有的最小生成树。 注意到第 0 条边和第 1 条边出现在了所有最小生成树中，所以它们是关键边，我们将这两个下标作为输出的第一个列表。 边 2，3，4 和 5 是所有 MST 的剩余边，所以它们是伪关键边。我们将它们作为输出的第二个列表。 示例 2 ：
 输入：n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]] 输出：[[],[0,1,2,3]] 解释：可以观察到 4 条边都有相同的权值，任选它们中的 3 条可以形成一棵 MST 。所以 4 条边都是伪关键边。 提示：
-2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>630. 课程表 III</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/course-schedule-iii/readme/</link><pubDate>Sun, 02 May 2021 19:57:09 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/course-schedule-iii/readme/</guid><description>630. 课程表 III 难度困难
-这里有 n 门不同的在线课程，他们按从 1 到 n 编号。每一门课程有一定的持续上课时间（课程时间）t 以及关闭时间第 d 天。一门课要持续学习 t 天直到第 d 天时要完成，你将会从第 1 天开始。
-给出 n 个在线课程用 (t, d) 对表示。你的任务是找出最多可以修几门课。
-示例：
-输入: [[100, 200], [200, 1300], [1000, 1250], [2000, 3200]] 输出: 3 解释: 这里一共有 4 门课程, 但是你最多可以修 3 门: 首先, 修第一门课时, 它要耗费 100 天，你会在第 100 天完成, 在第 101 天准备下门课。 第二, 修第三门课时, 它会耗费 1000 天，所以你将在第 1100 天的时候完成它, 以及在第 1101 天开始准备下门课程。 第三, 修第二门课时, 它会耗时 200 天，所以你将会在第 1300 天时完成它。 第四门课现在不能修，因为你将会在第 3300 天完成它，这已经超出了关闭日期。 提示:</description></item><item><title>1642. 可以到达的最远建筑</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</link><pubDate>Tue, 27 Apr 2021 20:47:20 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</guid><description>1642. 可以到达的最远建筑 难度中等
+2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>1642. 可以到达的最远建筑</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</link><pubDate>Tue, 27 Apr 2021 20:47:20 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/furthest-building-you-can-reach/readme/</guid><description>1642. 可以到达的最远建筑 难度中等
 给你一个整数数组 heights ，表示建筑物的高度。另有一些砖块 bricks 和梯子 ladders 。
 你从建筑物 0 开始旅程，不断向后面的建筑物移动，期间可能会用到砖块或梯子。
 当从建筑物 i 移动到建筑物 i+1（下标 从 0 开始 ）时：

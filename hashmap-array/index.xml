@@ -46,7 +46,14 @@
 输入：nums = [10] 输出：&amp;quot;10&amp;quot; 提示：
 1 &amp;lt;= nums.length &amp;lt;= 100 0 &amp;lt;= nums[i] &amp;lt;= 109 分析 整体思路就是排序，但是要确定好排序的标准。
 思路很简单，细节是魔鬼~
-尝试1： 将所有int转化成string，然后降序排序，再一一将这些string链接起来 问题：比如输入3,30那么预期应该是330而不是303 尝试2： 多考虑一下，其实排序的依据是这样： 对于两个string， a和b 如果a+b &amp;gt; b+a， 那么应该把a排在前边~ 问题： 输入一堆0， 预期输出0，而不是一堆0 最终，踩完这些坑后，终于成了~ 时间复杂度O(nlgn),空间复杂度O(n) func largestNumber(nums []int) string { strs := make([]string, len(nums)) for i, v := range nums { strs[i] = strconv.</description></item><item><title>424. 替换后的最长重复字符</title><link>https://zrcoder.github.io/leetcode/hashmap-array/longest-repeating-character-replacement/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/longest-repeating-character-replacement/readme/</guid><description>424. 替换后的最长重复字符 难度中等
+尝试1： 将所有int转化成string，然后降序排序，再一一将这些string链接起来 问题：比如输入3,30那么预期应该是330而不是303 尝试2： 多考虑一下，其实排序的依据是这样： 对于两个string， a和b 如果a+b &amp;gt; b+a， 那么应该把a排在前边~ 问题： 输入一堆0， 预期输出0，而不是一堆0 最终，踩完这些坑后，终于成了~ 时间复杂度O(nlgn),空间复杂度O(n) func largestNumber(nums []int) string { strs := make([]string, len(nums)) for i, v := range nums { strs[i] = strconv.</description></item><item><title>220. 存在重复元素 III</title><link>https://zrcoder.github.io/leetcode/hashmap-array/contains-duplicate-iii/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/contains-duplicate-iii/readme/</guid><description>220. 存在重复元素 III 难度中等
+给你一个整数数组 nums 和两个整数 k 和 t 。请你判断是否存在 两个不同下标 i 和 j，使得 abs(nums[i] - nums[j]) &amp;lt;= t ，同时又满足 abs(i - j) &amp;lt;= k 。
+如果存在则返回 true，不存在返回 false。
+示例 1：
+输入：nums = [1,2,3,1], k = 3, t = 0 输出：true 示例 2：
+输入：nums = [1,0,1,1], k = 1, t = 2 输出：true 示例 3：
+输入：nums = [1,5,9,1,5,9], k = 2, t = 3 输出：false 提示：
+0 &amp;lt;= nums.</description></item><item><title>424. 替换后的最长重复字符</title><link>https://zrcoder.github.io/leetcode/hashmap-array/longest-repeating-character-replacement/readme/</link><pubDate>Mon, 19 Apr 2021 22:04:56 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/hashmap-array/longest-repeating-character-replacement/readme/</guid><description>424. 替换后的最长重复字符 难度中等
 给你一个仅由大写英文字母组成的字符串，你可以将任意位置上的字符替换成另外的字符，总共可最多替换 k 次。在执行上述操作后，找到包含重复字母的最长子串的长度。
 **注意：**字符串长度 和 k 不会超过 10^4。
 示例 1：
