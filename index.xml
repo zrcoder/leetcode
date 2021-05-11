@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 09 May 2021 09:18:12 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 11 May 2021 19:55:45 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
 给定一个字符串 s，计算具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是连续的。
 重复出现的子串要计算它们出现的次数。
 示例 1 :
@@ -791,7 +791,13 @@ func leastBricks(wall [][]int) int { memo := make(map[int]int, 0) maxCnt := 0 fo
 示例 1：
 输入：n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]] 输出：[[0,1],[2,3,4,5]] 解释：上图描述了给定图。 下图是所有的最小生成树。 注意到第 0 条边和第 1 条边出现在了所有最小生成树中，所以它们是关键边，我们将这两个下标作为输出的第一个列表。 边 2，3，4 和 5 是所有 MST 的剩余边，所以它们是伪关键边。我们将它们作为输出的第二个列表。 示例 2 ：
 输入：n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]] 输出：[[],[0,1,2,3]] 解释：可以观察到 4 条边都有相同的权值，任选它们中的 3 条可以形成一棵 MST 。所以 4 条边都是伪关键边。 提示：
-2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>Readme</title><link>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</link><pubDate>Sun, 09 May 2021 09:18:12 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</guid><description>1482. 制作 m 束花所需的最少天数 难度中等
+2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>1473. 粉刷房子 III</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/paint-house-iii/readme/</link><pubDate>Tue, 11 May 2021 19:55:45 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/paint-house-iii/readme/</guid><description>1473. 粉刷房子 III 难度困难
+在一个小城市里，有 m 个房子排成一排，你需要给每个房子涂上 n 种颜色之一（颜色编号为 1 到 n ）。有的房子去年夏天已经涂过颜色了，所以这些房子不可以被重新涂色。
+我们将连续相同颜色尽可能多的房子称为一个街区。（比方说 houses = [1,2,2,3,3,2,1,1] ，它包含 5 个街区 [{1}, {2,2}, {3,3}, {2}, {1,1}] 。）
+给你一个数组 houses ，一个 m * n 的矩阵 cost 和一个整数 target ，其中：
+houses[i]：是第 i 个房子的颜色，0 表示这个房子还没有被涂色。 cost[i][j]：是将第 i 个房子涂成颜色 j+1 的花费。 请你返回房子涂色方案的最小总花费，使得每个房子都被涂色后，恰好组成 target 个街区。如果没有可用的涂色方案，请返回 -1 。
+示例 1：
+输入：houses = [0,0,0,0,0], cost = [[1,10],[10,1],[10,1],[1,10],[5,1]], m = 5, n = 2, target = 3 输出：9 解释：房子涂色方案为 [1,2,2,1,1] 此方案包含 target = 3 个街区，分别是 [{1}, {2,2}, {1,1}]。 涂色的总花费为 (1 + 1 + 1 + 1 + 5) = 9。 示例 2：</description></item><item><title>Readme</title><link>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</link><pubDate>Sun, 09 May 2021 09:18:12 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</guid><description>1482. 制作 m 束花所需的最少天数 难度中等
 给你一个整数数组 bloomDay，以及两个整数 m 和 k 。
 现需要制作 m 束花。制作花束时，需要使用花园中 相邻的 k 朵花 。
 花园中有 n 朵花，第 i 朵花会在 bloomDay[i] 时盛开，恰好 可以用于 一束 花中。
