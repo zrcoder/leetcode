@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>其他 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/others/</link><description>Recent content in 其他 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 30 Apr 2021 17:52:25 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/others/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>其他 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/others/</link><description>Recent content in 其他 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 15 May 2021 18:26:04 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/others/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
 给定一个字符串 s，计算具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是连续的。
 重复出现的子串要计算它们出现的次数。
 示例 1 :
@@ -32,7 +32,13 @@ func isNumber(s string) bool { s = strings.TrimSpace(s) if len(s) == 0 { return 
 1 &amp;lt;= N &amp;lt;= 10^9 函数签名：
 func reorderedPowerOf2(N int) bool 分析 如果真的去穷举 N 重新排列各位数组的情况，时间复杂度会比较高。
 十进制数字 N 的每一位由 0~9 这些数字组成，可以统计所有位中，0~9这些数字的个数，用一个长度为 10 的数组记录结果即可。
-其次，2 的幂从二进制看，就是 1 左移若干位得到的数字，从输入限制看，最大不会超过 32 整数。这样可以查看 1 &amp;laquo; 0 到 1 &amp;laquo; 31 这32个数字，对每个数字，同样计算十进制角度看所有位中 0~9这些数字的个数。如果发现统计出的数组和对 N 统计得到的数组相等，就意味着 N 重排各位后能得到 2 的幂。</description></item><item><title>970. 强整数</title><link>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</link><pubDate>Fri, 30 Apr 2021 17:52:25 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</guid><description>970. 强整数 难度中等
+其次，2 的幂从二进制看，就是 1 左移若干位得到的数字，从输入限制看，最大不会超过 32 整数。这样可以查看 1 &amp;laquo; 0 到 1 &amp;laquo; 31 这32个数字，对每个数字，同样计算十进制角度看所有位中 0~9这些数字的个数。如果发现统计出的数组和对 N 统计得到的数组相等，就意味着 N 重排各位后能得到 2 的幂。</description></item><item><title>65. 有效数字</title><link>https://zrcoder.github.io/leetcode/others/valid-number/readme/</link><pubDate>Sat, 15 May 2021 18:26:04 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/valid-number/readme/</guid><description>65. 有效数字 难度困难
+有效数字（按顺序）可以分成以下几个部分：
+一个 小数 或者 整数 （可选）一个 'e' 或 'E' ，后面跟着一个 整数 小数（按顺序）可以分成以下几个部分：
+（可选）一个符号字符（'+' 或 '-'） 下述格式之一： 至少一位数字，后面跟着一个点 '.' 至少一位数字，后面跟着一个点 '.' ，后面再跟着至少一位数字 一个点 '.' ，后面跟着至少一位数字 整数（按顺序）可以分成以下几个部分：
+（可选）一个符号字符（'+' 或 '-'） 至少一位数字 部分有效数字列举如下：
+[&amp;quot;2&amp;quot;, &amp;quot;0089&amp;quot;, &amp;quot;-0.1&amp;quot;, &amp;quot;+3.14&amp;quot;, &amp;quot;4.&amp;quot;, &amp;quot;-.9&amp;quot;, &amp;quot;2e10&amp;quot;, &amp;quot;-90E3&amp;quot;, &amp;quot;3e+7&amp;quot;, &amp;quot;+6e-1&amp;quot;, &amp;quot;53.5e93&amp;quot;, &amp;quot;-123.456e789&amp;quot;] 部分无效数字列举如下：
+[&amp;quot;abc&amp;quot;, &amp;quot;1a&amp;quot;, &amp;quot;1e&amp;quot;, &amp;quot;e3&amp;quot;, &amp;quot;99e2.5&amp;quot;, &amp;quot;--6&amp;quot;, &amp;quot;-+3&amp;quot;, &amp;quot;95a54e53&amp;quot;] 给你一个字符串 s ，如果 s 是一个 有效数字 ，请返回 true 。</description></item><item><title>970. 强整数</title><link>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</link><pubDate>Fri, 30 Apr 2021 17:52:25 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/powerful-integers/readme/</guid><description>970. 强整数 难度中等
 给定两个正整数 x 和 y，如果某一整数等于 x^i + y^j，其中整数 i &amp;gt;= 0 且 j &amp;gt;= 0，那么我们认为该整数是一个强整数。
 返回值小于或等于 bound 的所有强整数组成的列表。
 你可以按任何顺序返回答案。在你的回答中，每个值最多出现一次。
