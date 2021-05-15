@@ -25,13 +25,13 @@
 输入: piles = [3,6,7,11], H = 8 输出: 4 示例 2：
 输入: piles = [30,11,23,4,20], H = 5 输出: 30 示例 3：
 输入: piles = [30,11,23,4,20], H = 6 输出: 23 提示：
-1 &amp;lt;= piles.length &amp;lt;= 10^4 piles.length &amp;lt;= H &amp;lt;= 10^9 1 &amp;lt;= piles[i] &amp;lt;= 10^9 函数签名：</description></item><item><title>Readme</title><link>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</link><pubDate>Sun, 09 May 2021 09:18:12 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</guid><description>1482. 制作 m 束花所需的最少天数 难度中等
+1 &amp;lt;= piles.length &amp;lt;= 10^4 piles.length &amp;lt;= H &amp;lt;= 10^9 1 &amp;lt;= piles[i] &amp;lt;= 10^9 函数签名：</description></item><item><title>1482. 制作 m 束花所需的最少天数</title><link>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</link><pubDate>Sun, 09 May 2021 09:18:12 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</guid><description>1482. 制作 m 束花所需的最少天数 难度中等
 给你一个整数数组 bloomDay，以及两个整数 m 和 k 。
 现需要制作 m 束花。制作花束时，需要使用花园中 相邻的 k 朵花 。
 花园中有 n 朵花，第 i 朵花会在 bloomDay[i] 时盛开，恰好 可以用于 一束 花中。
 请你返回从花园中摘 m 束花需要等待的最少的天数。如果不能摘到 m束花则返回 -1 。
 示例 1：
-输入：bloomDay = [1,10,3,10,2], m = 3, k = 1 输出：3 解释：让我们一起观察这三天的花开过程，x 表示花开，而 _ 表示花还未开。 现在需要制作 3 束花，每束只需要 1 朵。 1 天后：[x, _, _, _, _] // 只能制作 1 束花 2 天后：[x, _, _, _, x] // 只能制作 2 束花 3 天后：[x, _, x, _, x] // 可以制作 3 束花，答案为 3 示例 2：</description></item><item><title>在 D 天内送达包裹的能力</title><link>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</link><pubDate>Tue, 27 Apr 2021 08:08:17 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</guid><description>1011. 在 D 天内送达包裹的能力 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。
+输入：bloomDay = [1,10,3,10,2], m = 3, k = 1 输出：3 解释：让我们一起观察这三天的花开过程，x 表示花开，而 _ 表示花还未开。 现在需要制作 3 束花，每束只需要 1 朵。 1 天后：[x, _, _, _, _] // 只能制作 1 束花 2 天后：[x, _, _, _, x] // 只能制作 2 束花 3 天后：[x, _, x, _, x] // 可以制作 3 束花，答案为 3 示例 2：</description></item><item><title>1011. 在 D 天内送达包裹的能力</title><link>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</link><pubDate>Tue, 27 Apr 2021 08:08:17 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</guid><description>1011. 在 D 天内送达包裹的能力 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。
 传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。
 返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。
 示例 1：

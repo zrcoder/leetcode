@@ -797,7 +797,7 @@ func leastBricks(wall [][]int) int { memo := make(map[int]int, 0) maxCnt := 0 fo
 给你一个数组 houses ，一个 m * n 的矩阵 cost 和一个整数 target ，其中：
 houses[i]：是第 i 个房子的颜色，0 表示这个房子还没有被涂色。 cost[i][j]：是将第 i 个房子涂成颜色 j+1 的花费。 请你返回房子涂色方案的最小总花费，使得每个房子都被涂色后，恰好组成 target 个街区。如果没有可用的涂色方案，请返回 -1 。
 示例 1：
-输入：houses = [0,0,0,0,0], cost = [[1,10],[10,1],[10,1],[1,10],[5,1]], m = 5, n = 2, target = 3 输出：9 解释：房子涂色方案为 [1,2,2,1,1] 此方案包含 target = 3 个街区，分别是 [{1}, {2,2}, {1,1}]。 涂色的总花费为 (1 + 1 + 1 + 1 + 5) = 9。 示例 2：</description></item><item><title>Readme</title><link>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</link><pubDate>Sun, 09 May 2021 09:18:12 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</guid><description>1482. 制作 m 束花所需的最少天数 难度中等
+输入：houses = [0,0,0,0,0], cost = [[1,10],[10,1],[10,1],[1,10],[5,1]], m = 5, n = 2, target = 3 输出：9 解释：房子涂色方案为 [1,2,2,1,1] 此方案包含 target = 3 个街区，分别是 [{1}, {2,2}, {1,1}]。 涂色的总花费为 (1 + 1 + 1 + 1 + 5) = 9。 示例 2：</description></item><item><title>1482. 制作 m 束花所需的最少天数</title><link>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</link><pubDate>Sun, 09 May 2021 09:18:12 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/minimum-number-of-days-to-make-m-bouquets/readme/</guid><description>1482. 制作 m 束花所需的最少天数 难度中等
 给你一个整数数组 bloomDay，以及两个整数 m 和 k 。
 现需要制作 m 束花。制作花束时，需要使用花园中 相邻的 k 朵花 。
 花园中有 n 朵花，第 i 朵花会在 bloomDay[i] 时盛开，恰好 可以用于 一束 花中。
@@ -831,7 +831,7 @@ type WordFilter struct { words []string } func Constructor(words []string) WordF
 当从建筑物 i 移动到建筑物 i+1（下标 从 0 开始 ）时：
 如果当前建筑物的高度 大于或等于 下一建筑物的高度，则不需要梯子或砖块 如果当前建筑的高度 小于 下一个建筑的高度，您可以使用 一架梯子 或 (h[i+1] - h[i]) 个砖块 如果以最佳方式使用给定的梯子和砖块，返回你可以到达的最远建筑物的下标（下标 从 0 开始 ）。
 示例 1：
-输入：heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1 输出：4 解释：从建筑物 0 出发，你可以按此方案完成旅程： - 不使用砖块或梯子到达建筑物 1 ，因为 4 &amp;gt;= 2 - 使用 5 个砖块到达建筑物 2 。你必须使用砖块或梯子，因为 2 &amp;lt; 7 - 不使用砖块或梯子到达建筑物 3 ，因为 7 &amp;gt;= 6 - 使用唯一的梯子到达建筑物 4 。你必须使用砖块或梯子，因为 6 &amp;lt; 9 无法越过建筑物 4 ，因为没有更多砖块或梯子。 示例 2：</description></item><item><title>在 D 天内送达包裹的能力</title><link>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</link><pubDate>Tue, 27 Apr 2021 08:08:17 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</guid><description>1011. 在 D 天内送达包裹的能力 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。
+输入：heights = [4,2,7,6,9,14,12], bricks = 5, ladders = 1 输出：4 解释：从建筑物 0 出发，你可以按此方案完成旅程： - 不使用砖块或梯子到达建筑物 1 ，因为 4 &amp;gt;= 2 - 使用 5 个砖块到达建筑物 2 。你必须使用砖块或梯子，因为 2 &amp;lt; 7 - 不使用砖块或梯子到达建筑物 3 ，因为 7 &amp;gt;= 6 - 使用唯一的梯子到达建筑物 4 。你必须使用砖块或梯子，因为 6 &amp;lt; 9 无法越过建筑物 4 ，因为没有更多砖块或梯子。 示例 2：</description></item><item><title>1011. 在 D 天内送达包裹的能力</title><link>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</link><pubDate>Tue, 27 Apr 2021 08:08:17 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/binary-search/capacity-to-ship-packages-within-d-days/readme/</guid><description>1011. 在 D 天内送达包裹的能力 传送带上的包裹必须在 D 天内从一个港口运送到另一个港口。
 传送带上的第 i 个包裹的重量为 weights[i]。每一天，我们都会按给出重量的顺序往传送带上装载包裹。我们装载的重量不会超过船的最大运载重量。
 返回能在 D 天内将传送带上的所有包裹送达的船的最低运载能力。
 示例 1：
