@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>位运算 on Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/</link><description>Recent content in 位运算 on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 19 Jun 2021 09:57:30 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/index.xml" rel="self" type="application/rss+xml"/><item><title>1239. 串联字符串的最大长度</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/maximum-length-of-a-concatenated-string-with-unique-characters/readme/</link><pubDate>Sat, 19 Jun 2021 09:57:30 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/maximum-length-of-a-concatenated-string-with-unique-characters/readme/</guid><description>1239. 串联字符串的最大长度 难度中等
+给定一个字符串数组 arr，字符串 s 是将 arr 某一子序列字符串连接所得的字符串，如果 s 中的每一个字符都只出现过一次，那么它就是一个可行解。
+请返回所有可行解 s 中最长长度。
+示例 1：
+输入：arr = [&amp;quot;un&amp;quot;,&amp;quot;iq&amp;quot;,&amp;quot;ue&amp;quot;] 输出：4 解释：所有可能的串联组合是 &amp;quot;&amp;quot;,&amp;quot;un&amp;quot;,&amp;quot;iq&amp;quot;,&amp;quot;ue&amp;quot;,&amp;quot;uniq&amp;quot; 和 &amp;quot;ique&amp;quot;，最大长度为 4。 示例 2：
+输入：arr = [&amp;quot;cha&amp;quot;,&amp;quot;r&amp;quot;,&amp;quot;act&amp;quot;,&amp;quot;ers&amp;quot;] 输出：6 解释：可能的解答有 &amp;quot;chaers&amp;quot; 和 &amp;quot;acters&amp;quot;。 示例 3：
+输入：arr = [&amp;quot;abcdefghijklmnopqrstuvwxyz&amp;quot;] 输出：26 提示：
+1 &amp;lt;= arr.length &amp;lt;= 16 1 &amp;lt;= arr[i].length &amp;lt;= 26 arr[i] 中只含有小写英文字母 函数签名：
+func maxLength(arr []string) int 分析 回溯+位运算 注意到数据规模很小，可以用回溯算法。另外，为了迅速判断字符串是否有交集，可以用位运算。
+func maxLength(arr []string) int { n := len(arr) masks := make([]int, n) for i, v := range arr { masks[i] = calMask(v) } res := 0 var backtrack func(int, int) backtrack = func(i, curMask int) { if i == n { res = max(res, bits.</description></item></channel></rss>
