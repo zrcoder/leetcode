@@ -1,0 +1,32 @@
+{
+	"root": "book",
+	"title": "LeetCode 之旅",
+	"language" : "zh-hans",
+	"plugins": [
+		"back-to-top-button",
+		"katex",
+		"-lunr",
+		"-search",
+		"search-pro",
+		"-sharing",
+		"highlight",
+		"-livereload",
+		"chapter-fold",
+		"expandable-chapters",
+		"expandable-chapters-small",
+		"hide-element",
+		"edit-link"
+	],
+	"pluginsConfig": {
+		"theme-default" : {
+			"showLevel": false
+		},
+		"hide-element": {
+			"elements": [".gitbook-link"]
+		},
+		"edit-link": {
+			"base": "//github.com/zrcoder/leetcode/edit/master/book",
+			"label": "编辑当前页"
+		}
+	}
+}
