@@ -64,16 +64,7 @@ candidates 中的数字可以无限制重复被选取。
 您可以将 ring 顺时针或逆时针旋转一个位置，计为1步。旋转的最终目的是将字符串 ring 的一个字符与 12:00 方向对齐，并且这个字符必须等于字符 key[i] 。
 如果字符 key[i] 已经对齐到12:00方向，您需要按下中心按钮进行拼写，这也将算作 1 步。按完之后，您可以开始拼写 key 的下一个字符（下一阶段）, 直至完成所有拼写。
 示例：
-输入: ring = &amp;quot;godding&amp;quot;, key = &amp;quot;gd&amp;quot; 输出: 4 解释: 对于 key 的第一个字符 'g'，已经在正确的位置, 我们只需要1步来拼写这个字符。 对于 key 的第二个字符 'd'，我们需要逆时针旋转 ring &amp;quot;godding&amp;quot; 2步使它变成 &amp;quot;ddinggo&amp;quot;。 当然, 我们还需要1步进行拼写。 因此最终的输出是 4。 提示：</description></item><item><title>1239. 串联字符串的最大长度</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/maximum-length-of-a-concatenated-string-with-unique-characters/readme/</link><pubDate>Sat, 19 Jun 2021 09:57:30 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/maximum-length-of-a-concatenated-string-with-unique-characters/readme/</guid><description>1239. 串联字符串的最大长度 难度中等
-给定一个字符串数组 arr，字符串 s 是将 arr 某一子序列字符串连接所得的字符串，如果 s 中的每一个字符都只出现过一次，那么它就是一个可行解。
-请返回所有可行解 s 中最长长度。
-示例 1：
-输入：arr = [&amp;quot;un&amp;quot;,&amp;quot;iq&amp;quot;,&amp;quot;ue&amp;quot;] 输出：4 解释：所有可能的串联组合是 &amp;quot;&amp;quot;,&amp;quot;un&amp;quot;,&amp;quot;iq&amp;quot;,&amp;quot;ue&amp;quot;,&amp;quot;uniq&amp;quot; 和 &amp;quot;ique&amp;quot;，最大长度为 4。 示例 2：
-输入：arr = [&amp;quot;cha&amp;quot;,&amp;quot;r&amp;quot;,&amp;quot;act&amp;quot;,&amp;quot;ers&amp;quot;] 输出：6 解释：可能的解答有 &amp;quot;chaers&amp;quot; 和 &amp;quot;acters&amp;quot;。 示例 3：
-输入：arr = [&amp;quot;abcdefghijklmnopqrstuvwxyz&amp;quot;] 输出：26 提示：
-1 &amp;lt;= arr.length &amp;lt;= 16 1 &amp;lt;= arr[i].length &amp;lt;= 26 arr[i] 中只含有小写英文字母 函数签名：
-func maxLength(arr []string) int 分析 回溯+位运算 注意到数据规模很小，可以用回溯算法。另外，为了迅速判断字符串是否有交集，可以用位运算。
-func maxLength(arr []string) int { n := len(arr) masks := make([]int, n) for i, v := range arr { masks[i] = calMask(v) } res := 0 var backtrack func(int, int) backtrack = func(i, curMask int) { if i == n { res = max(res, bits.</description></item><item><title>403. 青蛙过河</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/frog-jump/readme/</link><pubDate>Sat, 01 May 2021 11:03:06 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/frog-jump/readme/</guid><description>403. 青蛙过河 一只青蛙想要过河。 假定河流被等分为若干个单元格，并且在每一个单元格内都有可能放有一块石子（也有可能没有）。 青蛙可以跳上石子，但是不可以跳入水中。
+输入: ring = &amp;quot;godding&amp;quot;, key = &amp;quot;gd&amp;quot; 输出: 4 解释: 对于 key 的第一个字符 'g'，已经在正确的位置, 我们只需要1步来拼写这个字符。 对于 key 的第二个字符 'd'，我们需要逆时针旋转 ring &amp;quot;godding&amp;quot; 2步使它变成 &amp;quot;ddinggo&amp;quot;。 当然, 我们还需要1步进行拼写。 因此最终的输出是 4。 提示：</description></item><item><title>403. 青蛙过河</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/frog-jump/readme/</link><pubDate>Sat, 01 May 2021 11:03:06 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/frog-jump/readme/</guid><description>403. 青蛙过河 一只青蛙想要过河。 假定河流被等分为若干个单元格，并且在每一个单元格内都有可能放有一块石子（也有可能没有）。 青蛙可以跳上石子，但是不可以跳入水中。
 给你石子的位置列表 stones（用单元格序号 升序 表示）， 请判定青蛙能否成功过河（即能否在最后一步跳至最后一块石子上）。
 开始时， 青蛙默认已站在第一块石子上，并可以假定它第一步只能跳跃一个单位（即只能从单元格 1 跳至单元格 2 ）。
 如果青蛙上一步跳跃了 k 个单位，那么它接下来的跳跃距离只能选择为 k - 1、k 或 k + 1 个单位。 另请注意，青蛙只能向前方（终点的方向）跳跃。

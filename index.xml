@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 19 Jun 2021 09:57:30 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode 之旅</title><link>https://zrcoder.github.io/leetcode/</link><description>Recent content on Leetcode 之旅</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 07 Jun 2021 19:42:12 +0800</lastBuildDate><atom:link href="https://zrcoder.github.io/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>计数二进制子串</title><link>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</link><pubDate>Fri, 23 Apr 2021 17:00:28 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/others/count-binary-substrings/readme/</guid><description>696. 计数二进制子串 难度简单
 给定一个字符串 s，计算具有相同数量 0 和 1 的非空（连续）子字符串的数量，并且这些子字符串中的所有 0 和所有 1 都是连续的。
 重复出现的子串要计算它们出现的次数。
 示例 1 :
@@ -791,16 +791,7 @@ func leastBricks(wall [][]int) int { memo := make(map[int]int, 0) maxCnt := 0 fo
 示例 1：
 输入：n = 5, edges = [[0,1,1],[1,2,1],[2,3,2],[0,3,2],[0,4,3],[3,4,3],[1,4,6]] 输出：[[0,1],[2,3,4,5]] 解释：上图描述了给定图。 下图是所有的最小生成树。 注意到第 0 条边和第 1 条边出现在了所有最小生成树中，所以它们是关键边，我们将这两个下标作为输出的第一个列表。 边 2，3，4 和 5 是所有 MST 的剩余边，所以它们是伪关键边。我们将它们作为输出的第二个列表。 示例 2 ：
 输入：n = 4, edges = [[0,1,1],[1,2,1],[2,3,1],[0,3,1]] 输出：[[],[0,1,2,3]] 解释：可以观察到 4 条边都有相同的权值，任选它们中的 3 条可以形成一棵 MST 。所以 4 条边都是伪关键边。 提示：
-2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>1239. 串联字符串的最大长度</title><link>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/maximum-length-of-a-concatenated-string-with-unique-characters/readme/</link><pubDate>Sat, 19 Jun 2021 09:57:30 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/backtrack-dfs-bfs/maximum-length-of-a-concatenated-string-with-unique-characters/readme/</guid><description>1239. 串联字符串的最大长度 难度中等
-给定一个字符串数组 arr，字符串 s 是将 arr 某一子序列字符串连接所得的字符串，如果 s 中的每一个字符都只出现过一次，那么它就是一个可行解。
-请返回所有可行解 s 中最长长度。
-示例 1：
-输入：arr = [&amp;quot;un&amp;quot;,&amp;quot;iq&amp;quot;,&amp;quot;ue&amp;quot;] 输出：4 解释：所有可能的串联组合是 &amp;quot;&amp;quot;,&amp;quot;un&amp;quot;,&amp;quot;iq&amp;quot;,&amp;quot;ue&amp;quot;,&amp;quot;uniq&amp;quot; 和 &amp;quot;ique&amp;quot;，最大长度为 4。 示例 2：
-输入：arr = [&amp;quot;cha&amp;quot;,&amp;quot;r&amp;quot;,&amp;quot;act&amp;quot;,&amp;quot;ers&amp;quot;] 输出：6 解释：可能的解答有 &amp;quot;chaers&amp;quot; 和 &amp;quot;acters&amp;quot;。 示例 3：
-输入：arr = [&amp;quot;abcdefghijklmnopqrstuvwxyz&amp;quot;] 输出：26 提示：
-1 &amp;lt;= arr.length &amp;lt;= 16 1 &amp;lt;= arr[i].length &amp;lt;= 26 arr[i] 中只含有小写英文字母 函数签名：
-func maxLength(arr []string) int 分析 回溯+位运算 注意到数据规模很小，可以用回溯算法。另外，为了迅速判断字符串是否有交集，可以用位运算。
-func maxLength(arr []string) int { n := len(arr) masks := make([]int, n) for i, v := range arr { masks[i] = calMask(v) } res := 0 var backtrack func(int, int) backtrack = func(i, curMask int) { if i == n { res = max(res, bits.</description></item><item><title>494. 目标和</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/target-sum/readme/</link><pubDate>Mon, 07 Jun 2021 19:42:12 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/target-sum/readme/</guid><description>494. 目标和 难度中等
+2 &amp;lt;= n &amp;lt;= 100 1 &amp;lt;= edges.</description></item><item><title>494. 目标和</title><link>https://zrcoder.github.io/leetcode/dp-and-greedy/target-sum/readme/</link><pubDate>Mon, 07 Jun 2021 19:42:12 +0800</pubDate><guid>https://zrcoder.github.io/leetcode/dp-and-greedy/target-sum/readme/</guid><description>494. 目标和 难度中等
 给你一个整数数组 nums 和一个整数 target 。
 向数组中的每个整数前添加 '+' 或 '-' ，然后串联起所有整数，可以构造一个 表达式 ：
 例如，nums = [2, 1] ，可以在 2 之前添加 '+' ，在 1 之前添加 '-' ，然后串联起来得到表达式 &amp;quot;+2-1&amp;quot; 。 返回可以通过上述方法构造的、运算结果等于 target 的不同 表达式 的数目。
