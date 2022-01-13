@@ -1,0 +1,36 @@
+title = "Leetcode 之旅"
+
+baseURL = "https://zrcoder.github.io/leetcode"
+
+theme = "hugo-book"
+
+[params]
+  BookTheme = "light"
+  BookToC = false
+  BookSection = "docs"
+  BookRepo = "https://github.com/zrcoder/leetcode"
+  BookCommitPath = "commit"
+  BookEditPath = "edit/hugo"
+  BookComments = true
+  BookDateFormat = "January 2, 2006"
+
+[menu]
+# [[menu.before]]
+[[menu.after]]
+  name = "Github"
+  url = "https://github.com/zrcoder/leetcode"
+  weight = 10
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = true
+    style = 'rainbow_dash'
+    tabWidth = 4
