@@ -2,7 +2,7 @@
 
 > master 分支使用开源 gitbook，因 gitbook 开源版长久不维护， 我们的 master 分支也停止维护。
 > 
-> **最新维护分支见 [hugo](https://github.com/zrcoder/leetcode/tree/hugo) 。**
+> **最新维护分支见 [hugo-book](https://github.com/zrcoder/leetcode/tree/hugo-book) 。**
 
 
 > 由于 gitbook 的源码和文档是两部分，所以把源码放到主分支，文档放到 gh-pages 分支
