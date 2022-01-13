@@ -1,6 +1,7 @@
----
-title: "{{ replace .Name "-" " " | title }}"
-date: {{ .Date }}
-bookCollapseSection: true
----
++++
+title = "{{ replace .Name "-" " " | title }}" 
+date = {{ .Date }} 
+weight = 5 
++++
+
 

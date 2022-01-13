@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+.hugo_build.lock
+
+/public
+/resources
+
+tt.sh
+
+go.work
+go.work.sum

@@ -1,36 +1,42 @@
 title = "Leetcode 之旅"
+baseURL = "https://rdcode.netlify.app/"
+theme = "github.com/McShelby/hugo-theme-relearn"
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+defaultContentLanguageInSubdir = true
 
-baseURL = "https://zrcoder.github.io/leetcode"
-
-theme = "hugo-book"
+[outputs]
+  # For search functionality
+  home = [ "HTML", "RSS", "SEARCH"]
 
 [params]
-  BookTheme = "light"
-  BookToC = false
-  BookSection = "docs"
-  BookRepo = "https://github.com/zrcoder/leetcode"
-  BookCommitPath = "commit"
-  BookEditPath = "edit/hugo"
-  BookComments = true
-  BookDateFormat = "January 2, 2006"
-
-[menu]
-# [[menu.before]]
-[[menu.after]]
-  name = "Github"
-  url = "https://github.com/zrcoder/leetcode"
-  weight = 10
+# theme hugo-theme-relearn: https://mcshelby.github.io/hugo-theme-relearn/basics/configuration/index.html
+  editURL = "https://github.com/zrcoder/leetcode/edit/master/content/"
+  collapsibleMenu = true
+  disableNextPrev = true
+  disableLandingPageButton = true
+  disableInlineCopyToClipBoard = true
+  alwaysopen = false
+  disableMathJax = true
+  disableMermaid = true
+  disableOpenapi = true
+  themeVariant = ["auto"]
+  themeVariantAuto = [ "relearn-bright", "relearn-dark" ]
+  additionalContentLanguage = [ "en" ]
 
 [markup]
   [markup.highlight]
-    anchorLineNos = false
-    codeFences = true
     guessSyntax = false
-    hl_Lines = ''
-    lineAnchors = ''
-    lineNoStart = 1
-    lineNos = true
-    lineNumbersInTable = true
-    noClasses = true
-    style = 'rainbow_dash'
-    tabWidth = 4
+    noClasses = false
+
+[[menu.shortcuts]]
+  name = "<i class='fas fa-fw fa-bookmark'></i> Hello 算法"
+  identifier = "hialgo"
+  url = "https://www.hello-algo.com"
+  weight = 10
+[[menu.shortcuts]]
+  name = "<i class='fas fa-fw fa-bookmark'></i> 力扣加加"
+  identifier = "lcpp"
+  url = "https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution"
+  weight = 10
+  

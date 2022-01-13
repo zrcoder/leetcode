@@ -1,0 +1,12 @@
+# leetgo project level config, global config is at /Users/ding/.config/leetgo/config.yaml
+# for more details, please refer to https://github.com/j178/leetgo
+language: zh
+code:
+  lang: go
+leetcode:
+  site: https://leetcode.cn
+  credentials:
+    from: browser
+editor:
+  use: neovim
+
