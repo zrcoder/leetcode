@@ -134,7 +134,7 @@ clumsy(n) = \frac{n(n-1)}{n-2} + (n-3) - \frac{(n-4)(n-5)}{n-6}+(n-7)-\cdots
 
 `n%4 == 3`: {{<katex >}}clumsy(n) = \frac{n(n-1)}{n-2} + \cdots +4-3\times2\div1=n+1+4-6=n-1{{</katex>}}
 
-在 `n` 较大时直接采用上边的公式，`n >= 4` 时单独计算即可。
+在 `n` 较大时直接采用上边的公式，`n < 4` 时单独计算即可。
 
 ```go
 func clumsy(n int) int {
