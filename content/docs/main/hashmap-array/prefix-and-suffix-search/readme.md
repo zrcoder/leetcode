@@ -65,7 +65,7 @@ func (f *WordFilter) F(prefix string, suffix string) int {
 
 {{< tabs >}}
 
-{{% tab "哈希表" %}}
+{{< tab "哈希表" >}}
 
 ```go
 type WordFilter struct {
@@ -94,9 +94,9 @@ func (f *WordFilter) F(prefix string, suffix string) int {
 }
 ```
 
-{{% /tab %}}
+{{< /tab >}}
 
-{{% tab "Trie 树" %}}
+{{< tab "Trie 树" >}}
 
 ```go
 type WordFilter struct {
@@ -123,7 +123,7 @@ func (f *WordFilter) F(prefix string, suffix string) int {
 
 ```
 
-{{% /tab %}}
+{{< /tab >}}
 
 {{< /tabs >}}
 
