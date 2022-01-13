@@ -1,8 +1,14 @@
 title = "Leetcode 之旅"
+languageCode = "zh"
+defaultContentLanguage = "zh"
+defaultContentLanguageInSubdir = true
 
 baseURL = "https://zrcoder.github.io/leetcode"
 
 theme = "hugo-book"
+
+
+enableGitInfo = true
 
 [params]
   BookTheme = "light"
@@ -10,16 +16,10 @@ theme = "hugo-book"
   BookSection = "docs"
   BookRepo = "https://github.com/zrcoder/leetcode"
   BookCommitPath = "commit"
-  BookEditPath = "edit/hugo"
+  BookEditPath = "edit/hugo-book"
   BookComments = true
-  BookDateFormat = "January 2, 2006"
+  BookDateFormat = "2006年1月2日"
 
-[menu]
-# [[menu.before]]
-[[menu.after]]
-  name = "Github"
-  url = "https://github.com/zrcoder/leetcode"
-  weight = 10
 
 [markup]
   [markup.highlight]

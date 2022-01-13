@@ -3,6 +3,7 @@ title: "二分搜索"
 weight: 3
 bookCollapseSection: true
 ---
+☃❄︎
 
 二分搜索，思想很简单，细节是魔鬼。让我们搞定这个魔鬼
 
@@ -108,4 +109,3 @@ func binarySearch(nums []int, target) int {
 
 > 注意最后纯用标准库的解法。
 
-{{< section >}}
