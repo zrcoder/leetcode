@@ -5,7 +5,7 @@
 {{< /hint >}}
 
 {{< hint info >}}
-[随笔与分类](/leetcode/posts) 部分有Go语言基础和数据结构相关内容。
+[随笔与分类](/posts) 部分有Go语言基础和数据结构相关内容。
 {{</hint>}}
 
 {{< hint warning >}}

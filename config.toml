@@ -3,7 +3,7 @@ languageCode = "zh"
 defaultContentLanguage = "zh"
 defaultContentLanguageInSubdir = true
 
-baseURL = "https://zrcoder.github.io/leetcode"
+baseURL = "https://rd-leetcode.netlify.app/"
 
 theme = "hugo-book"
 
