@@ -18,7 +18,7 @@ disqusShortname = "rdcode"
   BookRepo = "https://github.com/zrcoder/leetcode"
   BookCommitPath = "commit"
   BookEditPath = "edit/hugo-book"
-  BookComments = true
+  BookComments = false
   BookDateFormat = "2006年1月2日"
 
 

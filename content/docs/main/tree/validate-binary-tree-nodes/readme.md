@@ -141,7 +141,8 @@ func validateBinaryTreeNodes(cnt int, leftChild []int, rightChild []int) bool {
 	}
 	return mark(root) && allMarked()
 }
-
+```
+```go
 func findRoot() (int, bool) {
 	set := make([]bool, n)
 	for i := 0; i < n; i++ {
@@ -171,6 +172,8 @@ func findRoot() (int, bool) {
 	}
 	return root, true
 }
+```
+```go
 
 func isValid(node int) bool {
 	return node >= -1 && node < n
