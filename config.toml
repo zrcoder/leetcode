@@ -9,6 +9,7 @@ theme = "hugo-book"
 
 
 enableGitInfo = true
+disqusShortname = "rdcode"
 
 [params]
   BookTheme = "light"
