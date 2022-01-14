@@ -86,19 +86,19 @@ func (uf UnionFind) Find(x int) int {
 实际中往往只需要做其中一个优化即可。
 
 ## 应用
-- [省份数量](../solutions/number-of-provinces/readme.md)
-- [等式方程的可满足性](../solutions/satisfiability-of-equality-equations/readme.md)
-- [最低成本联通所有城市](../solutions/connecting-cities-with-minimum-cost/readme.md)
-- [按字典序排列最小的等效字符串](../solutions/lexicographically-smallest-equivalent-string/readme.md)
-- [冗余连接](../solutions/redundant-connection/readme.md)
-- [交换字符串中的字符](../solutions/smallest-string-with-swaps/readme.md)
-- [移除最多的同行或同列石头](../solutions/most-stones-removed-with-same-row-or-column/readme.md)
-- [打砖块](../solutions/bricks-falling-when-hit/readme.md)
-- [账户合并](../solutions/accounts-merge/readme.md)
-- [最小生成树里的关键边和伪关键边](../solutions/critical-and-pseudo-critical-edges-in-mst/readme.md)
-- [按公因数计算最大组件大小](../solutions/largest-component-size-by-common-factor/readme.md)
-- [保证图可完全遍历](../solutions/remove-max-number-of-edges-to-keep-graph-fully-traversable/readme.md)
+- [省份数量](../solutions/number-of-provinces/readme)
+- [等式方程的可满足性](../solutions/satisfiability-of-equality-equations/readme)
+- [最低成本联通所有城市](../solutions/connecting-cities-with-minimum-cost/readme)
+- [按字典序排列最小的等效字符串](../solutions/lexicographically-smallest-equivalent-string/readme)
+- [冗余连接](../solutions/redundant-connection/readme)
+- [交换字符串中的字符](../solutions/smallest-string-with-swaps/readme)
+- [移除最多的同行或同列石头](../solutions/most-stones-removed-with-same-row-or-column/readme)
+- [打砖块](../solutions/bricks-falling-when-hit/readme)
+- [账户合并](../solutions/accounts-merge/readme)
+- [最小生成树里的关键边和伪关键边](../solutions/critical-and-pseudo-critical-edges-in-mst/readme)
+- [按公因数计算最大组件大小](../solutions/largest-component-size-by-common-factor/readme)
+- [保证图可完全遍历](../solutions/remove-max-number-of-edges-to-keep-graph-fully-traversable/readme)
 
 > 值得一提的是，并查集还可以附加权值信息，来解决一些问题
 
-- [除法求值](../solutions/evaluate-division/readme.md)
+- [除法求值](../solutions/evaluate-division/readme)

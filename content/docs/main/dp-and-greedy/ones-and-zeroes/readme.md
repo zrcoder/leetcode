@@ -48,7 +48,7 @@ func findMaxForm(strs []string, m int, n int) int
 
 ### 回溯
 
-可以参考[子集系列问题]()，比较方便地写出回溯法代码如下：
+可以参考[子集系列问题]，比较方便地写出回溯法代码如下：
 
 ```go
 func findMaxForm(strs []string, m int, n int) int {

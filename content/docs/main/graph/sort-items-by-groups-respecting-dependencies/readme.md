@@ -58,7 +58,7 @@ func sortItems(n int, m int, group []int, beforeItems [][]int) []int
 
 ## 分析
 
-比较复杂的拓扑排序，可以先看看简单点的拓扑排序问题：[课程表](../course-schedule-ii/readme.md)。
+比较复杂的拓扑排序，可以先看看简单点的拓扑排序问题：[课程表]({{< ref "../course-schedule-ii/readme" >}})。
 
 花了两天研究这个问题，经历了四个阶段：
 

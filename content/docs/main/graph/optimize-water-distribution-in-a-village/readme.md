@@ -30,7 +30,7 @@ pipes[i][0] != pipes[i][1]
 ```
 ## 解析
 增加一个房子，其他房子直接在其内部建井相当于和这个新增的房子联接；  
-问题转化成了[最低成本联通所有城市](../connecting-cities-with-minimum-cost/readme.md)
+问题转化成了[最低成本联通所有城市]({{< ref "../connecting-cities-with-minimum-cost/readme.md" >}})
 ```go
 func minCostToSupplyWater(n int, wells []int, pipes [][]int) int {
 	for i, cost := range wells {

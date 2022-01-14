@@ -23,19 +23,20 @@ type TreeNode struct {
 }
 ```
 
-也可以用数组或哈希表来代表结点，如[Trie前缀树的一个实现](../../design/implement-trie-prefix-tree/readme.md)及[树的路径和问题探讨](../solutions/path-sum/d.go)中getPath函数的入参relations
-* [BFS层次遍历](tree-traversal-levelorder.md)
-* [DFS深度遍历](tree-traversal-dfs.md)
+> 也可以用数组或哈希表来代表结点，如[Trie前缀树的一个实现]({{< ref "../../design/implement-trie-prefix-tree/readme" >}})及[树的路径和扩展问题]({{< ref "/docs/main/backtrack-dfs-bfs/path-sum/readme.md#扩展" >}})中的树。
+
+* [BFS层次遍历]({{< ref "tree-traversal-levelorder.md" >}})
+* [DFS深度遍历]({{< ref "tree-traversal-dfs.md" >}})
 
 ## 二叉树
 对于二叉树，DFS又可细分为前序、中序、后序遍历
-* [层次遍历](../binary-tree-level-order-traversal/readme.md)
-* [之字形层次遍历](../binary-tree-zigzag-level-order-traversal/readme.md)
-* [先序遍历](../binary-tree-preorder-traversal/readme.md)
-* [中序遍历](../binary-tree-inorder-traversal/readme.md)
-* [后序遍历](../binary-tree-postorder-traversal/readme.md)
-* [二叉树 morris 遍历](binary-tree-morris.md)
+* [层次遍历]({{< ref "../binary-tree-level-order-traversal/readme.md" >}})
+* [之字形层次遍历]({{< ref "../binary-tree-zigzag-level-order-traversal/readme.md" >}})
+* [先序遍历]({{< ref "../binary-tree-preorder-traversal/readme.md" >}})
+* [中序遍历]({{< ref "../binary-tree-inorder-traversal/readme.md" >}})
+* [后序遍历]({{< ref "../binary-tree-postorder-traversal/readme.md" >}})
+* [二叉树 morris 遍历]({{< ref "binary-tree-morris.md" >}})
 ## 限定条件遍历
 在遍历时，可以有一些限定条件，比如统计从根结点到叶子结点路径和为定值的路径；  
 这里可以增加额外辅助数据结构如栈来记录路径，同时做好回溯。  
-参考[树的路径和问题探讨](../solutions/path-sum/d.go)
+参考[树的路径和问题探讨]({{< ref "/docs/main/backtrack-dfs-bfs/path-sum/readme.md" >}})

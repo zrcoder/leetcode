@@ -54,7 +54,7 @@ conections[i][0] != conections[i][1]
 ```
 共N个城市，总共需要联接N-1次就会将所有城市联通；  
 因为用了贪心策略，按照成本从小到大遍历操作，最终的成本是最小的  
-有个关键的问题是怎么快速判断两个城市是否联通，这里有个有意思的数据结构：[并查集](../../learn/union-find.md)
+有个关键的问题是怎么快速判断两个城市是否联通，这里有个有意思的数据结构：[并查集]({{< ref "/posts/union-find.md" >}})
 ```go
 func minimumCost(n int, connections [][]int) int {
 	if len(connections) < n-1 { // 要有每个城市的联接信息，最终才能将所有城市联通，否则总有落单的

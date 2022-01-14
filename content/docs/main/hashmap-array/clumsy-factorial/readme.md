@@ -2,6 +2,7 @@
 title: "1006. 笨阶乘"
 date: 2021-04-19T22:04:56+08:00
 weight: 1
+math: true
 
 tags: [模拟, 数学]
 ---
@@ -110,29 +111,29 @@ func clumsy(n int) int {
 
 ### 梳理规律
 
-{{<katex>}}
+$
 clumsy(n) = \frac{n(n-1)}{n-2} + (n-3) - \frac{(n-4)(n-5)}{n-6}+(n-7)-\cdots
-{{</katex>}}
+$
 
 对于里边的分式，可以做一变形：
 
-{{<katex>}}
+$
 \frac{n(n-1)}{n-2} = \frac{n^2-2n+n}{n-2}= n + \frac{n}{n-2}= n + \frac{n-2+2}{n-2}= n+1 + \frac{2}{n-2}
-{{</katex>}}
+$
 
-当 `n > 2` 时，{{<katex >}}\frac{2}{n-2} = 0{{</katex>}}, 所以：{{<katex >}}\frac{n(n-1)}{n-2} =  n+1 + \frac{2}{n-2} = n+1{{</katex>}}
+当 `n > 2` 时，$\frac{2}{n-2} = 0$, 所以：$\frac{n(n-1)}{n-2} =  n+1 + \frac{2}{n-2} = n+1$
 
-根据这一发现，可以看到 (1) 中有许多项是可以消去的，比如 {{<katex >}}(n-3) - \frac{(n-4)(n-5)}{n-6} = 0{{</katex>}}
+根据这一发现，可以看到 (1) 中有许多项是可以消去的，比如 $(n-3) - \frac{(n-4)(n-5)}{n-6} = 0$
 
 现在要考虑  (1) 式最后几项的情况，这可以由 n 对 4 的余数来分类：
 
-`n%4 == 0`: {{<katex >}}clumsy(n) = \frac{n(n-1)}{n-2} + \cdots+5 -4\times3\div2 + 1 = n+1 {{</katex>}}
+`n%4 == 0`: $clumsy(n) = \frac{n(n-1)}{n-2} + \cdots+5 -4\times3\div2 + 1 = n+1 $
 
-`n%4 == 1`: {{<katex >}}clumsy(n) = \frac{n(n-1)}{n-2} + \cdots +2-1 = n+1+2-1=n+2{{</katex>}}
+`n%4 == 1`: $clumsy(n) = \frac{n(n-1)}{n-2} + \cdots +2-1 = n+1+2-1=n+2$
 
-`n%4 == 2`: {{<katex >}}clumsy(n) = \frac{n(n-1)}{n-2} + \cdots +3-2\times1=n+1+1=n+2{{</katex>}}
+`n%4 == 2`: $clumsy(n) = \frac{n(n-1)}{n-2} + \cdots +3-2\times1=n+1+1=n+2$
 
-`n%4 == 3`: {{<katex >}}clumsy(n) = \frac{n(n-1)}{n-2} + \cdots +4-3\times2\div1=n+1+4-6=n-1{{</katex>}}
+`n%4 == 3`: $clumsy(n) = \frac{n(n-1)}{n-2} + \cdots +4-3\times2\div1=n+1+4-6=n-1$
 
 在 `n` 较大时直接采用上边的公式，`n < 4` 时单独计算即可。
 

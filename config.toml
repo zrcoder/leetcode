@@ -33,4 +33,6 @@ enableGitInfo = true
     lineNumbersInTable = true
     noClasses = true
     style = 'manni'
+    # style = 'Tango'
+    # style = "monokailight"
     tabWidth = 4

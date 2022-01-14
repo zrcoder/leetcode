@@ -65,7 +65,7 @@ func postorderTraversal2(root *TreeNode) []int {
 ```
 ## 3. morris 迭代实现
 优秀的是空间复杂度    
-详见 [Morris 迭代实现解法说明](../traversal/binary-tree-morris.md)
+详见 [Morris 迭代实现解法说明]({{< ref "../traversal/binary-tree-morris.md" >}})
 ```go
 var res []int
 

@@ -2,6 +2,8 @@
 title: "970. 强整数"
 date: 2021-04-30T17:52:25+08:00
 weight: 50
+math: true
+
 tags: [模拟]
 ---
 
@@ -54,7 +56,7 @@ func powerfulIntegers(x, y, bound int) []int
 这个问题很独特，独特在没有比朴素解法更好的解法~
 
 朴素解法很容易想到，先分析下复杂度怎么样。
-假设 `x`、`y` 都比 1 大，要满足 {{< katex >}}x^i+y^j \le bound{{</katex>}} ，显然 `i` 和 `j` 有上限，分别是 {{< katex >}}log_{x}bound{{</katex>}} 和 {{< katex >}}log_{y}bound{{</katex>}} 。
+假设 `x`、`y` 都比 1 大，要满足 $x^i+y^j \le bound$ ，显然 `i` 和 `j` 有上限，分别是 $log_{x}bound$ 和 $log_{y}bound$ 。
 
 根据题目约束，这两个值不会大于 20，这样就可以用朴素解法。
 
