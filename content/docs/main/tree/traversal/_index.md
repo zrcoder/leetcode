@@ -2,6 +2,7 @@
 title: "树的遍历"
 date: 2021-04-23T10:20:48+08:00
 weight: -1
+bookCollapseSection: true
 ---
 
 ## 一般树

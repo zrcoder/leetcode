@@ -1,12 +1,6 @@
-Leetcode ❄︎ Go
-
----
+❄︎ 这本书是个人 Leetcode 题解，用 Go 语言实现。
 
 {{< tags >}}
-
----
-
-这本书是个人 Leetcode 题解，用 Go 语言实现。
 
 {{< hint info >}}
 [随笔](docs/essay) 部分有Go语言基础和数据结构相关内容。
