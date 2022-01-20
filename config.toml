@@ -37,3 +37,6 @@ disqusShortname = "rdcode"
     # style = 'Tango'
     # style = "monokailight"
     tabWidth = 4
+
+[taxonomies]
+  tag = 'tags'

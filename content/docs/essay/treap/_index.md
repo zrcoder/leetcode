@@ -282,7 +282,7 @@ func (t *Treap) getMinMax(d int) int {
 }
 ```
 ## 应用
-- [132模式](../../dp-and-greedy/132-pattern)
-- [优势洗牌](../../dp-and-greedy/advantage-shuffle)
+- [132模式](../../main/dp-and-greedy/132-pattern)
+- [优势洗牌](../../main/dp-and-greedy/advantage-shuffle)
 ## 参考
 [图文详解Treap](https://blog.csdn.net/yang_yulei/article/details/46005845)

@@ -198,7 +198,7 @@ func pack(goods []Good, v int) int {
 如果背包并非必须被装满，那么任何容量的背包都有一个合法解“什么都不装”，这个解的价值为 0，所以初始时状态的值也就全部为 0。  
 ## 相关实践
 * 分割等和子集 见[题目描述](../../../backtrack-dfs-bfs/partition-to-k-equal-sum-subsets)问题416最后的01背包解法。
-* 变体：如 [零钱兑换系列](../../../hashmap-array/coin-change)。
+* 变体：如 [零钱兑换系列](../../hashmap-array/coin-change)。
 * k sum 问题:
 ```
 给定一个整型数组 arr, 整数 k 和 整数 taget，在 arr 中取出 k 个元素使其和为 target

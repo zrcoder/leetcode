@@ -80,7 +80,7 @@ func advantageCount(A []int, B []int) []int {
 
 时间复杂度 O(nlogn)，空间复杂度(O(n))，其中 n 是给定数组大小。
 
-Treap 的原理和实现详见 [Treap](../../go/treap)
+Treap 的原理和实现详见 [Treap](../../../essay/treap)
 
 ### 排序+双指针
 

@@ -237,6 +237,6 @@ AC了，时空复杂度都同树上打劫的那个问题。
 整体还是动态规划的思想，只是具体实现是在树上。  
 多状态的递归，将状态写到返回值，优于写到入参里，无论从可读性还是从性能。
 ## 延伸
-- [树中距离之和](../../../tree/sum-of-distances-in-tree)
-- [二叉搜索树的最大键值和](../../../tree/maximum-sum-bst-in-binary-tree)
+- [树中距离之和](../../tree/sum-of-distances-in-tree)
+- [二叉搜索树的最大键值和](../../tree/maximum-sum-bst-in-binary-tree)
 

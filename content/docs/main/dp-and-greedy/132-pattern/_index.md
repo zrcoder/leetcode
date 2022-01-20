@@ -130,7 +130,7 @@ func find132pattern(nums []int) bool {
 
 时间复杂度 O(nlogn)，空间复杂度 O(n)。
 
-Treap 的原理和实现详见 [Treap](../../go/treap)
+Treap 的原理和实现详见 [Treap](../../../essay/treap)
 ### 使用单调栈、前缀最小值优化
 
 遍历所有元素，根据 132 模式，对于当前元素 x，需要判断是否能作为 2 类型的元素。
