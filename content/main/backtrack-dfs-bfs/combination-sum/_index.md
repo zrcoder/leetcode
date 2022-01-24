@@ -53,8 +53,8 @@ tags: [回溯, 记忆化搜索, 动态规划]
 
 ### 回溯
 
-{{< tabs >}}
-{{% tab name="通用写法" %}}
+{{< tabs "39" >}}
+{{< tab "通用写法" >}}
 ```go
 func combinationSum(candidates []int, target int) [][]int {
 	var res [][]int
@@ -80,8 +80,8 @@ func combinationSum(candidates []int, target int) [][]int {
 	return res
 }
 ```
-{{% /tab %}}
-{{% tab name="循环写法" %}}
+{{< /tab >}}
+{{< tab "循环写法" >}}
 ```go
 func combinationSum(candidates []int, target int) [][]int {
 	var res [][]int
@@ -106,8 +106,8 @@ func combinationSum(candidates []int, target int) [][]int {
 	return res
 }
 ```
-{{% /tab %}}
-{{% /tabs %}}
+{{< /tab >}}
+{{< /tabs >}}
 
 辅助函数：
 ```go
@@ -179,8 +179,8 @@ func combinations(candidates []int, target int) int {
 
 主要难点在去重，可以事先将数组排序，回溯过程中调整策略。
 
-{{< tabs >}}
-{{% tab name="通用写法" %}}
+{{< tabs "40">}}
+{{< tab "通用写法" >}}
 ```go
 func combinationSum2(candidates []int, target int) [][]int {
 	var res [][]int
@@ -211,8 +211,8 @@ func combinationSum2(candidates []int, target int) [][]int {
 	return res
 }
 ```
-{{% /tab %}}
-{{% tab name="循环写法" %}}
+{{< /tab >}}
+{{< tab "循环写法" >}}
 ```go
 func combinationSum2(candidates []int, target int) [][]int {
     var res [][]int
@@ -240,8 +240,8 @@ func combinationSum2(candidates []int, target int) [][]int {
 	return res
 }
 ```
-{{% /tab %}}
-{{% /tabs %}}
+{{< /tab >}}
+{{< /tabs >}}
 
 ## [216. 组合总和 III](https://leetcode-cn.com/problems/combination-sum-iii)
 

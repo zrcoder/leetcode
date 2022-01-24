@@ -105,7 +105,7 @@ return r
 非常耗时，这样的合并很不均衡，可以想象临近最后是一个很长的链表和一个很短的链表合并。如果能保证每次合并的两个链表规模相当，就能优化这个问题了。
 
 {{< tabs >}}
-{{% tab name="实现一" %}}
+{{< tab "实现一" >}}
 ```go
 func mergeKLists(lists []*ListNode) *ListNode {
 	n := len(lists)
@@ -120,8 +120,8 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	return lists[0]
 }
 ```
-{{% /tab %}}
-{{% tab name="实现二" %}}
+{{< /tab >}}
+{{< tab "实现二" >}}
 ```go
 func mergeKLists1(lists []*ListNode) *ListNode {
 	n := len(lists)
@@ -137,4 +137,5 @@ func mergeKLists1(lists []*ListNode) *ListNode {
 	return lists[0]
 }
 ```
-{{% /tab %}}
+{{< /tab >}}
+{{< /tabs >}}
