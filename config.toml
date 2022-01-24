@@ -2,25 +2,20 @@ title = "Leetcode 之旅"
 languageCode = "zh"
 defaultContentLanguage = "zh"
 defaultContentLanguageInSubdir = true
-
 baseURL = "https://rdcode.netlify.app/"
-
 theme = "hugo-book"
-
-
 enableGitInfo = true
-disqusShortname = "rdcode"
+# disqusShortname = "rdcode"
 
 [params]
   BookTheme = "light"
   BookToC = true
-  BookSection = "docs"
+  BookSection = "/"
   BookRepo = "https://github.com/zrcoder/leetcode"
   BookCommitPath = "commit"
   BookEditPath = "edit/hugo-book"
   BookComments = false
   BookDateFormat = "2006年1月2日"
-
 
 [markup]
   [markup.highlight]
@@ -34,8 +29,6 @@ disqusShortname = "rdcode"
     lineNumbersInTable = true
     noClasses = true
     style = 'manni'
-    # style = 'Tango'
-    # style = "monokailight"
     tabWidth = 4
 
 [taxonomies]

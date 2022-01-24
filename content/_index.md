@@ -3,7 +3,7 @@
 {{< tags >}}
 
 {{< hint info >}}
-[随笔](docs/essay) 部分有Go语言基础和数据结构相关内容。
+[随笔](essay) 部分有Go语言基础和数据结构相关内容。
 {{</hint>}}
 
 {{< hint warning >}}
