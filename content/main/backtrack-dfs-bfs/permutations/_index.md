@@ -23,37 +23,61 @@ weight: 1
 ]
 ```
 ## 分析
-### 自然的思路
-递归，在已有n-1大小的排列的每个空隙插入最后一个元素
+### 分治
+自然的思路：如果已经得到前n-1个元素的全排列，再加一个元素的全排列也就不难得到：只需要遍历前n-1个元素全排列，对每个排列，在每个空隙插入新元素。
+
+```go
+func permute(nums []int) [][]int {
+    res := [][]int{nil}
+    for _, v := range nums {
+        var tmp [][]int
+        for _, s := range res {
+            for i := 0; i <= len(s); i++ {
+				// 在s的空位i处插入v
+				ss := append(append(s[:i:i], v), s[i:]...) 
+                tmp = append(tmp, ss)
+            }
+        }
+        res = tmp
+    }
+    return res
+}
+```
+
+也可以写成递归：
+
 ```go
 func permute(nums []int) [][]int {
 	if len(nums) < 2 {
 		return [][]int{nums}
 	}
-	var result [][]int
-	for _, v := range permute(nums[:len(nums)-1]) {
-		for i := 0; i <= len(v); i++ {
-			t := append(append(v[:i:i], nums[len(nums)-1]), v[i:]...)
-			result = append(result, t)
+	var res [][]int
+	v := nums[len(nums)-1]
+	for _, s := range permute(nums[:len(nums)-1]) {
+		for i := 0; i <= len(s); i++ {
+			ss := append(append(s[:i:i], v), s[i:]...)
+			res = append(res, ss)
 		}
 	}
-	return result
+	return res
 }
 ```
-### 指定 DFS 递归的起始位置
+
+### DFS: 指定递归起始位置
 深度优先搜索，先固定前边几个元素，然后开始尝试排列后边的，这样能逐步降低问题规模。
 
 排列可以通过交换元素实现，参见dfs函数:
+
 ```go
 func permute(nums []int) [][]int {
 	n := len(nums)
 	var result [][]int
 	// 保持start之前的元素固定不变，将其及其之后的元素全排列
-	var dfs func(int)
+	var dfs func(start int)
 	dfs = func(start int) {
 		if start == n {
 			r := make([]int, n)
-			_ = copy(r, nums)
+			copy(r, nums)
 			result = append(result, r)
 			return
 		}
@@ -68,10 +92,11 @@ func permute(nums []int) [][]int {
 }
 ```
 
-### 填空
+### DFS: 填空
 将这个问题看作有 n个排列成一行的空格，需要从左往右依次填入题目给定的 n个数，每个数只能使用一次。
 
 那么很直接的可以想到一种穷举的算法，即从左往右每一个位置都依此尝试填入一个数，看能不能填完这 n 个空格，在程序中我们可以用「回溯法」来模拟这个过程。
+
 ```go
 func permute(nums []int) [][]int {
     var res [][]int
@@ -82,7 +107,7 @@ func permute(nums []int) [][]int {
 	dfs = func() {
 		if len(cur) == n {
 			r := make([]int, n)
-			_ = copy(r, cur)
+			copy(r, cur)
 			res = append(res, r)
 			return
 		}
@@ -116,8 +141,10 @@ func permute(nums []int) [][]int {
 ]
 ```
 ## 分析
-问题与46相似，只是加了元素可能重复的情况，结果不能有重复；解法与46的后两种解法相似。
-### 指定 DFS 递归的起始位置
+问题与46相似，只是加了元素可能重复的情况，结果不能有重复；
+
+如果用46的第一种解法，需要对结果去重。而46的后两种解法可以事先去重。
+### DFS: 指定递归起始位置
 递归时用set去重, 具体在交换 start 处元素与后边元素的时候，看看是否已有相同的元素参与过交换，已经参与过的跳过。  
 ```go
 func permuteUnique1(nums []int) [][]int {
@@ -147,7 +174,7 @@ func permuteUnique1(nums []int) [][]int {
 	return res
 }
 ```
-### 排序后填空
+### DFS: 填空
 用上一问题的填空法，可以事先对nums排序，递归过程中去重。
 ```go
 func permuteUnique(nums []int) [][]int {
@@ -160,7 +187,7 @@ func permuteUnique(nums []int) [][]int {
 	dfs = func() {
 		if len(cur) == n {
 			r := make([]int, n)
-			_ = copy(r, cur)
+			copy(r, cur)
 			res = append(res, r)
 			return
 		}
