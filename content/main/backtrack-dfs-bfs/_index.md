@@ -5,4 +5,9 @@ weight: 5
 bookCollapseSection: true
 ---
 
+## 回溯/DFS
+可以从 [子集](subsets) 相关问题开始。
+## BFS
+可以从 [水位上升的泳池中游泳](swim-in-rising-water) 相关问题开始。
+
 {{< section >}}

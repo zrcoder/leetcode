@@ -1,7 +1,7 @@
 ---
 title: "778. 水位上升的泳池中游泳"
 date: 2021-04-19T22:04:56+08:00
-weight: 1
+weight: -1
 ---
 
 ## [778. 水位上升的泳池中游泳](https://leetcode-cn.com/problems/swim-in-rising-water)
