@@ -42,8 +42,6 @@ tags: [模拟, 数学]
 1. `1 <= N <= 10000`
 2. `-2^31 <= answer <= 2^31 - 1` （答案保证符合 32 位整数。）
 
-
-
 函数签名：
 
 ```go
@@ -60,26 +58,26 @@ func clumsy(n int) int
 
 ```go
 func clumsy(n int) int {
-	memo := []int{n}
-	n--
-	index := 0 // 用于控制乘、除、加、减
-	for ; n > 0; n, index = n-1, (index+1)%4 {
-		switch index {
-		case 0:
-			memo[len(memo)-1] *= n
-		case 1:
-			memo[len(memo)-1] /= n
-		case 2:
-			memo = append(memo, n)
-		default:
-			memo = append(memo, -n)
-		}
-	}
-	res := 0
-	for _, v := range memo {
-		res += v
-	}
-	return res
+    memo := []int{n}
+    n--
+    index := 0 // 用于控制乘、除、加、减
+    for ; n > 0; n, index = n-1, (index+1)%4 {
+        switch index {
+        case 0:
+            memo[len(memo)-1] *= n
+        case 1:
+            memo[len(memo)-1] /= n
+        case 2:
+            memo = append(memo, n)
+        default:
+            memo = append(memo, -n)
+        }
+    }
+    res := 0
+    for _, v := range memo {
+        res += v
+    }
+    return res
 }
 ```
 
@@ -89,21 +87,21 @@ func clumsy(n int) int {
 
 ```go
 func clumsy(n int) int {
-	if n < 3 {
-		return n
-	}
-	if n == 3 {
-		return 6
-	}
-	res := n*(n-1)/(n-2) + n - 3
-	n -= 4
-	for ; n >= 4; n -= 4 {
-		res = res - n*(n-1)/(n-2) + n - 3
-	}
-	if n == 3 {
-		return res - 3*2
-	}
-	return res - n
+    if n < 3 {
+        return n
+    }
+    if n == 3 {
+        return 6
+    }
+    res := n*(n-1)/(n-2) + n - 3
+    n -= 4
+    for ; n >= 4; n -= 4 {
+        res = res - n*(n-1)/(n-2) + n - 3
+    }
+    if n == 3 {
+        return res - 3*2
+    }
+    return res - n
 }
 ```
 
@@ -139,19 +137,19 @@ $$
 
 ```go
 func clumsy(n int) int {
-	switch {
-	case n < 3:
-		return n
-	case n == 3:
-		return 6
-	case n == 4:
-		return 7
-	case n%4 == 0:
-		return n + 1
-	case n%4 == 3:
-		return n - 1
-	default:
-		return n + 2
-	}
+    switch {
+    case n < 3:
+        return n
+    case n == 3:
+        return 6
+    case n == 4:
+        return 7
+    case n%4 == 0:
+        return n + 1
+    case n%4 == 3:
+        return n - 1
+    default:
+        return n + 2
+    }
 }
 ```

@@ -2,6 +2,8 @@
 title: "834. 树中距离之和"
 date: 2021-04-19T22:04:56+08:00
 weight: 1
+math: true
+tags: [动态规划]
 ---
 
 ## [834. 树中距离之和](https://leetcode-cn.com/problems/sum-of-distances-in-tree/)
@@ -41,7 +43,7 @@ func sumOfDistancesInTree(n int, edges [][]int) []int
 
 ## 分析
 
-以题目中所给的树为例，看节点2，其他节点和它的举例和，可以分成两部分：
+以题目中所给的树为例，看节点2，其他节点和它的距离和，可以分成两部分：
 
 ```
 1. 节点2 为根的子树中的节点，与它的距离和。
@@ -72,44 +74,43 @@ $$
 
 ```go
 func sumOfDistancesInTree(n int, edges [][]int) []int {
-	// 为方便迅速得到某个节点的相邻节点，将输入处理成邻接表
-	graph := make([][]int, n)
-	for _, edge := range edges {
-		u, v := edge[0], edge[1]
-		graph[u] = append(graph[u], v)
-		graph[v] = append(graph[v], u)
-	}
-	// 当前记录的是每个节点到它所在子树的节点的距离和
-	dp := make([]int, n)
-	// 记录每个节点作为根节点的子树的节点总数
-	sz := make([]int, n)
-	var dfs func(node, parent int)
-	dfs = func(node, parent int) {
-		sz[node] = 1 // 节点自身个数需计算
-		for _, v := range graph[node] {
-			if v == parent {
-				continue
-			}
-			dfs(v, node)
-			sz[node] += sz[v]
-			dp[node] += dp[v] + sz[v]
-		}
-	}
-	dfs(0, -1)
+    // 为方便迅速得到某个节点的相邻节点，将输入处理成邻接表
+    graph := make([][]int, n)
+    for _, edge := range edges {
+        u, v := edge[0], edge[1]
+        graph[u] = append(graph[u], v)
+        graph[v] = append(graph[v], u)
+    }
+    // 当前记录的是每个节点到它所在子树的节点的距离和
+    dp := make([]int, n)
+    // 记录每个节点作为根节点的子树的节点总数
+    sz := make([]int, n)
+    var dfs func(node, parent int)
+    dfs = func(node, parent int) {
+        sz[node] = 1 // 节点自身个数需计算
+        for _, v := range graph[node] {
+            if v == parent {
+                continue
+            }
+            dfs(v, node)
+            sz[node] += sz[v]
+            dp[node] += dp[v] + sz[v]
+        }
+    }
+    dfs(0, -1)
 
-	// 做换根操作，之后的 dp[u] 表示节点 `u` 到其他节点的距离和。
-	var dfs1 func(node, parent int)
-	dfs1 = func(node, parent int) {
-		for _, v := range graph[node] {
-			if v == parent {
-				continue
-			}
-			dp[v] = dp[node] - sz[v] + (n - sz[v])
-			dfs1(v, node)
-		}
-	}
-	dfs1(0, -1) // 第一个参数要和上边 dfs 调用时一致
-	return dp
+    // 做换根操作，之后的 dp[u] 表示节点 `u` 到其他节点的距离和。
+    var dfs1 func(node, parent int)
+    dfs1 = func(node, parent int) {
+        for _, v := range graph[node] {
+            if v == parent {
+                continue
+            }
+            dp[v] = dp[node] - sz[v] + (n - sz[v])
+            dfs1(v, node)
+        }
+    }
+    dfs1(0, -1) // 第一个参数要和上边 dfs 调用时一致
+    return dp
 }
 ```
-

@@ -82,27 +82,44 @@ func maxSumBST(root *TreeNode) int
 
 ```go
 func maxSumBST(root *TreeNode) int {
-	res := 0 // 注意示例3，空子树算bst，其和为0
-	var dfs func(root *TreeNode) (int, int, int, bool)
-	dfs = func(root *TreeNode) (int, int, int, bool) {
-		if root == nil {
-			// 单独的叶子节点是 BST，由这一约束确定空节点的各项值。
-			return math.MaxInt64, math.MinInt64, 0, true
+	var res int
+	var dfs func(*TreeNode) (bool, int, int, int)
+	dfs = func(node *TreeNode) (bool, int, int, int) {
+		if node == nil {
+			return true, math.MaxInt64, math.MinInt64, 0
 		}
-		minLeft, maxLeft, sumLeft, isLeftBst := dfs(root.Left)
-		minRight, maxRight, sumRight, isRightBst := dfs(root.Right)
-		var minVal, maxVal, sum int
-		var isBst bool
-		if isLeftBst && isRightBst && maxLeft < root.Val && minRight > root.Val {
-			isBst = true
-			minVal = min(minLeft, root.Val)
-			maxVal = max(maxRight, root.Val)
-			sum = sumLeft + sumRight + root.Val
-			res = max(sum, res)
+		lIsBST, lMin, lMax, lSum := dfs(node.Left)
+		rIsBST, rMin, rMax, rSum := dfs(node.Right)
+		isBST := lIsBST && rIsBST && lMax < node.Val && node.Val < rMin
+		sum := lSum + rSum + node.Val
+		if isBST {
+			res = max(res, sum)
 		}
-		return minVal, maxVal, sum, isBst
+		return isBST, min(node.Val, lMin, rMin), max(node.Val, lMax, rMax), sum
 	}
 	dfs(root)
+	return res
+}
+```
+辅助函数如下：
+```go
+func min(s ...int) int {
+	res := s[0]
+	for _, v := range s {
+		if v < res {
+			res = v
+		}
+	}
+	return res
+}
+
+func max(s ...int) int {
+	res := s[0]
+	for _, v := range s {
+		if v > res {
+			res = v
+		}
+	}
 	return res
 }
 ```

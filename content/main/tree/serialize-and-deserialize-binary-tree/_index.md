@@ -57,46 +57,65 @@ func (c *Codec) deserialize(data string) *TreeNode
 ### DFS 先序遍历
 
 ```go
+type Codec struct {
+
+}
+
+func Constructor() Codec {
+    return Codec{}
+}
+// 序列化的递归写法非常简单，如下。
+// 注意字符串拼接性能不佳，可以改成用 strings.Builder 或bytes.Buffer优化
 func (c *Codec) serialize(root *TreeNode) string {
-	buf := bytes.NewBuffer(nil)
-	var preorder func(*TreeNode)
-	preorder = func(n *TreeNode) {
-		if n == nil {
-			buf.WriteString("#,") // # 代表 nil 节点
-			return
-		}
-		buf.WriteString(strconv.Itoa(n.Val))
-		buf.WriteString(",")
-		preorder(n.Left)
-		preorder(n.Right)
-	}
-	preorder(root)
-	return buf.String()
+    var pre func(*TreeNode) string
+    pre = func(root *TreeNode) string {
+        if root == nil {
+            return "#"
+        }
+        return strconv.Itoa(root.Val)+","+pre(root.Left)+","+pre(root.Right)
+    }
+    return pre(root)
+}
+// 使用 strings.Builder{} 优化字符串操作
+func (c *Codec) serialize(root *TreeNode) string {
+    buf := strings.Builder{}
+    var pre func(*TreeNode)
+    pre = func(root *TreeNode) {
+        if root == nil {
+            buf.WriteString("#,")
+            return
+        }
+        buf.WriteString(strconv.Itoa(root.Val))
+        buf.WriteString(",")
+        pre(root.Left)
+        pre(root.Right)
+    }
+    pre(root)
+    return buf.String()
 }
 
 func (c *Codec) deserialize(data string) *TreeNode {
-	nodes := strings.Split(data, ",")
-	index := 0
-	var help func() *TreeNode
-	help = func() *TreeNode {
-		if index == len(nodes) {
-			return nil
-		}
-		val, err := strconv.Atoi(nodes[index])
-		index++
-		if err != nil { // nodes[index] == "#"
-			return nil
-		}
-		root := &TreeNode{Val: val}
-		root.Left = help()
-		root.Right = help()
-		return root
-	}
-	return help()
+    arr := strings.Split(data, ",")
+    index := 0
+    var pre func() *TreeNode
+    pre = func() *TreeNode {
+        if index >= len(arr) || arr[index] == "#" {
+            return nil
+        }
+        v, _ := strconv.Atoi(arr[index])
+        root := &TreeNode{Val: v}
+        index++
+        root.Left = pre()
+        index++
+        root.Right = pre()
+        return root
+    }
+    return pre()
 }
+
 ```
 
-这里可能有个疑问：反序列化，仅凭线序遍历结果，怎么能确定树结构呢？
+这里可能有个疑问：反序列化，仅凭先序遍历结果，怎么能确定树结构呢？
 
 实际上这里`额外存储了空节点信息`，是可以唯一确定树结构的。
 

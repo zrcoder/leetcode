@@ -9,7 +9,7 @@ enableGitInfo = true
 
 [params]
   BookTheme = "light"
-  BookToC = true
+  BookToC = false
   BookSection = "/"
   BookRepo = "https://github.com/zrcoder/leetcode"
   BookCommitPath = "commit"

@@ -52,18 +52,18 @@ func lengthOfLIS(nums []int) int
 
 ```go
 func lengthOfLIS(nums []int) int {
-	dp := make([]int, len(nums)) // dp[i]代表以nums[i]结尾的递增子序列长度
-	maxLen := 0
-	for i, v := range nums {
-		dp[i] = 1 // 一个元素算递增长度为1
-		for j := 0; j < i; j++ {
-			if nums[j] < v {
-				dp[i] = max(dp[i], dp[j]+1)
-			}
-		}
-		maxLen = max(maxLen, dp[i])
-	}
-	return maxLen
+    dp := make([]int, len(nums)) // dp[i]代表以nums[i]结尾的递增子序列长度
+    maxLen := 0
+    for i, v := range nums {
+        dp[i] = 1 // 一个元素算递增长度为1
+        for j := 0; j < i; j++ {
+            if nums[j] < v {
+                dp[i] = max(dp[i], dp[j]+1)
+            }
+        }
+        maxLen = max(maxLen, dp[i])
+    }
+    return maxLen
 }
 ```
 
@@ -75,7 +75,6 @@ func lengthOfLIS(nums []int) int {
 
 这是今天的主角。尝试贪心地构建结果：
 
-```
 如果要使上升子序列尽可能长，则需要让序列上升得尽可能慢，因此在构建结果的时候，每次在上升子序列最后加上的那个数需要尽可能小。
 建立 memo 数组，memo[i]代表长度为 i+1 的递增子序列末尾数字
 遍历 nums，对于当前元素：
@@ -91,23 +90,23 @@ func lengthOfLIS(nums []int) int {
 长度为 5 的递增子序列，最佳末尾数字是 9
 
 可见，memo 数组的长度就是最长递增子序列的长度。
-```
+
 > 实际上，以上做法是一个不完全的耐心排序(patience sorting)。没有完全排序所有元素，而是借助耐心排序的第一部分，得到了最长递增子序列的长度。
 
 ```go
 func lengthOfLIS(nums []int) int {
-	memo := make([]int, len(nums))
-	length := 0
-	for _, v := range nums {
-		j := sort.Search(length, func(i int) bool {
-			return memo[i] >= v
-		})
-		memo[j] = v
-		if j == length {
-			length++
-		}
-	}
-	return length
+    memo := make([]int, len(nums))
+    length := 0
+    for _, v := range nums {
+        j := sort.Search(length, func(i int) bool {
+            return memo[i] >= v
+        })
+        memo[j] = v
+        if j == length {
+            length++
+        }
+    }
+    return length
 }
 ```
 
@@ -139,6 +138,7 @@ func lengthOfLIS(nums []int) int {
 ```
 
 函数签名：
+
 ```go
 func maxEnvelopes(envelopes [][]int) int
 ```
@@ -155,24 +155,24 @@ func maxEnvelopes(envelopes [][]int) int
 
 ```go
 func maxEnvelopes(envelopes [][]int) int {
-	sort.Slice(envelopes, func(i, j int) bool {
-		if envelopes[i][0] == envelopes[j][0] {
-			return envelopes[i][1] < envelopes[j][1]
-		}
-		return envelopes[i][0] > envelopes[j][0]
-	})
-	length := 0
-	for _, v := range envelopes {
-		j := sort.Search(length, func(i int) bool {
-			c := envelopes[i]
-			return c[0] <= v[0] || c[1] <= v[1]
-		})
-		envelopes[j] = v
-		if j == length {
-			length++
-		}
-	}
-	return length
+    sort.Slice(envelopes, func(i, j int) bool {
+        if envelopes[i][0] == envelopes[j][0] {
+            return envelopes[i][1] < envelopes[j][1]
+        }
+        return envelopes[i][0] > envelopes[j][0]
+    })
+    length := 0
+    for _, v := range envelopes {
+        j := sort.Search(length, func(i int) bool {
+            c := envelopes[i]
+            return c[0] <= v[0] || c[1] <= v[1]
+        })
+        envelopes[j] = v
+        if j == length {
+            length++
+        }
+    }
+    return length
 }
 ```
 
@@ -186,28 +186,27 @@ func maxEnvelopes(envelopes [][]int) int {
 
 ```go
 func maxEnvelopes(envelopes [][]int) int {
-	// 先按一个维度排序（宽度或高度都行）；只是把问题降维
-	sort.Slice(envelopes, func(i, j int) bool {
-		return envelopes[i][0] > envelopes[j][0]
-	})
-	result := 0
-	dp := make([]int, len(envelopes))
-	for i, v := range envelopes {
-		dp[i] = 1
-		for j := 0; j < i; j++ {
-			vj := envelopes[j]
-			if vj[0] > v[0] && vj[1] > v[1] {
-				dp[i] = max(dp[i], dp[j]+1)
-			}
-		}
-		result = max(result, dp[i])
-	}
-	return result
+    // 先按一个维度排序（宽度或高度都行）；只是把问题降维
+    sort.Slice(envelopes, func(i, j int) bool {
+        return envelopes[i][0] > envelopes[j][0]
+    })
+    result := 0
+    dp := make([]int, len(envelopes))
+    for i, v := range envelopes {
+        dp[i] = 1
+        for j := 0; j < i; j++ {
+            vj := envelopes[j]
+            if vj[0] > v[0] && vj[1] > v[1] {
+                dp[i] = max(dp[i], dp[j]+1)
+            }
+        }
+        result = max(result, dp[i])
+    }
+    return result
 }
 ```
 
 时间复杂度 `O(n^2)`，空间复杂度`O(n)`。
-
 
 > 一个几乎相同的问题是：[面试题 17.08. 马戏团人塔](https://leetcode-cn.com/problems/circus-tower-lcci/),可以练习。
 
@@ -262,24 +261,24 @@ func maxEnvelopes(envelopes [][]int) int {
 
 ```go
 func reconstructQueue(people [][]int) [][]int {
-	// 高的排前边，一样高的按照k升序排列
-	sort.Slice(people, func(i, j int) bool {
-		a, b := people[i], people[j]
-		return a[0] > b[0] || a[0] == b[0] && a[1] < b[1]
-	})
-	result := make([][]int, len(people))
-	length := 0
-	for _, p := range people {
-		k := p[1]
-		i := length
-		for i > k { // 根据前边的排序，实际不会出现 k > length 的情况
-			result[i] = result[i-1]
-			i--
-		}
-		result[i] = p
-		length++
-	}
-	return result
+    // 高的排前边，一样高的按照k升序排列
+    sort.Slice(people, func(i, j int) bool {
+        a, b := people[i], people[j]
+        return a[0] > b[0] || a[0] == b[0] && a[1] < b[1]
+    })
+    result := make([][]int, len(people))
+    length := 0
+    for _, p := range people {
+        k := p[1]
+        i := length
+        for i > k { // 根据前边的排序，实际不会出现 k > length 的情况
+            result[i] = result[i-1]
+            i--
+        }
+        result[i] = p
+        length++
+    }
+    return result
 }
 ```
 
@@ -319,7 +318,7 @@ func scheduleCourse(courses [][]int) int
 
 ## 分析
 
-为了修尽可能多的课程，要优先修那些关闭时间早的课程。所以首先可以按照关闭时间将所有课程排序，接下来遍历这些课程，对于当前课程，如果已经花费的时间加上该课程需要的时间没有超过关闭时间，则暂定修这门课，否则，需要在已经暂定要修的课程里找到话费时间最长的那门课，决定不修那一门，当然有可能其比当前课程需要的时间短，那就不修当前课程。
+为了修尽可能多的课程，要优先修那些关闭时间早的课程。所以首先可以按照关闭时间将所有课程排序，接下来遍历这些课程，对于当前课程，如果已经花费的时间加上该课程需要的时间没有超过关闭时间，则暂定修这门课，否则，需要在已经暂定要修的课程里找到花费时间最长的那门课，决定不修那一门，当然有可能其比当前课程需要的时间短，那就不修当前课程。
 
 为了迅速找到耗时最长的课程，可以用大顶堆，另用一个变量 day 维护已经花费的时间。每次先将当前课程的耗时入堆，如果发现已经花费的时间加上当前课程需要的时间超过了当前课程的关闭时间，需要将堆顶元素出堆，且更新 day，即减去堆顶元素。
 
@@ -354,8 +353,8 @@ func scheduleCourse(courses [][]int) int {
 type Cmp func(int, int) bool
 
 type Heap struct {
-	slice []int
-	cmp   Cmp
+    slice []int
+    cmp   Cmp
 }
 
 // implement heap.Interface
@@ -364,9 +363,9 @@ func (h *Heap) Less(i, j int) bool { return h.cmp(h.slice[i], h.slice[j]) }
 func (h *Heap) Swap(i, j int)      { h.slice[i], h.slice[j] = h.slice[j], h.slice[i] }
 func (h *Heap) Push(x interface{}) { h.slice = append(h.slice, x.(int)) }
 func (h *Heap) Pop() interface{} {
-	x := h.slice[h.Len()-1]
-	h.slice = h.slice[:h.Len()-1]
-	return x
+    x := h.slice[h.Len()-1]
+    h.slice = h.slice[:h.Len()-1]
+    return x
 }
 ```
 
@@ -407,41 +406,42 @@ func (h *Heap) Pop() interface{} {
 这个问题用类似的动态规划来解决。
 
 参考代码：
+
 ```go
 func largestDivisibleSubset(nums []int) (res []int) {
-	// 排序预处理
-	sort.Ints(nums)
-	n := len(nums)
-	// 动态规划确定每个位置结尾所能得到的满足约束的子序列最大长度
-	dp := make([]int, n)
-	dp[0] = 1
-	// index和maxSize用来维护满足约束的最长子序列的末尾和长度，方便后边构造出结果
-	index, maxSize := 0, 1
-	for i := 1; i < n; i++ {
-		dp[i] = 1
-		for j, v := range nums[:i] {
-			if nums[i]%v == 0 && dp[j]+1 > dp[i] {
-				dp[i] = dp[j] + 1
-			}
-		}
-		if dp[i] > maxSize {
-			index = i
-			maxSize = dp[i]
-		}
-	}
-	// 构造结果
-	if index == 0 {
-		return []int{nums[0]}
-	}
-	maxVal := nums[index]
-	for i := index; i >= 0 && maxSize > 0; i-- {
-		if dp[i] == maxSize && maxVal%nums[i] == 0 {
-			res = append(res, nums[i])
-			maxVal = nums[i]
-			maxSize--
-		}
-	}
-	return
+    // 排序预处理
+    sort.Ints(nums)
+    n := len(nums)
+    // 动态规划确定每个位置结尾所能得到的满足约束的子序列最大长度
+    dp := make([]int, n)
+    dp[0] = 1
+    // index和maxSize用来维护满足约束的最长子序列的末尾和长度，方便后边构造出结果
+    index, maxSize := 0, 1
+    for i := 1; i < n; i++ {
+        dp[i] = 1
+        for j, v := range nums[:i] {
+            if nums[i]%v == 0 && dp[j]+1 > dp[i] {
+                dp[i] = dp[j] + 1
+            }
+        }
+        if dp[i] > maxSize {
+            index = i
+            maxSize = dp[i]
+        }
+    }
+    // 构造结果
+    if index == 0 {
+        return []int{nums[0]}
+    }
+    maxVal := nums[index]
+    for i := index; i >= 0 && maxSize > 0; i-- {
+        if dp[i] == maxSize && maxVal%nums[i] == 0 {
+            res = append(res, nums[i])
+            maxVal = nums[i]
+            maxSize--
+        }
+    }
+    return
 }
 ```
 
