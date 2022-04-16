@@ -253,7 +253,13 @@ func maxEnvelopes(envelopes [][]int) int {
 
 这个问题总体思路和上边的信封套娃及叠罗汉问题类似。都是排序，经历粗排和细排两轮。
 
+- 粗排
+
 很自然的思路：越高的人k 值理应越小。先按照身高降序，在身高相等的时候怎么排呢？k 小的排前边。
+
+- 细排
+
+仅粗排还不够，比如 `[[7,0],[7,1],[6,1]]`，显然最后一个人应该插入中间。
 
 在构建结果数组的时候，如果当前人的 k 不小于结果数组的长度，直接把他追加到队尾，否则，用二分法找到他该插入的位置，当然后边的人要一一后移。
 
@@ -403,45 +409,46 @@ func (h *Heap) Pop() interface{} {
 
 ## 分析
 
-这个问题用类似的动态规划来解决。
+这个问题用类似 LIS 问题（最长上升子序列）的动态规划来解决。
 
 参考代码：
 
 ```go
-func largestDivisibleSubset(nums []int) (res []int) {
-    // 排序预处理
-    sort.Ints(nums)
+func largestDivisibleSubset(nums []int) []int {
+    if len(nums) == 0 {
+        return nil
+    }
     n := len(nums)
-    // 动态规划确定每个位置结尾所能得到的满足约束的子序列最大长度
+    // 排序，方便状态转移
+    sort.Ints(nums)
+    // dp[i] 表示以i结尾的前缀数组最大整除子序列的长度
     dp := make([]int, n)
-    dp[0] = 1
-    // index和maxSize用来维护满足约束的最长子序列的末尾和长度，方便后边构造出结果
-    index, maxSize := 0, 1
-    for i := 1; i < n; i++ {
+    // pre 用于构建结果
+    pre := make([]int, n)
+    // 记录取得最大结果的索引，用于构建结果
+    index, max := -1, 0
+    for i := range nums {
         dp[i] = 1
+        pre[i] = i
         for j, v := range nums[:i] {
             if nums[i]%v == 0 && dp[j]+1 > dp[i] {
                 dp[i] = dp[j] + 1
+                pre[i] = j
             }
         }
-        if dp[i] > maxSize {
+        if dp[i] > max {
             index = i
-            maxSize = dp[i]
+            max = dp[i]
         }
     }
-    // 构造结果
-    if index == 0 {
-        return []int{nums[0]}
+    // 构建结果
+    var res []int
+    for pre[index] != index {
+        res = append(res, nums[index])
+        index = pre[index]
     }
-    maxVal := nums[index]
-    for i := index; i >= 0 && maxSize > 0; i-- {
-        if dp[i] == maxSize && maxVal%nums[i] == 0 {
-            res = append(res, nums[i])
-            maxVal = nums[i]
-            maxSize--
-        }
-    }
-    return
+    res = append(res, nums[index])
+    return res
 }
 ```
 
@@ -473,7 +480,7 @@ func largestDivisibleSubset(nums []int) (res []int) {
 
 ## 分析
 
-类似上面的动态规划，实现需要把箱子在某一维（长/宽/高）排序。
+类似上面的动态规划，需要事先把箱子在某一维（长/宽/高）排序。
 
 参考实现：
 
