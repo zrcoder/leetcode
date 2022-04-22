@@ -98,7 +98,7 @@ func pyramidTransition(bottom string, allowed []string) bool {
 
 ### 优化的DFS
 
-常规 DFS 里的 `next` 耗费的空间很多，且隐含着回溯逻辑。实际上，在这个问题里，无须回溯。
+常规 DFS 里的 `next` 耗费的空间很多，且隐含着回溯逻辑。实际上，在这个问题里，**无须回溯**。
 
 首先去掉 `next`， 仅保留 `cur`，一直复用 `cur`来优化空间复杂度，另用一个整形变量 `i` 代表 `next`的长度。
 
@@ -119,7 +119,7 @@ func pyramidTransition(bottom string, allowed []string) bool {
         }
         s := string(cur[i : i+2])
         for _, c := range nexts[s] {
-            cur[i] = c // 无须回溯
+            cur[i] = c // no need to backtrack
             if dfs(cur, i+1) {
                 return true
             }
@@ -132,6 +132,10 @@ func pyramidTransition(bottom string, allowed []string) bool {
 ```
 
 时间复杂度：$O(n^2*m)$， $n$ 指 `bottom`的长度，$m$ 指 `allowed` 的长度。Leetcode 实测结果 0 ms。
+
+## 小结
+
+优化的关键在于发现构建过程**无须回溯**。
 
 ## 扩展
 
