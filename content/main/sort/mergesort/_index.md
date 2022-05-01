@@ -66,22 +66,23 @@ preSum[j] − preSum[i-1] ∈ [lower,upper]
 
 ```go
 func countRangeSum(nums []int, lower int, upper int) int {
-	preSum := make([]int, len(nums)+1)
-	for i, v := range nums {
-		preSum[i+1] = preSum[i] + v
-	}
-	var res = 0
-	for i := 0; i < len(nums); i++ {
-		for j := i; j < len(nums); j++ {
-			s := preSum[j+1] - preSum[i]
-			if s >= lower && s <= upper {
-				res++
-			}
-		}
-	}
-	return res
+    preSum := make([]int, len(nums)+1)
+    for i, v := range nums {
+        preSum[i+1] = preSum[i] + v
+    }
+    var res = 0
+    for i := 0; i < len(nums); i++ {
+        for j := i; j < len(nums); j++ {
+            s := preSum[j+1] - preSum[i]
+            if s >= lower && s <= upper {
+                res++
+            }
+        }
+    }
+    return res
 }
 ```
+
 这个改动不但没有优化时间复杂度，还额外增加了空间复杂度。当前于事无补，但是借助前缀和技巧，可以用分治的思想优化时间复杂度。
 
 将 `preSum` 划分为左右两个子数组 n1、 n2，可分别求出n1、 n2 中满足要求的下标对个数，相加后再加上 一个坐标在 n1 而另一个坐标在 n2 且满足题意的坐标对个数，就得到了结果：
@@ -119,53 +120,53 @@ n2[j] - n1[0] ∈ [lower, upper]
 var lo, hi int
 
 func countRangeSum(nums []int, lower, upper int) int {
-	preSum := make([]int, len(nums)+1)
-	for i, v := range nums {
-		preSum[i+1] = preSum[i] + v
-	}
-	lo, hi = lower, upper
-	return mergeCount(preSum)
+    preSum := make([]int, len(nums)+1)
+    for i, v := range nums {
+        preSum[i+1] = preSum[i] + v
+    }
+    lo, hi = lower, upper
+    return mergeCount(preSum)
 }
 
 func mergeCount(arr []int) int {
-	n := len(arr)
-	if n < 2 {
-		return 0
-	}
-	n1 := append([]int{}, arr[:n/2]...)
-	n2 := append([]int{}, arr[n/2:]...)
-	cnt := mergeCount(n1) + mergeCount(n2) // 递归完成后， n1、n2 均为有序
-	// 统计分别在 n1、 n2 中满足要求的下标对的数量
-	cnt += calPairs(n1, n2)
-	// n1、n2 归并填入 arr，使 arr 有序
-	merge(arr, n1, n2)
-	return cnt
+    n := len(arr)
+    if n < 2 {
+        return 0
+    }
+    n1 := append([]int{}, arr[:n/2]...)
+    n2 := append([]int{}, arr[n/2:]...)
+    cnt := mergeCount(n1) + mergeCount(n2) // 递归完成后， n1、n2 均为有序
+    // 统计分别在 n1、 n2 中满足要求的下标对的数量
+    cnt += calPairs(n1, n2)
+    // n1、n2 归并填入 arr，使 arr 有序
+    merge(arr, n1, n2)
+    return cnt
 }
 
 func calPairs(n1, n2 []int) int {
-	res := 0
-	var l, r int
-	for _, v := range n1 {
-		for ; l < len(n2) && n2[l] < v+lo; l++ {
-		}
-		for r = l; r < len(n2) && n2[r] <= v+hi; r++ {
-		}
-		res += r - l
-	}
-	return res
+    res := 0
+    var l, r int
+    for _, v := range n1 {
+        for ; l < len(n2) && n2[l] < v+lo; l++ {
+        }
+        for r = l; r < len(n2) && n2[r] <= v+hi; r++ {
+        }
+        res += r - l
+    }
+    return res
 }
 
 func merge(arr, n1, n2 []int) {
-	p1, p2 := 0, 0
-	for i := range arr {
-		if p1 < len(n1) && (p2 == len(n2) || n1[p1] <= n2[p2]) {
-			arr[i] = n1[p1]
-			p1++
-		} else {
-			arr[i] = n2[p2]
-			p2++
-		}
-	}
+    p1, p2 := 0, 0
+    for i := range arr {
+        if p1 < len(n1) && (p2 == len(n2) || n1[p1] <= n2[p2]) {
+            arr[i] = n1[p1]
+            p1++
+        } else {
+            arr[i] = n2[p2]
+            p2++
+        }
+    }
 }
 ```
 
@@ -223,19 +224,19 @@ func reversePairs(nums []int) int {
 
 // mergeCount、merge 同上，略
 
-func calPairs(n1, n2 []int) int {
+func calPairs(left, right []int) int {
     res := 0
-    i, j := 0, 0
-    for i < len(n1) && j < len(n2) {
-        if n1[i] > 2*n2[j] {
-            res += len(n1)-i
-            j++
-        } else {
-            i++
-        }
+    var lo int
+    for _, v := range right {
+        for ; lo < len(left) && left[lo] <= v*2; lo++{}
+        res += len(left)-lo
     }
     return res
 }
 ```
 
  复杂度也同上个问题。
+
+## 练习
+
+[剑指 Offer 51. 数组中的逆序对](https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)

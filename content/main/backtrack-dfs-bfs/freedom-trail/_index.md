@@ -5,6 +5,7 @@ weight: 1
 ---
 
 ## [514. 自由之路](https://leetcode-cn.com/problems/freedom-trail)
+
 `难度困难`
 
 视频游戏“辐射4”中，任务“通向自由”要求玩家到达名为“Freedom Trail Ring”的金属表盘，并使用表盘拼写特定关键词才能开门。
@@ -20,7 +21,6 @@ weight: 1
 2. 如果字符 **key[i]** 已经对齐到12:00方向，您需要按下中心按钮进行拼写，这也将算作 **1 步**。按完之后，您可以开始拼写 **key** 的下一个字符（下一阶段）, 直至完成所有拼写。
 
 **示例：**
-
 
 ```
 输入: ring = "godding", key = "gd"
@@ -41,6 +41,23 @@ weight: 1
 ## 分析
 
 如果 ring 中没有重复字母，这个问题将变得非常简单。只需要事先统计出 `ring` 中每个字母的索引，用一个 26 大小的数组 `indices`。用一个变量 `cur` 指向 `ring` 中当前位置，遍历 `key`，对于当前字母 `ch`，计算 `cur` 到达 `indices[ch-'a']` 所需要的最小步数，即 `dist = abs(cur -  indices[ch-'a'])`， 因为时环状，这个距离需要更新为 `min(dist, n - dist)`，其中 `n` 是 `ring` 的长度。
+
+>  问题 [1974. 使用特殊打字机键入单词的最少时间](https://leetcode-cn.com/problems/minimum-time-to-type-word-using-special-typewriter/) 即是这种简单情况。参考解答代码如下：
+> 
+> ```go
+> func minTimeToType(word string) int {
+>     var c rune = 'a' // 当前字符
+>     res := len(word) // 每个字符要打印出来，需要选定后再按一次键
+>     for _, v := range word {
+>         dist := abs(int(v-c))
+>         res += min(dist, 26-dist)
+>         c = v
+>     }
+>     return res
+> }
+> ```
+> 
+> `abs`, `min` 是求绝对值和最小值的函数，实现在后边。
 
 但是 ring 中有重复字母，看看贪心思路是否可行：
 首先 indices 将记录每个字母出现的所有位置
@@ -66,22 +83,22 @@ weight: 1
 
 ```go
 func findRotateSteps1(ring string, key string) int {
-	indices := calIndices(ring)
-	// 返回从 ring 的索引 i、 key 的索引 j 开始，直到 j 到达 key 末尾，所需要旋转转盘的步数
-	var dfs func(i, j int) int
-	dfs = func(i, j int) int {
-		if j == len(key) {
-			return 0
-		}
-		res := math.MaxInt32
-		for _, index := range indices[key[j]-'a'] {
-			dist := abs(i - index)
-			dist = min(dist, len(ring)-dist)
-			res = min(res, dist+dfs(index, j+1))
-		}
-		return res
-	}
-	return dfs(0, 0) + len(key) // + len(key) ：key中每个字母需要按一下按钮
+    indices := calIndices(ring)
+    // 返回从 ring 的索引 i、 key 的索引 j 开始，直到 j 到达 key 末尾，所需要旋转转盘的步数
+    var dfs func(i, j int) int
+    dfs = func(i, j int) int {
+        if j == len(key) {
+            return 0
+        }
+        res := math.MaxInt32
+        for _, index := range indices[key[j]-'a'] {
+            dist := abs(i - index)
+            dist = min(dist, len(ring)-dist)
+            res = min(res, dist+dfs(index, j+1))
+        }
+        return res
+    }
+    return dfs(0, 0) + len(key) // + len(key) ：key中每个字母需要按一下按钮
 }
 ```
 
@@ -89,29 +106,29 @@ func findRotateSteps1(ring string, key string) int {
 
 ```go
 func calIndices(s string) [][]int {
-	indices := make([][]int, 26)
-	for i, v := range s {
-		indices[v-'a'] = append(indices[v-'a'], i)
-	}
-	return indices
+    indices := make([][]int, 26)
+    for i, v := range s {
+        indices[v-'a'] = append(indices[v-'a'], i)
+    }
+    return indices
 }
 ```
 
 ```go
 func abs(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
+    if x < 0 {
+        return -x
+    }
+    return x
 }
 ```
 
 ```go
 func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
+    if a < b {
+        return a
+    }
+    return b
 }
 ```
 
@@ -119,39 +136,39 @@ func min(a, b int) int {
 
 ```go
 func findRotateSteps2(ring string, key string) int {
-	indices := calIndices(ring)
-	memo := genMemo(len(ring), len(key))
-	// dfs 返回从 ring 的索引 i 开始， key 的索引 j 开始，直到 j 到达 key 末尾，所需要旋转转盘的步数
-	var dfs func(i, j int) int
-	dfs = func(i, j int) int {
-		if j == len(key) {
-			return 0
-		}
-		if memo[i][j] != math.MaxInt32 {
-			return memo[i][j]
-		}
-		for _, index := range indices[key[j]-'a'] {
-			dist := abs(i - index)
-			dist = min(dist, len(ring)-dist)
-			memo[i][j] = min(memo[i][j], dist+dfs(index, j+1))
-		}
-		return memo[i][j]
-	}
+    indices := calIndices(ring)
+    memo := genMemo(len(ring), len(key))
+    // dfs 返回从 ring 的索引 i 开始， key 的索引 j 开始，直到 j 到达 key 末尾，所需要旋转转盘的步数
+    var dfs func(i, j int) int
+    dfs = func(i, j int) int {
+        if j == len(key) {
+            return 0
+        }
+        if memo[i][j] != math.MaxInt32 {
+            return memo[i][j]
+        }
+        for _, index := range indices[key[j]-'a'] {
+            dist := abs(i - index)
+            dist = min(dist, len(ring)-dist)
+            memo[i][j] = min(memo[i][j], dist+dfs(index, j+1))
+        }
+        return memo[i][j]
+    }
 
-	return dfs(0, 0) + len(key) // + len(key) ：key中每个字母需要按一下按钮
+    return dfs(0, 0) + len(key) // + len(key) ：key中每个字母需要按一下按钮
 }
 ```
 
 ```go
 func genMemo(m, n int) [][]int {
-	res := make([][]int, m)
-	for i := range res {
-		res[i] = make([]int, n)
-		for j := range res[i] {
-			res[i][j] = math.MaxInt32
-		}
-	}
-	return res
+    res := make([][]int, m)
+    for i := range res {
+        res[i] = make([]int, n)
+        for j := range res[i] {
+            res[i][j] = math.MaxInt32
+        }
+    }
+    return res
 }
 ```
 
@@ -171,24 +188,24 @@ func genMemo(m, n int) [][]int {
 
 ```go
 func findRotateSteps3(ring string, key string) int {
-	indices := calIndices(ring)
-	dp := genMemo(len(key), len(ring))
-	for _, j := range indices[key[0]-'a'] {
-		dp[0][j] = min(j, len(ring)-j)
-	}
-	for i := 1; i < len(key); i++ {
-		for _, j := range indices[key[i]-'a'] {
-			for _, k := range indices[key[i-1]-'a'] {
-				dist := abs(j - k)
-				dp[i][j] = min(dp[i][j], dp[i-1][k]+min(dist, len(ring)-dist))
-			}
-		}
-	}
-	res := math.MaxInt32
-	for _, v := range dp[len(key)-1] {
-		res = min(res, v)
-	}
-	return res + len(key)
+    indices := calIndices(ring)
+    dp := genMemo(len(key), len(ring))
+    for _, j := range indices[key[0]-'a'] {
+        dp[0][j] = min(j, len(ring)-j)
+    }
+    for i := 1; i < len(key); i++ {
+        for _, j := range indices[key[i]-'a'] {
+            for _, k := range indices[key[i-1]-'a'] {
+                dist := abs(j - k)
+                dp[i][j] = min(dp[i][j], dp[i-1][k]+min(dist, len(ring)-dist))
+            }
+        }
+    }
+    res := math.MaxInt32
+    for _, v := range dp[len(key)-1] {
+        res = min(res, v)
+    }
+    return res + len(key)
 }
 ```
 
@@ -196,28 +213,28 @@ func findRotateSteps3(ring string, key string) int {
 
 ```go
 func findRotateSteps(ring string, key string) int {
-	indices := calIndices(ring)
-	dp := genMemo(2, len(ring))
-	for _, j := range indices[key[0]-'a'] {
-		dp[0][j] = min(j, len(ring)-j)
-	}
-	lastDp, curDp := dp[0], dp[1]
-	for i := 1; i < len(key); i++ {
-		for _, j := range indices[key[i]-'a'] {
-			for _, k := range indices[key[i-1]-'a'] {
-				dist := abs(j - k)
-				curDp[j] = min(curDp[j], lastDp[k]+min(dist, len(ring)-dist))
-			}
-		}
-		lastDp, curDp = curDp, lastDp
-		for i := range curDp {
-			curDp[i] = math.MaxInt32
-		}
-	}
-	res := math.MaxInt32
-	for _, v := range lastDp {
-		res = min(res, v)
-	}
-	return res + len(key)
+    indices := calIndices(ring)
+    dp := genMemo(2, len(ring))
+    for _, j := range indices[key[0]-'a'] {
+        dp[0][j] = min(j, len(ring)-j)
+    }
+    lastDp, curDp := dp[0], dp[1]
+    for i := 1; i < len(key); i++ {
+        for _, j := range indices[key[i]-'a'] {
+            for _, k := range indices[key[i-1]-'a'] {
+                dist := abs(j - k)
+                curDp[j] = min(curDp[j], lastDp[k]+min(dist, len(ring)-dist))
+            }
+        }
+        lastDp, curDp = curDp, lastDp
+        for i := range curDp {
+            curDp[i] = math.MaxInt32
+        }
+    }
+    res := math.MaxInt32
+    for _, v := range lastDp {
+        res = min(res, v)
+    }
+    return res + len(key)
 }
 ```

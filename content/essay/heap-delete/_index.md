@@ -23,57 +23,122 @@ tags: [Go, 数据结构]
 可以用一个哈希表或者另一个堆来存储所有待删除的元素。下边写一个使用哈希表存储待删除元素的实现，简单起见，假设堆里存储的都是 int 类型的元素：
 
 ```go
-type Cmp func(int, int) bool
-
 type Heap struct {
-	slice []int
-	cmp   Cmp
-	// 缓存应该删除的元素，键为元素，值为应该删除的个数
-	delMemo map[int]int
-	// 因为待删除元素缓存，用一个额外的属性维护堆的真实大小
-	size int
+    slice []int
+    cmp func(int, int) bool
+    // 缓存应该删除的元素，键为元素，值为应该删除的个数
+    delMemo map[int]int
+    // 因为待删除元素缓存，用一个额外的属性维护堆的真实大小
+    size int
 }
 
-func NewHeap(cmp Cmp) *Heap { return &Heap{cmp: cmp, delMemo: map[int]int{}} }
-
-func (h *Heap) Len() int           { return len(h.slice) }
-func (h *Heap) Less(i, j int) bool { return h.cmp(h.slice[i], h.slice[j]) }
-func (h *Heap) Swap(i, j int)      { h.slice[i], h.slice[j] = h.slice[j], h.slice[i] }
-func (h *Heap) Push(x interface{}) { h.slice = append(h.slice, x.(int)) }
+func (h *Heap) Len() int {return len(h.slice)}
+func (h *Heap) Less(i, j int) bool {return h.cmp(h.slice[i], h.slice[j])}
+func (h *Heap) Swap(i, j int) {h.slice[i], h.slice[j] = h.slice[j], h.slice[i]}
+func (h *Heap) Push(x interface{}) {h.slice = append(h.slice, x.(int))}
 func (h *Heap) Pop() interface{} {
-	x := h.slice[h.Len()-1]
-	h.slice = h.slice[:h.Len()-1]
-	return x
-}
-
-// prune 循环检查堆顶元素，如果在 delMemo 缓存中则删除
-func (h *Heap) prune() {
-	for len(h.slice) > 0 && h.delMemo[h.slice[0]] > 0 {
-		h.delMemo[h.slice[0]]--
-		heap.Pop(h)
-	}
+    n := len(h.slice)
+    res := h.slice[n-1]
+    h.slice = h.slice[:n-1]
+    return res
 }
 // push 向堆里添加一个元素
 func (h *Heap) push(x int) {
-	h.prune()
-	h.size++
-	heap.Push(h, x)
+    h.clean()
+    h.size++
+    heap.Push(h, x)
 }
 // pop 删除堆顶元素并返回其值
 func (h *Heap) pop() int {
-	h.size--
-	res := heap.Pop(h).(int)
-	h.prune()
-	return res
+    h.clean()
+    h.size--
+    return heap.Pop(h).(int)
+}
+// peek 获取堆顶元素
+func (h *Heap) peek() int {
+    h.clean()
+    return h.slice[0]
 }
 // remove 在堆里删除元素 num
-func (h *Heap) remove(num int) {
-	h.delMemo[num]++
-	h.size--
-	h.prune()
+func (h *Heap) remove(x int) {
+    h.clean()
+    h.size--
+    h.delMemo[x]++
 }
-// peek 获取堆顶元素，这里也可以调 prune 函数，不过因为 push、pop、和 remove 都调了，这里可以不调。
-func (h *Heap) peek() int {
-	return h.slice[0]
+// 循环检查堆顶元素，如果在 delMemo 缓存中则删除
+func (h *Heap) clean() {
+    for len(h.slice) > 0 && h.delMemo[h.slice[0]] > 0 {
+        h.delMemo[h.slice[0]]--
+        heap.Pop(h)
+    }
+}
+```
+
+ 附480.滑动窗口中位数的参考解答：
+
+```go
+func medianSlidingWindow(nums []int, k int) []float64 {
+    if k > len(nums) {
+        k = len(nums)
+    }
+    if k < 1 {
+        return nil
+    }
+
+    mf := NewMedianFinder()
+    for _, v := range nums[:k-1] {
+        mf.AddNum(v)
+    }
+    res := make([]float64, 0, len(nums)-k+1)
+    for i := k-1; i < len(nums); i++ {
+        mf.AddNum(nums[i])
+        res = append(res, mf.FindMedian())
+        mf.Remove(nums[i-k+1])
+    }
+    return res
+}
+
+type MedianFinder struct {
+    left, right *Heap
+}
+
+func NewMedianFinder() *MedianFinder {
+    return &MedianFinder{
+        left: &Heap{cmp: func(x, y int) bool {return x > y}, delMemo: map[int]int{}},
+        right: &Heap{cmp: func(x, y int) bool {return x < y}, delMemo: map[int]int{}},
+    }
+}
+
+func (mf *MedianFinder) AddNum(num int)  {
+    if mf.left.size == 0 || mf.left.peek() >= num {
+        mf.left.push(num)
+    } else {
+        mf.right.push(num)
+    }
+    mf.makeBalance()
+}
+
+func (mf *MedianFinder) makeBalance() {
+    if mf.left.size > mf.right.size+1 {
+        mf.right.push(mf.left.pop())
+    } else if mf.left.size < mf.right.size {
+        mf.left.push(mf.right.pop())
+    }
+}
+
+func (mf *MedianFinder) FindMedian() float64 {
+    if mf.left.size > mf.right.size {
+        return float64(mf.left.peek())
+    }
+    return float64(mf.left.peek()+mf.right.peek())/2
+}
+
+func (mf *MedianFinder) Remove(x int) {
+    if mf.left.size > 0 && mf.left.peek() >= x {
+        mf.left.remove(x)
+    } else {
+        mf.right.remove(x)
+    }
+    mf.makeBalance()
 }
 ```
