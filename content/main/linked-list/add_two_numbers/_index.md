@@ -34,28 +34,36 @@ weight: 1
 2). 如何进入下一位运算
 3). 按位相加结束后，也还需要处理进位问题
 ```
+
 ```go
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	result := &ListNode{}
-	current := result
-	carry := 0 // must be 0 or 1
-	for l1 != nil || l2 != nil || carry != 0 {
-		sum := carry
-		if l1 != nil {
-			sum += l1.Val
-			l1 = l1.Next
-		}
-		if l2 != nil {
-			sum += l2.Val
-			l2 = l2.Next
-		}
-		carry = sum / 10
-		current.Val = sum % 10
-		if l1 != nil || l2 != nil || carry != 0 {
-			current.Next = &ListNode{}
-			current = current.Next
-		}
-	}
-	return result
+    dummy := &ListNode{}
+    p := dummy
+    carry := 0
+    for l1 != nil || l2 != nil {
+        if l1 != nil {
+            carry += l1.Val
+            l1 = l1.Next
+        }
+        if l2 != nil {
+            carry += l2.Val
+            l2 = l2.Next
+        }
+        p.Next = &ListNode{Val:carry%10}
+        p = p.Next
+        carry /= 10
+    }
+    if carry != 0 {
+        p.Next = &ListNode{Val:carry}
+    }
+    dummy.Next, p = nil, dummy.Next
+    return p
 }
 ```

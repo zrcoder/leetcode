@@ -1,11 +1,12 @@
 ---
 title: "通配符/模式匹配"
 date: 2022-04-08T08:57:01+08:00
+math: true
 ---
 
 从最简单的44题开始。
 
-## [通配符匹配](https://leetcode-cn.com/problems/wildcard-matching/description/ "https://leetcode-cn.com/problems/wildcard-matching/description/")
+## [44. 通配符匹配](https://leetcode-cn.com/problems/wildcard-matching/description/ "https://leetcode-cn.com/problems/wildcard-matching/description/")
 
 | Category   | Difficulty    | Likes | Dislikes |
 | ---------- | ------------- | ----- | -------- |
@@ -207,7 +208,35 @@ func isMatch(s string, p string) bool {
 
 假设 s 和 p 的长度分别为 m 和 n，加了备忘录的时空复杂度都是 $O(m\times{n})$ 。
 
-## [正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/description/ "https://leetcode-cn.com/problems/regular-expression-matching/description/")
+也可以改成自底向上的动态规划解法：
+
+```go
+func isMatch(s string, p string) bool {
+    m, n := len(s), len(p)
+	// dp[x][y] 代表前缀 s[:x] 和 p[:y] 是否匹配， x，y分别是前缀长度
+    dp := make([][]bool, m+1)
+    for i := range dp {
+        dp[i] = make([]bool, n+1)
+    }
+    dp[0][0] = true
+
+    for i := 0; i <= m; i++ {
+        for j := 1; j <= n; j++ {
+            if p[j-1] == '*' {
+                dp[i][j] = dp[i][j-1] || i > 0 && dp[i-1][j]
+            } else {
+                dp[i][j] = i > 0 && (p[j-1] == '?' || p[j-1] == s[i-1]) && dp[i-1][j-1]
+             }
+        }
+    }
+
+    return dp[m][n]
+}
+```
+
+复杂度同上。
+
+## [10. 正则表达式匹配](https://leetcode-cn.com/problems/regular-expression-matching/description/ "https://leetcode-cn.com/problems/regular-expression-matching/description/")
 
 | Category   | Difficulty    | Likes | Dislikes |
 | ---------- | ------------- | ----- | -------- |
@@ -314,3 +343,29 @@ func markMemo(dp [][]int, i, j int, ok bool) {
 ```
 
 复杂度同上。
+
+同样可以修改为自底向上的动态规划解法
+
+```go
+func isMatch(s string, p string) bool {
+    m, n := len(s), len(p)
+    dp := make([][]bool, m+1)
+    for i := range dp {
+        dp[i] = make([]bool, n+1)
+    }
+    dp[0][0] = true
+
+    for i := 0; i <= m; i++ {
+        for j := 1; j <= n; j++ {
+            if p[j-1] == '*' {
+                dp[i][j] = j >= 2 && dp[i][j-2] ||
+                    i > 0 && j >= 2 && (p[j-2] == '.' || p[j-2] == s[i-1]) && dp[i-1][j]
+            } else {
+                dp[i][j] = i > 0 && (p[j-1] == '.' || p[j-1] == s[i-1]) && dp[i-1][j-1]
+            }
+        }
+    }
+
+    return dp[m][n]
+}
+```
