@@ -29,18 +29,21 @@ weight: 1
 你可以假设 k 总是有效的，且 1 ≤ k ≤ 数组的长度。
 
 函数签名如下：
+
 ```go
 func findKthLargest(nums []int, k int) int
 ```
 
 ## 分析
+
 比较直观易解的问题。值得注意的是基于快排思想的快速选择解法
 
 1.朴素实现，时间复杂度O(nlgn)，空间复杂度O(1)
+
 ```go
 func findKthLargest0(nums []int, k int) int {
-	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
-	return nums[k-1]
+    sort.Sort(sort.Reverse(sort.IntSlice(nums)))
+    return nums[k-1]
 }
 ```
 
@@ -59,117 +62,100 @@ func (h IntHeap) Less(i, j int) bool  { return h[i] < h[j] }
 func (h IntHeap) Swap(i, j int)       { h[i], h[j] = h[j], h[i] }
 func (h *IntHeap) Push(x interface{}) { *h = append(*h, x.(int)) }
 func (h *IntHeap) Pop() interface{} {
-	x := (*h)[len(*h)-1]
-	*h = (*h)[:len(*h)-1]
-	return x
+    x := (*h)[len(*h)-1]
+    *h = (*h)[:len(*h)-1]
+    return x
 }
 func findKthLargest1(nums []int, k int) int {
-	h := &IntHeap{}
-	for _, v := range nums {
-		heap.Push(h, v)
-		if h.Len() > k {
-			_ = heap.Pop(h)
-		}
-	}
-	return (*h)[0]
+    h := &IntHeap{}
+    for _, v := range nums {
+        heap.Push(h, v)
+        if h.Len() > k {
+           heap.Pop(h)
+        }
+    }
+    return (*h)[0]
 }
 ```
 
 3.快速选择
 
-时间复杂度 : 平均情况O(N)，最坏情况O(N^2)。空间复杂度 : O(1)
-```go
-func findKthLargest(nums []int, k int) int {
-	return quickSelect(nums, 0, len(nums)-1, k)
-}
-
-func quickSelect(nums []int, left, right, k int) int {
-	if left == right { // 递归结束条件：区间里仅有一个元素
-		return nums[left]
-	}
-	// 在区间[left, right]里随机选一个索引
-	pivotIndex := left + rand.Intn(right-left+1)
-	pivotIndex = partition(nums, left, right, pivotIndex)
-	if pivotIndex+1 == k {
-		return nums[pivotIndex]
-	}
-	if pivotIndex+1 > k {
-		return quickSelect(nums, left, pivotIndex-1, k)
-	}
-	return quickSelect(nums, pivotIndex+1, right, k)
-}
-
-// 以pivotIndex处元素做划分，不妨称这个元素为基准元素，大于基准的放在左侧，小于基准的放在右侧
-// 返回最终基准元素的索引
-func partition(nums []int, left, right, pivotIndex int) int {
-	// 1. 先把基准元素放到最后
-	nums[right], nums[pivotIndex] = nums[pivotIndex], nums[right]
-
-	pivot := nums[right]
-	storeIndex := left
-	// 2. 把所有大于基准元素的元素放到左侧
-	for i := left; i < right; i++ {
-		if nums[i] > pivot {
-			nums[storeIndex], nums[i] = nums[i], nums[storeIndex]
-			storeIndex++
-		}
-	}
-	// 3. 基准元素放到最终位置
-	nums[storeIndex], nums[right] = nums[right], nums[storeIndex]
-	return storeIndex
-}
-```
-
-也可以一开始随机打乱数组，后边每次选择 right 位置的元素为基准元素，代码更简洁：
+时间复杂度 : 平均情况`O(N)`，最坏情况`O(N^2)`。空间复杂度 : `O(1)`
 
 ```go
 func findKthLargest(nums []int, k int) int {
-	if k < 1 || k > len(nums) {
-		return 0
-	}
-	rand.Seed(time.Now().UnixNano())
-	rand.Shuffle(len(nums), func(i, j int) {
-		nums[i], nums[j] = nums[j], nums[i]
-	})
-	quickSelect(nums, 0, len(nums)-1, k)
-	return nums[k-1]
-}
+    var quickSelect func(lo, hi int)
+    quickSelect = func(lo, hi int) {
+        if lo == hi {
+            return
+        }
+        pivotIndex := lo+rand.Intn(hi-lo) // 在[lo, hi]闭区间选择一个随机元素作为基准元素
+        nums[pivotIndex], nums[hi] = nums[hi], nums[pivotIndex] // 先把基准元素放到最后
+        pivot := nums[hi]
+        j := lo
+        for i := lo; i < hi; i++ {
+            if nums[i] >= pivot { // 不小于基准元的数字放到前半部分，小于基准元的数字放到后半部分
+                nums[i], nums[j] = nums[j], nums[i]
+                j++
+            }
+        }
+        nums[j], nums[hi] = nums[hi], nums[j] // 基准元素放到左右部分之间
+        if j+1 == k {
+            return
+        }
+        if j+1 > k {
+            quickSelect(lo, j-1)
+        } else {
+            quickSelect(j+1, hi)
+        }
+    }
 
-func quickSelect(nums []int, left, right, k int) {
-	if left == right { // 递归结束条件：区间里仅有一个元素
-		return
-	}
-	pivotIndex := partition(nums, left, right)
-	if pivotIndex+1 == k {
-		return
-	}
-	if pivotIndex+1 > k {
-		quickSelect(nums, left, pivotIndex-1, k)
-	} else {
-		quickSelect(nums, pivotIndex+1, right, k)
-	}
-}
-
-// 以 right 处元素为基准元素，大于等于基准的放在左侧，小于基准的放在右侧
-// 返回最终基准元素的索引
-func partition(nums []int, left, right int) int {
-	pivot := nums[right]
-	storeIndex := left
-	// 把所有大于等于基准元素的元素放到左侧
-	for i := left; i < right; i++ {
-		if nums[i] >= pivot {
-			nums[storeIndex], nums[i] = nums[i], nums[storeIndex]
-			storeIndex++
-		}
-	}
-	// right 处的元素交换到 storeIndex 处
-	nums[storeIndex], nums[right] = nums[right], nums[storeIndex]
-	return storeIndex
+    quickSelect(0, len(nums)-1)
+    return nums[k-1]
 }
 ```
+
+也可以一开始随机打乱数组，后边每次选择 right 位置的元素为基准元素：
+
+```go
+func findKthLargest(nums []int, k int) int {
+    rand.Shuffle(len(nums), func(i,j int) {
+        nums[i], nums[j] = nums[j], nums[i]
+    })
+
+    var help func(lo, hi int)
+    help = func(lo, hi int) {
+        if lo == hi {
+            return
+        }
+        pivot := nums[hi]
+        j := lo
+        for i := lo; i < hi; i++ {
+            if nums[i] >= pivot {
+                nums[i], nums[j] = nums[j], nums[i]
+                j++
+            }
+        }
+        nums[j], nums[hi] = nums[hi], nums[j]
+        if j+1 == k {
+            return
+        }
+        if j+1 > k {
+            help(lo, j-1)
+        } else {
+            help(j+1, hi)
+        }
+    }
+
+    help(0, len(nums)-1)
+    return nums[k-1]
+}
+```
+
 实际测试发现比上边每次都随机选基准元素的实现稍微耗时。
 
 ## 扩展： [973. 最接近原点的 K 个点](https://leetcode-cn.com/problems/k-closest-points-to-origin)
+
 `难度中等`
 
 我们有一个由平面上的点组成的列表 `points`。需要从中找出 `K` 个距离原点 `(0, 0)` 最近的点。
@@ -177,8 +163,6 @@ func partition(nums []int, left, right int) int {
 （这里，平面上两点之间的距离是欧几里德距离。）
 
 你可以按任何顺序返回答案。除了点坐标的顺序之外，答案确保是唯一的。
-
- 
 
 **示例 1：**
 
@@ -200,54 +184,50 @@ func partition(nums []int, left, right int) int {
 （答案 [[-2,4],[3,3]] 也会被接受。）
 ```
 
- 
-
 **提示：**
 
 1. `1 <= K <= points.length <= 10000`
 2. `-10000 < points[i][0] < 10000`
 3. `-10000 < points[i][1] < 10000`
 
-## 参考代码
-```go
-var k int
+### 参考解答
 
-func kClosest(points [][]int, K int) [][]int {
-    k = K
-    quickSelect(points, 0, len(points)-1)
+```go
+func kClosest(points [][]int, k int) [][]int {
+    rand.Shuffle(len(points), func(i, j int) {
+        points[i], points[j] = points[j], points[i]
+    })
+
+    var quickSelect func(lo, hi int)
+    quickSelect = func(lo, hi int) {
+        if lo == hi {
+            return
+        }
+        pivot := points[hi]
+        d := dist(pivot)
+        j := lo
+        for i := lo; i < hi; i++ {
+            if dist(points[i]) <= d {
+                points[j], points[i] = points[i], points[j]
+                j++
+            }
+        }
+        points[j], points[hi] = points[hi], points[j]
+        if j+1 == k {
+            return
+        }
+        if j+1 < k {
+            quickSelect(j+1, hi)
+        } else {
+            quickSelect(lo, j-1)
+        }
+    }
+
+    quickSelect(0, len(points)-1)
     return points[:k]
 }
 
-func quickSelect(points [][]int, lo, hi int) {
-    if lo == hi {
-        return
-    }
-    
-    index := partion(points, lo, hi)
-    if index == k-1 {
-        return
-    }
-    if index < k-1 {
-        quickSelect(points, index, hi)
-    } else {
-        quickSelect(points, lo, index)
-    }
-}
-
-func partion(points [][]int, lo, hi int) int {
-    index := lo + rand.Intn(hi-lo+1)
-    piv := points[index]
-    val := piv[0]*piv[0] + piv[1]*piv[1]
-    points[index], points[hi] = points[hi], points[index]
-    storedIndex := lo
-    for i := lo; i < hi; i++ {
-        p := points[i]        
-        if p[0]*p[0]+p[1]*p[1] <= val {
-            points[i], points[storedIndex] = points[storedIndex], points[i]
-            storedIndex++
-        }
-    }
-    points[storedIndex], points[hi] = points[hi], points[storedIndex]
-    return storedIndex
+func dist(p []int) int {
+    return p[0]*p[0]+p[1]*p[1]
 }
 ```

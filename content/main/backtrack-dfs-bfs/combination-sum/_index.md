@@ -55,66 +55,71 @@ tags: [回溯, 记忆化搜索, 动态规划]
 
 {{< tabs "39" >}}
 {{< tab "通用写法" >}}
+
 ```go
 func combinationSum(candidates []int, target int) [][]int {
-	var res [][]int
-	var cur []int
-	var dfs func(t, i int)
-	dfs = func(t, i int) {
-		if t < 0 || i == len(candidates) {
-			return
-		}
-		if t == 0 {
-			res = append(res, copySlice(cur))
-			return
-		}
-		// 使用 i 处元素
-		cur = append(cur, candidates[i])
-		// 元素可无限制重复使用，这里 i 不加1
-		dfs(t-candidates[i], i)
-		cur = cur[:len(cur)-1]
-		// 不使用 i 处元素，这里 i + 1
-		dfs(t, i+1)
-	}
-	dfs(target, 0)
-	return res
+    var res [][]int
+    var cur []int
+    var dfs func(t, i int)
+    dfs = func(t, i int) {
+        if t < 0 || i == len(candidates) {
+            return
+        }
+        if t == 0 {
+            res = append(res, copySlice(cur))
+            return
+        }
+        // 使用 i 处元素
+        cur = append(cur, candidates[i])
+        // 元素可无限制重复使用，这里 i 不加1
+        dfs(t-candidates[i], i)
+        cur = cur[:len(cur)-1]
+        // 不使用 i 处元素，这里 i + 1
+        dfs(t, i+1)
+    }
+    dfs(target, 0)
+    return res
 }
 ```
+
 {{< /tab >}}
 {{< tab "循环写法" >}}
+
 ```go
 func combinationSum(candidates []int, target int) [][]int {
-	var res [][]int
-	var cur []int
-	var dfs func(t, start int)
-	dfs = func(t, start int) {
-		if t < 0 {
-			return
-		}
-		if t == 0 {
-			res = append(res, copySlice(cur))
-			return
-		}
-		// 从 start 开始，而不是从 0 开始，防止重复的组合出现
-		for j := start; j < len(candidates); j++ {
-			cur = append(cur, candidates[j])
-			dfs(t-candidates[j], j)
-			cur = cur[:len(cur)-1]
-		}
-	}
-	dfs(target, 0)
-	return res
+    var res [][]int
+    var cur []int
+    var dfs func(t, start int)
+    dfs = func(t, start int) {
+        if t < 0 {
+            return
+        }
+        if t == 0 {
+            res = append(res, copySlice(cur))
+            return
+        }
+        // 从 start 开始，而不是从 0 开始，防止重复的组合出现
+        for j := start; j < len(candidates); j++ {
+            cur = append(cur, candidates[j])
+            dfs(t-candidates[j], j)
+            cur = cur[:len(cur)-1]
+        }
+    }
+    dfs(target, 0)
+    return res
 }
 ```
+
 {{< /tab >}}
 {{< /tabs >}}
 
 辅助函数：
+
 ```go
 func copySlice(s []int) []int {
-	res := make([]int, len(s))
-	copy(res, s)
-	return res
+    res := make([]int, len(s))
+    copy(res, s)
+    return res
 }
 ```
 
@@ -181,65 +186,69 @@ func combinations(candidates []int, target int) int {
 
 {{< tabs "40">}}
 {{< tab "通用写法" >}}
-```go
-func combinationSum2(candidates []int, target int) [][]int {
-	var res [][]int
-	var cur []int
-	var backtrack func(t, start int)
-	backtrack = func(t, start int) {
-		if t == 0 {
-            res = append(res, copySlice(cur))
-			return
-		}
-		if t < 0 || start == len(candidates) {
-			return
-		}
-		// 选择 start 处的元素
-		cur = append(cur, candidates[start])
-		backtrack(t-candidates[start], start+1)
-		cur = cur[:len(cur)-1]
-		// 不选择 start 处的元素
-		// 也不能选择紧跟 start 后与 start 处元素相同的元素
-		i := start+1
-		for i < len(candidates) && candidates[i] == candidates[start] {
-			i++
-		}
-		backtrack(t, i)
-	}
-	sort.Ints(candidates)
-	backtrack(target, 0)
-	return res
-}
-```
-{{< /tab >}}
-{{< tab "循环写法" >}}
+
 ```go
 func combinationSum2(candidates []int, target int) [][]int {
     var res [][]int
-	var cur []int
-	var backtrack func(t, start int)
-	backtrack = func(t, start int) {
-		if t == 0 {
+    var cur []int
+    var backtrack func(t, start int)
+    backtrack = func(t, start int) {
+        if t == 0 {
             res = append(res, copySlice(cur))
-			return
-		}
-		for i := start; i < len(candidates); i++ {
-			if t - candidates[i] < 0 {
-				return
-			}
-			if i > start && candidates[i] == candidates[i-1] {
-				continue
-			}
-			cur = append(cur, candidates[i])
-			backtrack(t-candidates[i], i+1)
-			cur = cur[:len(cur)-1]
-		}
-	}
-	sort.Ints(candidates)
-	backtrack(target, 0)
-	return res
+            return
+        }
+        if t < 0 || start == len(candidates) {
+            return
+        }
+        // 选择 start 处的元素
+        cur = append(cur, candidates[start])
+        backtrack(t-candidates[start], start+1)
+        cur = cur[:len(cur)-1]
+        // 不选择 start 处的元素
+        // 也不能选择紧跟 start 后与 start 处元素相同的元素
+        i := start+1
+        for i < len(candidates) && candidates[i] == candidates[start] {
+            i++
+        }
+        backtrack(t, i)
+    }
+    sort.Ints(candidates)
+    backtrack(target, 0)
+    return res
 }
 ```
+
+{{< /tab >}}
+{{< tab "循环写法" >}}
+
+```go
+func combinationSum2(candidates []int, target int) [][]int {
+    var res [][]int
+    var cur []int
+    var backtrack func(t, start int)
+    backtrack = func(t, start int) {
+        if t == 0 {
+            res = append(res, copySlice(cur))
+            return
+        }
+        for i := start; i < len(candidates); i++ {
+            if t - candidates[i] < 0 {
+                return
+            }
+            if i > start && candidates[i] == candidates[i-1] {
+                continue
+            }
+            cur = append(cur, candidates[i])
+            backtrack(t-candidates[i], i+1)
+            cur = cur[:len(cur)-1]
+        }
+    }
+    sort.Ints(candidates)
+    backtrack(target, 0)
+    return res
+}
+```
+
 {{< /tab >}}
 {{< /tabs >}}
 
@@ -274,30 +283,30 @@ func combinationSum2(candidates []int, target int) [][]int {
 
 ```go
 func combinationSum3(k int, n int) [][]int {
-	var res [][]int
-	var cur []int
-	max := 9
-	if n < max {
-		max = n
-	}
-	var backtrack func(target, num int)
-	backtrack = func(target, num int) {
-		if target == 0 && len(cur) == k { 
-			res = append(res, copySlice(cur))
-			return
-		}
-		if target <= 0 || num > max {
-			return
-		}
+    var res [][]int
+    var cur []int
+    max := 9
+    if n < max {
+        max = n
+    }
+    var backtrack func(target, num int)
+    backtrack = func(target, num int) {
+        if target == 0 && len(cur) == k { 
+            res = append(res, copySlice(cur))
+            return
+        }
+        if target <= 0 || num > max {
+            return
+        }
 
-		cur = append(cur, num)
-		backtrack(target-num, num+1)
-		cur = cur[:len(cur)-1]
+        cur = append(cur, num)
+        backtrack(target-num, num+1)
+        cur = cur[:len(cur)-1]
 
-		backtrack(target, num+1)
-	}
-	backtrack(n, 1)
-	return res
+        backtrack(target, num+1)
+    }
+    backtrack(n, 1)
+    return res
 }
 ```
 
@@ -343,26 +352,28 @@ func combinationSum3(k int, n int) [][]int {
 **进阶：**如果给定的数组中含有负数会发生什么？问题会产生何种变化？如果允许负数出现，需要向题目中添加哪些限制条件？
 
 ## 分析
+
 看题目示例，这个问题实际求的是排列数，而不是组合数。
 
 ### 朴素回溯
+
 ```go
 func combinationSum4Timeout(nums []int, target int) int {
-	var res int
-	var backtrack func(t int)
-	backtrack = func(t int) {
-		if t == 0 {
-			res++
-		}
-		if t < 0 {
-			return
-		}
-		for _, v := range nums {
-			backtrack(t-v)
-		}
-	}
-	backtrack(target)
-	return res
+    var res int
+    var backtrack func(t int)
+    backtrack = func(t int) {
+        if t == 0 {
+            res++
+        }
+        if t < 0 {
+            return
+        }
+        for _, v := range nums {
+            backtrack(t-v)
+        }
+    }
+    backtrack(target)
+    return res
 }
 ```
 
@@ -372,34 +383,56 @@ func combinationSum4Timeout(nums []int, target int) int {
 
 即给回溯加上备忘录来优化。
 
+先对上边的 backtrack 函数稍作修改， 使其直接返回结果：
+
 ```go
-func combinationSum4Memo(nums []int, target int) int {
-   memo := make(map[int]int, 0)
-   var backtrack func(t int) int
-   backtrack = func(t int) int {
-   	if t == 0 {
-   		return 1
-   	}
-   	if t < 0 {
-   		return -1
-   	}
-   	if v, ok := memo[t]; ok {
-   		return v
-   	}
-   	res := 0
-   	for _, v := range nums {
-   		if backtrack(t-v) != -1 {
-   			res += backtrack(t - v)
-   		}
-   	}
-   	memo[t] = res
-   	return res
-   }
-   res := backtrack(target)
-   if res == -1 {
-   	return 0
-   }
-   return res
+func combinationSum4(nums []int, target int) int {
+    var help func(t int) int 
+    help = func(t int) int {
+        if t == 0 {
+            return 1
+        }
+        if t < 0 {
+            return 0
+        }
+
+        res := 0
+        for _, v := range nums {
+            res += help(t-v)
+        }
+        return res
+    }
+    return help(target)
+}
+```
+
+再加上备忘录：
+
+```go
+func combinationSum4(nums []int, target int) int {
+    dp := make(map[int]int, 0)
+    var help func(t int) int 
+    help = func(t int) int {
+        if t == 0 {
+            return 1
+        }
+        if t < 0 {
+            return 0
+        }
+
+        if res, ok := dp[t]; ok {
+            return res
+        }
+
+        res := 0
+        for _, v := range nums {
+            tmp := help(t-v)
+            res += tmp
+        }
+        dp[t] = res
+        return res
+    }
+    return help(target)
 }
 ```
 
@@ -413,18 +446,17 @@ AC了。
 
 ```go
 func combinationSum4(nums []int, target int) int {
-	dp := make([]int, target+1)
-	dp[0] = 1
-	for t := 1; t <= target; t++ {
-		for _, v := range nums {
-			if v <= t {
-				dp[t] += dp[t-v]
-			}
-		}
-	}
-	return dp[target]
+    dp := make([]int, target+1)
+    dp[0] = 1
+    for t := 1; t <= target; t++ {
+        for _, v := range nums {
+            if v <= t {
+                dp[t] += dp[t-v]
+            }
+        }
+    }
+    return dp[target]
 }
 ```
 
 时空复杂度同记忆化搜索方法，不过对于某些输入，空间上有点浪费，不如记忆化里边用 map。
-
