@@ -1,9 +1,9 @@
 ---
-title: "绝对差不超过限制的最长连续子数组"
+title: "1438. 绝对差不超过限制的最长连续子数组"
 date: 2022-03-31T15:50:35+08:00
 ---
 
-## [绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/ "https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/")
+## [1438. 绝对差不超过限制的最长连续子数组](https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/ "https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/description/")
 
 | Category   | Difficulty      | Likes | Dislikes |
 | ---------- | --------------- | ----- | -------- |
