@@ -1,5 +1,5 @@
 ---
-title: "295. 数据流的中位数"
+title: "数据流/滑动窗口中位数"
 date: 2021-04-19T22:04:56+08:00
 weight: 1
 
@@ -185,54 +185,7 @@ func medianSlidingWindow(nums []int, k int) []float64
 
 ### 朴素解法
 维护一个有序数组，插入、删除的复杂度较高，但在 LeetCode 实测效果挺好，时间空间都打败了 96% 左右的提交~应该是测试用例的问题。
-
-```go
-func medianSlidingWindow(nums []int, k int) []float64 {
-	n := len(nums)
-	res := make([]float64, 0, n-k+1)
-	window := getWindowList(nums[:k], k)
-	res = append(res, getMedian(window, k))
-
-	for i := k; i < n; i++ {
-		replace(window, nums[i-k], nums[i])
-		res = append(res, getMedian(window, k))
-	}
-	return res
-}
-
-func getWindowList(nums []int, k int) []int {
-	s := make([]int, k)
-	copy(s, nums)
-	sort.Ints(s)
-	return s
-}
-
-func replace(w []int, pre, cur int) {
-	index := sort.Search(len(w), func(i int) bool {
-		return w[i] >= pre
-	})
-	w[index] = cur
-	if index > 0 && w[index-1] > cur {
-		j := index - 1
-		for ; j >= 0 && w[j] > cur; j-- {
-			w[j+1] = w[j]
-		}
-		w[j+1] = cur
-	} else if index < len(w)-1 && w[index+1] < cur {
-		j := index + 1
-		for ; j < len(w) && w[j] < cur; j++ {
-			w[j-1] = w[j]
-		}
-		w[j-1] = cur
-	}
-}
-func getMedian(w []int, k int) float64 {
-	if k%2 == 1 {
-		return float64(w[k/2])
-	}
-	return float64(w[k/2-1]+w[k/2]) / 2
-}
-```
+代码略。
 
 时间复杂度 O(n*k)，空间复杂度 O(k)。
 
@@ -249,120 +202,111 @@ func getMedian(w []int, k int) float64 {
 这样实际支持了一个remove、push 和 pop 都是对数级复杂度的堆。
 
 ```go
-type Cmp func(int, int) bool
-
-type Heap struct {
-	slice []int
-	cmp   Cmp
-	// 缓存应该删除的元素，键为元素，值为应该删除的个数
-	delMemo map[int]int
-	// 因为待删除元素缓存，用一个额外的属性维护堆的真实大小
-	size int
-}
-
-func NewHeap(cmp Cmp) *Heap { return &Heap{cmp: cmp, delMemo: map[int]int{}} }
-
-func (h *Heap) Len() int           { return len(h.slice) }
-func (h *Heap) Less(i, j int) bool { return h.cmp(h.slice[i], h.slice[j]) }
-func (h *Heap) Swap(i, j int)      { h.slice[i], h.slice[j] = h.slice[j], h.slice[i] }
-func (h *Heap) Push(x interface{}) { h.slice = append(h.slice, x.(int)) }
-func (h *Heap) Pop() interface{} {
-	x := h.slice[h.Len()-1]
-	h.slice = h.slice[:h.Len()-1]
-	return x
-}
-
-// prune 循环检查堆顶元素，如果在 delMemo 缓存中则删除
-func (h *Heap) prune() {
-	for len(h.slice) > 0 && h.delMemo[h.slice[0]] > 0 {
-		h.delMemo[h.slice[0]]--
-		heap.Pop(h)
+func medianSlidingWindow(nums []int, k int) []float64 {
+	mf := NewMedianFinder()
+	res := make([]float64, 0, len(nums)-k+1)
+	for i, v := range nums {
+		mf.Put(v)
+		if i >= k-1 {
+			res = append(res, mf.FindMedian())
+			mf.Remove(nums[i-k+1])
+		}
 	}
-}
-// push 向堆里添加一个元素
-func (h *Heap) push(x int) {
-	h.prune()
-	h.size++
-	heap.Push(h, x)
-}
-// pop 删除堆顶元素并返回其值
-func (h *Heap) pop() int {
-	h.size--
-	res := heap.Pop(h).(int)
-	h.prune()
 	return res
-}
-// remove 在堆里删除元素 num
-func (h *Heap) remove(num int) {
-	h.delMemo[num]++
-	h.size--
-	h.prune()
-}
-// peek 获取堆顶元素，这里也可以调 prune 函数，不过因为 push、pop、和 remove 都调了，这里可以不调。
-func (h *Heap) peek() int {
-	return h.slice[0]
 }
 
 type MedianFinder struct {
-	small, large *Heap
+	left, right *Heap
 }
 
 func NewMedianFinder() *MedianFinder {
-	small := NewHeap(func(a, b int) bool { return a > b })
-	large := NewHeap(func(a, b int) bool { return a < b })
-	return &MedianFinder{small: small, large: large}
+	return &MedianFinder{
+		left:  &Heap{cmp: func(x, y int) bool { return x > y }, memo: map[int]int{}},
+		right: &Heap{cmp: func(x, y int) bool { return x < y }, memo: map[int]int{}},
+	}
+}
+
+func (mf *MedianFinder) Put(num int) {
+	mf.left.push(num)
+	mf.right.push(mf.left.pop())
+	mf.makeBalance()
+}
+func (mf *MedianFinder) Remove(x int) {
+	if mf.left.size > 0 && mf.left.peek() >= x {
+		mf.left.remove(x)
+	} else {
+		mf.right.remove(x)
+	}
+	mf.makeBalance()
 }
 
 func (mf *MedianFinder) makeBalance() {
-	if mf.small.size > mf.large.size+1 {
-		mf.large.push(mf.small.pop())
-	} else if mf.small.size < mf.large.size {
-		mf.small.push(mf.large.pop())
+	// 注意这里用size而不是Len()
+	if mf.left.size > mf.right.size+1 {
+		mf.right.push(mf.left.pop())
+	} else if mf.left.size < mf.right.size {
+		mf.left.push(mf.right.pop())
 	}
-}
-
-func (mf *MedianFinder) AddNum(num int) {
-	if mf.small.Len() == 0 || num <= mf.small.peek() {
-		mf.small.push(num)
-	} else {
-		mf.large.push(num)
-	}
-	mf.makeBalance()
-}
-
-func (mf *MedianFinder) DelNum(num int) {
-	if num <= mf.small.peek() {
-		mf.small.remove(num)
-	} else {
-		mf.large.remove(num)
-	}
-	mf.makeBalance()
 }
 
 func (mf *MedianFinder) FindMedian() float64 {
-	if mf.small.size > mf.large.size {
-		return float64(mf.small.peek())
+	if mf.left.size > mf.right.size {
+		return float64(mf.left.peek())
 	}
-	if mf.large.size == 0 && mf.small.size == 0 {
-		return 0
-	}
-	return float64(mf.small.peek()+mf.large.peek()) * 0.5
+	return float64(mf.left.peek()+mf.right.peek()) / 2
 }
 
-func medianSlidingWindow(nums []int, k int) []float64 {
-	n := len(nums)
-	mf := NewMedianFinder()
-	for _, v := range nums[:k] {
-		mf.AddNum(v)
-	}
-	res := make([]float64, 0, n-k+1)
-	res = append(res, mf.FindMedian())
-	for i := k; i < n; i++ {
-		mf.DelNum(nums[i-k])
-		mf.AddNum(nums[i])
-		res = append(res, mf.FindMedian())
-	}
+type Heap struct {
+	items []int
+	cmp   func(int, int) bool
+	memo  map[int]int // 记录应该删除的元素
+	size  int         // 记录堆预期的大小，因为删除延迟的原因，堆的实际大小(items的大小)并非预期大小
+}
+
+func (h *Heap) Len() int           { return len(h.items) }
+func (h *Heap) Less(i, j int) bool { return h.cmp(h.items[i], h.items[j]) }
+func (h *Heap) Swap(i, j int)      { h.items[i], h.items[j] = h.items[j], h.items[i] }
+func (h *Heap) Push(x interface{}) { h.items = append(h.items, x.(int)) }
+func (h *Heap) Pop() interface{} {
+	n := len(h.items)
+	res := h.items[n-1]
+	h.items = h.items[:n-1]
 	return res
+}
+
+// push 向堆里添加一个元素
+func (h *Heap) push(x int) {
+	h.clean()
+	h.size++
+	heap.Push(h, x)
+}
+
+// pop 删除堆顶元素并返回其值
+func (h *Heap) pop() int {
+	h.clean()
+	h.size--
+	return heap.Pop(h).(int)
+}
+
+// peek 获取堆顶元素
+func (h *Heap) peek() int {
+	h.clean()
+	return h.items[0]
+}
+
+// remove 在堆里删除元素 num
+func (h *Heap) remove(x int) {
+	h.clean()
+	h.size--
+	h.memo[x]++
+}
+
+// 循环检查堆顶元素，如果在 memo 缓存中则删除
+func (h *Heap) clean() {
+	for len(h.items) > 0 && h.memo[h.items[0]] > 0 {
+		h.memo[h.items[0]]--
+		heap.Pop(h)
+	}
 }
 ```
 ## 拓展
