@@ -191,7 +191,7 @@ func medianSlidingWindow(nums []int, k int) []float64
 
 怎么降低时间复杂度呢？可以用平衡二叉搜索树，如红黑树、AVL树等，不过这些数据结构手写还是很复杂的。
 
-### 两个堆
+### 两个堆+延迟删除
 
 如上边《数据流的中位数》问题中两个堆的解法应用到这个问题会比较困难，难在从堆里删除元素的复杂度高，需要遍历一遍先找到那个元素才行（实际是找到元素的索引，再调用标准库的 Remove方法）。
 
@@ -310,13 +310,76 @@ func (h *Heap) clean() {
 }
 ```
 ## 拓展
-实际上，对于这个问题也可以参考标准库 container/heap 里的测试文件 example_pq_test.go
+除了延迟删除技巧，还有一个思路，实际比延迟删除更好。
+维护每个元素在堆里的索引，在删除时用标准库的Remove方法。
+详见注释。
 
-里边给每个元素维护了一个在堆里的索引 index 属性，主要是在 Swap 里维护正确值。
+```go
+type Heap struct {
+	cmp  Comparator
+	data []int
+	idx  map[int]int // 维护每个元素在 data 数组中的索引
+	cnt  map[int]int // 可能有多个相同元素入堆，我们仅在 data 中维护去重后的元素，cnt 维护每个元素的个数
+	size int         // size 维护堆的总大小，这个值大于等于 len(data)
+}
 
-示例里有一个 update 方法，实际就是能迅速找到元素在堆里的索引，之后调标准库的 Fix 方法。
+type Comparator func(a, b int) bool
 
-类似地，这个问题里，可以实现一个 remove 方法，迅速获知一个元素在堆里的索引，再调用标准库的 Remove 方法就行。
+func New(cmp Comparator) *Heap {
+	return &Heap{
+		data: make([]int, 0),
+		idx:  make(map[int]int),
+		cnt:  make(map[int]int),
+		cmp:  cmp,
+	}
+}
 
-这样实现普适性没有上边的延迟实现好，比如如果是数据流的话，就没法事先为每个元素生成 Item 包装，而这个是必须的，因为除了需要能迅速获知元素在堆里的索引，也要能获知在原始数组的索引，这需要一开始就确定好。
+// for stantard heap package ====
+func (h *Heap) Len() int           { return len(h.data) }
+func (h *Heap) Less(i, j int) bool { return h.cmp(h.data[i], h.data[j]) }
+func (h *Heap) Swap(i, j int) {
+	h.data[i], h.data[j] = h.data[j], h.data[i]
+	h.idx[h.data[i]] = i
+	h.idx[h.data[j]] = j
+}
+func (h *Heap) Push(x interface{}) { h.data = append(h.data, x.(int)) }
+func (h *Heap) Pop() interface{} {
+	n := len(h.data)
+	res := h.data[n-1]
+	h.data = h.data[:n-1]
+	return res
+}
 
+// === end
+
+func (h *Heap) push(x int) {
+	if h.cnt[x] == 0 {
+		h.idx[x] = len(h.data)
+		heap.Push(h, x)
+	}
+	h.cnt[x]++
+	h.size++
+}
+func (h *Heap) pop() int {
+	res := h.data[0]
+	if h.cnt[res] == 1 {
+		heap.Pop(h)
+		h.idx[res] = -1
+	}
+	h.cnt[res]--
+	h.size--
+	return res
+}
+func (h *Heap) peek() int {
+	return h.data[0]
+}
+func (h *Heap) remove(x int) int {
+	if h.cnt[x] == 1 {
+		heap.Remove(h, h.idx[x])
+		h.idx[x] = -1
+	}
+	h.size--
+	h.cnt[x]--
+	return x
+}
+```
