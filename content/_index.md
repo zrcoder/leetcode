@@ -1,4 +1,4 @@
-❄︎ 这本书是个人 Leetcode 题解，用 Go 语言实现。
+❄︎ 这本书是个人 Leetcode 题解，Go 语言实现。
 
 {{< tags >}}
 
