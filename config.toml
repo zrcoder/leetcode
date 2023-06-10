@@ -30,6 +30,11 @@ defaultContentLanguageInSubdir = true
     noClasses = false
 
 [[menu.shortcuts]]
+  name = "<i class='fab fa-fw fa-github'></i> Github"
+  identifier = "github"
+  url = "https://github.com/zrcoder/leetcode"
+  weight = 1
+[[menu.shortcuts]]
   name = "<i class='fas fa-fw fa-bookmark'></i> Hello 算法"
   identifier = "hialgo"
   url = "https://www.hello-algo.com"
