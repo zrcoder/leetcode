@@ -1,101 +1,92 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
+	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"os"
-	"strconv"
-	"strings"
+	"path/filepath"
 )
+
+type QuestionMeta struct {
+	FrontendID string `json:"FrontendID"`
+	Title      string `json:"Title"`
+	Slug       string `json:"Slug"`
+}
 
 func main() {
 	log.SetFlags(log.Lshortfile)
-	src, dst := regurlarFiles()
-	log.Println("src:", src)
-	log.Println("dest:", dst)
-	_, err := os.Stat(dst)
-	if err == nil {
-		log.Fatal("file already existed:", dst)
-	}
-	f, err := os.Open(src)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer f.Close()
-	data := covert(f)
-	err = os.WriteFile(dst, data, 0600)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
 
-func regurlarFiles() (string, string) {
 	if len(os.Args) < 3 {
 		log.Fatal("must pass the go source and markdown destination directories")
 	}
+
 	src := os.Args[1]
 	dst := os.Args[2]
-	slug := strings.TrimRight(src, "/")
-	i := strings.LastIndex(slug, "/")
-	if i > 0 {
-		slug = slug[i+1:]
+	data, err := os.ReadFile(filepath.Join(src, "question.json"))
+	fatalIfError(err)
+	question := &QuestionMeta{}
+	err = json.Unmarshal(data, question)
+	fatalIfError(err)
+	mdData, err := os.ReadFile(filepath.Join(src, "question.md"))
+	fatalIfError(err)
+	codeData, err := os.ReadFile(filepath.Join(src, "solution.go"))
+	fatalIfError(err)
+
+	dst = filepath.Join(dst, question.Slug+".md")
+
+	buf := bytes.NewBuffer(nil)
+	buf.WriteString("---\n")
+	buf.WriteString(fmt.Sprintf("title: %s. %s\n", question.FrontendID, question.Title))
+	buf.WriteString("---\n\n")
+	buf.Write(mdData)
+	buf.WriteString("## 分析\n\n")
+	code, note := parseCodeAndNotes(codeData)
+	if note != nil {
+		buf.Write(note)
+		buf.WriteString("\n")
 	}
-	i = strings.Index(slug, ".")
-	if i > 0 {
-		slug = slug[i+1:]
-	}
-	dst += "/" + slug + ".md"
-	src += "/solution.go"
-	return src, dst
+	buf.WriteString("```go\n")
+	buf.Write(code)
+	buf.WriteString("```\n")
+	err = os.WriteFile(dst, buf.Bytes(), 0640)
+	fatalIfError(err)
 }
 
-func covert(r io.Reader) []byte {
-	scanner := bufio.NewScanner(r)
-	scanner.Split(bufio.ScanLines)
-	buf := bytes.NewBuffer(nil)
-	start := false
-	titleWrited := false
-	url := ""
-	for scanner.Scan() {
-		line := scanner.Text()
-		switch {
-		case strings.HasPrefix(line, "// http"):
-			url = line[3:]
-		case strings.TrimSpace(line) == "/*":
-			start = true
-		case line == "package main" || line == "*/" || strings.HasPrefix(line, "// Created by"):
-		default:
-			if !start {
-				continue
-			}
-			if !titleWrited {
-				titleWrited = true
-				title := strings.TrimSpace(line)
-				level := ""
-				i := strings.LastIndex(title, "(")
-				if i > 0 {
-					level = title[i:]
-					title = title[:i]
-					title = strings.TrimSpace(title)
-				}
-				buf.WriteString("---\n")
-				buf.WriteString("title: ")
-				buf.WriteString(strconv.Quote(title))
-				buf.WriteString("\n---\n\n")
-				buf.WriteString(fmt.Sprintf("[%s %s](%s)\n\n", title, level, url))
-			} else {
-				if line == "// @lc code=begin" {
-					buf.WriteString("## 分析\n\n\n```go\n")
-				} else if line == "// @lc code=end" {
-					buf.WriteString("```\n\n")
-				} else {
-					buf.WriteString(line + "\n")
-				}
-			}
+func parseCodeAndNotes(data []byte) (code, note []byte) {
+	const (
+		noteStart = "/* @note start\n"
+		noteEnd   = "@note end */\n"
+		codeStart = "// @submit start\n"
+		codeEnd   = "// @submit end\n"
+	)
+	i := bytes.Index(data, []byte(noteStart))
+	if i != -1 {
+		data = data[i+len(noteStart):]
+		i = bytes.Index(data, []byte(noteEnd))
+		if i != -1 {
+			note = data[:i]
+			data = data[i+len(noteEnd):]
 		}
 	}
-	return buf.Bytes()
+	i = bytes.Index(data, []byte(codeStart))
+	if i == -1 {
+		code = data
+		return
+	}
+	data = data[i+len(codeStart):]
+	i = bytes.LastIndex(data, []byte(codeEnd))
+	if i == -1 {
+		code = data
+		return
+	}
+	code = data[:i]
+	return
+}
+
+func fatalIfError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }
