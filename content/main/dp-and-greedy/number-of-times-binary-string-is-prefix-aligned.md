@@ -77,6 +77,26 @@ func numTimesAllBlue(flips []int) int {
 	}
 	return res
 }
+```
+
+还可以更简单。仅维护 hi 和置为 1 的总数 sum，每次考虑 hi 和 sum 是否相等，相等则结果加 1.
+
+复杂度同上。
+
+```go
+func numTimesAllBlue(flips []int) int {
+	hi := 0
+	res := 0
+	for i, v := range flips {
+		if v > hi {
+			hi = v
+		}
+		if i+1 == hi { // i+1 is exactly sum
+			res++
+		}
+	}
+	return res
+}
 
 ```
 
