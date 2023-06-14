@@ -9,10 +9,13 @@ import (
 	"path/filepath"
 )
 
-type QuestionMeta struct {
-	FrontendID string `json:"FrontendID"`
-	Title      string `json:"Title"`
-	Slug       string `json:"Slug"`
+type Meta struct {
+	FrontendID string `json:"frontendQuestionId"`
+	Title      string `json:"title"`
+	Referer    string
+	TitleSlug  string `json:"titleSlug"`
+	Difficulty string `json:"difficulty"`
+	PaidOnly   bool   `json:"paidOnly"`
 }
 
 func main() {
@@ -26,7 +29,7 @@ func main() {
 	dst := os.Args[2]
 	data, err := os.ReadFile(filepath.Join(src, "question.json"))
 	fatalIfError(err)
-	question := &QuestionMeta{}
+	question := &Meta{}
 	err = json.Unmarshal(data, question)
 	fatalIfError(err)
 	mdData, err := os.ReadFile(filepath.Join(src, "question.md"))
@@ -34,7 +37,7 @@ func main() {
 	codeData, err := os.ReadFile(filepath.Join(src, "solution.go"))
 	fatalIfError(err)
 
-	dst = filepath.Join(dst, question.Slug+".md")
+	dst = filepath.Join(dst, question.TitleSlug+".md")
 
 	buf := bytes.NewBuffer(nil)
 	buf.WriteString("---\n")
@@ -50,6 +53,17 @@ func main() {
 	buf.WriteString("```go\n")
 	buf.Write(code)
 	buf.WriteString("```\n")
+	testData, err := os.ReadFile(filepath.Join(src, "solution_test.go"))
+	fatalIfError(err)
+	if !bytes.Contains(testData, []byte("TODO")) {
+		buf.WriteString("\nLocal tests:\n\n```go\n\n")
+		i := bytes.Index(testData, []byte("func "))
+		if i != -1 {
+			buf.Write(testData[i:])
+			buf.WriteString("\n```\n\n")
+		}
+	}
+
 	err = os.WriteFile(dst, buf.Bytes(), 0640)
 	fatalIfError(err)
 }
