@@ -1,8 +1,8 @@
 ---
-title: "Text Justification"
+title: "文本左右对齐"
 date: 2023-01-05T10:48:25+08:00
 ---
-## [68. Text Justification](https://leetcode.cn/problems/text-justification) (Hard)
+## [68. 文本左右对齐](https://leetcode.cn/problems/text-justification) (Hard)
 
 给定一个单词数组 `words` 和一个长度 `maxWidth` ，重新排版单词，使其成为每行恰好有 `maxWidth` 个字符，且左右两端对齐的文本。
 
@@ -78,6 +78,7 @@ func fullJustify(words []string, maxWidth int) []string
 ```
 
 ## 分析
+
 直接模拟就可以，不过编码细节较多，我们一步步来。
 
 首先写出框架。需要用类似滑动窗口的双指针方式来遍历单词，窗口中维护结果的每一行。

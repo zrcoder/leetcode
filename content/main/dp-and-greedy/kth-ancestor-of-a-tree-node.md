@@ -1,8 +1,8 @@
 ---
-title: 1483. Kth Ancestor of a Tree Node
+title: 1483. 树节点的第 K 个祖先
 ---
 
-## [1483. Kth Ancestor of a Tree Node](https://leetcode.cn/problems/kth-ancestor-of-a-tree-node) (Hard)
+## [1483. 树节点的第 K 个祖先](https://leetcode.cn/problems/kth-ancestor-of-a-tree-node) (Hard)
 
 给你一棵树，树上有 `n` 个节点，按从 `0` 到 `n-1` 编号。树以父节点数组的形式给出，其中 `parent[i]` 是节点 `i` 的父节点。树的根节点是编号为 `0` 的节点。
 

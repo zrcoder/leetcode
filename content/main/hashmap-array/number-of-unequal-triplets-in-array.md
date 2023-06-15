@@ -1,15 +1,15 @@
 ---
-title: 2475. Number of Unequal Triplets in Array
+title: 2475. 数组中不等三元组的数目
 ---
 
-## [2475. Number of Unequal Triplets in Array](https://leetcode.cn/problems/number-of-unequal-triplets-in-array) (Easy)
+## [2475. 数组中不等三元组的数目](https://leetcode.cn/problems/number-of-unequal-triplets-in-array) (Easy)
 
 给你一个下标从 **0** 开始的正整数数组 `nums` 。请你找出并统计满足下述条件的三元组 `(i, j, k)` 的数目：
 
 - `0 <= i < j < k < nums.length`
 - `nums[i]`、 `nums[j]` 和 `nums[k]` **两两不同** 。
 
-  - 换句话说： `nums[i] != nums[j]`、 `nums[i] != nums[k]` 且 `nums[j] != nums[k]` 。
+    - 换句话说： `nums[i] != nums[j]`、 `nums[i] != nums[k]` 且 `nums[j] != nums[k]` 。
 
 返回满足上述条件三元组的数目。
 
@@ -46,6 +46,7 @@ title: 2475. Number of Unequal Triplets in Array
 ### 朴素解法
 
 时间复杂度 O(n^3), 空间复杂度 O(1).
+
 ```go
 func unequalTriplets(nums []int) int {
 	res := 0
@@ -65,7 +66,7 @@ func unequalTriplets(nums []int) int {
 ### 排序
 
 时间复杂度 O(nlogn), 空间复杂度，O(1).
-因为结果与元素顺序无关，可以排序让相同元素聚在一起，对于当前一堆相同的元素 [i, j), 其对结果的贡献为 left * （j-i） * right
+因为结果与元素顺序无关，可以排序让相同元素聚在一起，对于当前一堆相同的元素 [i, j), 其对结果的贡献为 left *（j-i）* right
 
 ```go
 func unequalTriplets(nums []int) int {
@@ -85,7 +86,6 @@ func unequalTriplets(nums []int) int {
 ### 哈希表统计元素数量
 
 类似排序解法. 时空复杂度均为 O(n).
-
 
 ```go
 func unequalTriplets(nums []int) int {

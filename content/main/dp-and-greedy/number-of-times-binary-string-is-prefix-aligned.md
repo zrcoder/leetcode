@@ -1,8 +1,8 @@
 ---
-title: 1375. Number of Times Binary String Is Prefix-Aligned
+title: 1375. 二进制字符串前缀一致的次数
 ---
 
-## [1375. Number of Times Binary String Is Prefix-Aligned](https://leetcode.cn/problems/number-of-times-binary-string-is-prefix-aligned) (Medium)
+## [1375. 二进制字符串前缀一致的次数](https://leetcode.cn/problems/number-of-times-binary-string-is-prefix-aligned) (Medium)
 
 给你一个长度为 `n` 、下标从 **1** 开始的二进制字符串，所有位最开始都是 `0` 。我们会按步翻转该二进制字符串的所有位（即，将 `0` 变为 `1`）。
 
@@ -127,4 +127,3 @@ func Test_numTimesAllBlue(t *testing.T) {
 }
 
 ```
-
