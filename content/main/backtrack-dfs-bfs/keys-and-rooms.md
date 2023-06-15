@@ -56,7 +56,7 @@ func canVisitAllRooms(rooms [][]int) bool
 BFS/DFS入门问题。
 
 {{<tabs>}}
-{{%tab name="DFS"%}}
+{{%tab title="DFS"%}}
 
 ```go
 func canVisitAllRooms(rooms [][]int) bool {
@@ -80,7 +80,7 @@ func canVisitAllRooms(rooms [][]int) bool {
 ```
 
 {{%/tab%}}
-{{%tab name="BFS"%}}
+{{%tab title="BFS"%}}
 
 ```go
 func canVisitAllRooms(rooms [][]int) bool {

@@ -1,3 +1,7 @@
++++
+archetype="home"
++++
+
 # Leetcode 之旅
 
 这本书是个人算法问题题解，Go 语言实现。

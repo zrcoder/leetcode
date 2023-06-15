@@ -74,7 +74,7 @@ BFS 和 DFS 需要先根据 edges 数组构建出图，以快速获取某个节�
 
 {{<tabs>}}
 
-{{%tab name="BFS"%}}
+{{%tab title="BFS"%}}
 
 ```go
 func validPath(n int, edges [][]int, source int, destination int) bool {
@@ -112,7 +112,7 @@ func validPath(n int, edges [][]int, source int, destination int) bool {
 
 {{%/tab%}}
 
-{{%tab name="DFS"%}}
+{{%tab title="DFS"%}}
 
 ```go
 func validPath(n int, edges [][]int, source int, destination int) bool {
@@ -149,7 +149,7 @@ func validPath(n int, edges [][]int, source int, destination int) bool {
 
 {{%/tab%}}
 
-{{%tab name="并查集"%}}
+{{%tab title="并查集"%}}
 
 ```go
 func validPath(n int, edges [][]int, source int, destination int) bool {

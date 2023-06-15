@@ -60,7 +60,7 @@ BFS 或 DFS 都可以，DFS 较简洁。
 
 {{<tabs groupid="1">}}
 
-{{%tab name="Go"%}}
+{{%tab title="Go"%}}
 
 ```go
 func longestZigZag(root *TreeNode) int {
@@ -84,7 +84,7 @@ func longestZigZag(root *TreeNode) int {
 
 {{%/tab%}}
 
-{{%tab name="Python3"%}}
+{{%tab title="Python3"%}}
 
 ```python
 # Definition for a binary tree node.
@@ -115,7 +115,7 @@ class Solution:
 实际上，在 dfs 时，递归函数设计为多个入参，无论代码可读性还是运行性能，都是劣于设计为多个返回值的。可以参考专题《在树上动态规划》。
 
 {{<tabs groupid="2">}}
-{{%tab name="Go"%}}
+{{%tab title="Go"%}}
 
 ```go
 func longestZigZag(root *TreeNode) int {
@@ -141,7 +141,7 @@ func longestZigZag(root *TreeNode) int {
 
 {{%/tab%}}
 
-{{%tab name="Python3"%}}
+{{%tab title="Python3"%}}
 
 ```python
 class Solution:

@@ -55,7 +55,7 @@ tags: [回溯, 记忆化搜索, 动态规划]
 
 {{<tabs groupid="39">}}
 
-{{%tab name="通用写法"%}}
+{{%tab title="通用写法"%}}
 
 ```go
 func combinationSum(candidates []int, target int) [][]int {
@@ -85,7 +85,7 @@ func combinationSum(candidates []int, target int) [][]int {
 
 {{%/tab%}}
 
-{{%tab name="循环写法"%}}
+{{%tab title="循环写法"%}}
 
 ```go
 func combinationSum(candidates []int, target int) [][]int {
@@ -187,7 +187,7 @@ func combinations(candidates []int, target int) int {
 主要难点在去重，可以事先将数组排序，回溯过程中调整策略。
 
 {{<tabs groupid="40">}}
-{{%tab name="通用写法"%}}
+{{%tab title="通用写法"%}}
 
 ```go
 func combinationSum2(candidates []int, target int) [][]int {
@@ -221,7 +221,7 @@ func combinationSum2(candidates []int, target int) [][]int {
 ```
 
 {{%/tab%}}
-{{%tab name="循环写法"%}}
+{{%tab title="循环写法"%}}
 
 ```go
 func combinationSum2(candidates []int, target int) [][]int {

@@ -65,7 +65,7 @@ func (f *WordFilter) F(prefix string, suffix string) int {
 
 {{<tabs>}}
 
-{{%tab name="哈希表"%}}
+{{%tab title="哈希表"%}}
 
 ```go
 type WordFilter struct {
@@ -96,7 +96,7 @@ func (f *WordFilter) F(prefix string, suffix string) int {
 
 {{%/tab%}}
 
-{{%tab name="Trie 树"%}}
+{{%tab title="Trie 树"%}}
 
 ```go
 type WordFilter struct {
