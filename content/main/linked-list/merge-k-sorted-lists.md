@@ -67,6 +67,8 @@ func mergeKLists(lists []*ListNode) *ListNode
 
 ## 分析
 
+### 控制步长的两两合并
+
 首先需要实现合并两个有序列表的函数 merge，再一一合并所有的列表。
 
 合并两个链表的函数如下：
@@ -98,19 +100,16 @@ for _, v := range lists {
 return r
 ```
 
-非常耗时，这样的合并很不均衡，可以想象临近最后是一个很长的链表和一个很短的链表合并。如果能保证每次合并的两个链表规模相当，就能优化这个问题了。
-
-{{<tabs>}}
-{{%tab title="实现一"%}}
+时间复杂度是 O(n*k^2)，其中 n 是原始单个链表的长度，这样的合并很不均衡，可以想象临近最后是一个很长的链表和一个很短的链表合并。如果能保证每次合并的两个链表规模相当，就能优化这个问题了。
 
 ```go
 func mergeKLists(lists []*ListNode) *ListNode {
-	n := len(lists)
-	if n == 0 {
+	k := len(lists)
+	if k == 0 {
 		return nil
 	}
-	for interval := 1; interval < n; interval *= 2 {
-		for i := 0; i+interval < n; i += interval * 2 {
+	for interval := 1; interval < k; interval *= 2 {
+		for i := 0; i+interval < k; i += interval * 2 {
 			lists[i] = merge(lists[i], lists[i+interval])
 		}
 	}
@@ -118,24 +117,51 @@ func mergeKLists(lists []*ListNode) *ListNode {
 }
 ```
 
-{{%/tab%}}
-{{%tab title="实现二"%}}
+时间复杂度是 O(nklogk)，空间复杂度是 O(1)。
+
+### 借助堆
 
 ```go
-func mergeKLists1(lists []*ListNode) *ListNode {
-	n := len(lists)
-	if n == 0 {
-		return nil
-	}
-	for end := n - 1; end > 0; {
-		for from := 0; from < end; from++ {
-			lists[from] = merge(lists[from], lists[end])
-			end--
-		}
-	}
-	return lists[0]
+func mergeKLists(lists []*ListNode) *ListNode {
+    k := len(lists)
+    if k == 0 {
+        return nil
+    }
+	h := &Heap{}
+    for _, node := range lists {
+        if node != nil {
+            h.push(node)
+        }
+    }
+    dummy := &ListNode{}
+    p := dummy
+    for h.Len() > 0 {
+        cur := h.pop()
+        p.Next = cur
+        p = p.Next
+        if cur.Next != nil {
+            h.push(cur.Next)
+        }
+    }
+    p, dummy.Next = dummy.Next, nil
+    return p
 }
+
+type Heap struct {
+    s []*ListNode
+}
+func (h *Heap) Len() int {return len(h.s)}
+func (h *Heap) Less(i, j int) bool {return h.s[i].Val < h.s[j].Val}
+func (h *Heap) Swap(i, j int) {h.s[i], h.s[j] = h.s[j], h.s[i]}
+func (h *Heap) Push(x any) {h.s = append(h.s, x.(*ListNode))}
+func (h *Heap) Pop() any {
+    n := len(h.s)
+    x := h.s[n-1]
+    h.s = h.s[:n-1]
+    return x
+}
+func (h *Heap) push(x *ListNode) {heap.Push(h, x)}
+func (h *Heap) pop() *ListNode{return heap.Pop(h).(*ListNode)}
 ```
 
-{{%/tab%}}
-{{</tabs>}}
+时间复杂度同样为 O(nklogk)，空间复杂度是 O(k)，维护了一个大小为 k 的堆 。
