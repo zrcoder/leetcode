@@ -38,6 +38,10 @@ func main() {
 	fatalIfError(err)
 
 	dst = filepath.Join(dst, question.TitleSlug+".md")
+	_, err = os.Stat(dst)
+	if err == nil {
+		log.Fatal("already exist: ", dst)
+	}
 
 	buf := bytes.NewBuffer(nil)
 	buf.WriteString("---\n")
@@ -56,7 +60,7 @@ func main() {
 	testData, err := os.ReadFile(filepath.Join(src, "solution_test.go"))
 	fatalIfError(err)
 	if !bytes.Contains(testData, []byte("TODO")) {
-		buf.WriteString("\nLocal tests:\n\n```go\n\n")
+		buf.WriteString("\n测试用例:\n\n```go\n\n")
 		i := bytes.Index(testData, []byte("func "))
 		if i != -1 {
 			buf.Write(testData[i:])

@@ -116,6 +116,7 @@ func (uf UnionFind) Find(x int) int {
 - [交换字符串中的字符](/main/graph/smallest-string-with-swaps)
 - [移除最多的同行或同列石头](/main/graph/most-stones-removed-with-same-row-or-column)
 - [打砖块](/main/graph/bricks-falling-when-hit)
+- [你能穿过矩阵的最后一天](main/graph/last-day-where-you-can-still-cross)
 - [账户合并](/main/graph/accounts-merge)
 - [最小生成树里的关键边和伪关键边](/main/graph/critical-and-pseudo-critical-edges-in-mst)
 - [按公因数计算最大组件大小](/main/graph/largest-component-size-by-common-factor)
