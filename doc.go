@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"time"
 )
 
 type Meta struct {
@@ -46,6 +47,7 @@ func main() {
 	buf := bytes.NewBuffer(nil)
 	buf.WriteString("---\n")
 	buf.WriteString(fmt.Sprintf("title: %s. %s\n", question.FrontendID, question.Title))
+	buf.WriteString(fmt.Sprintf("date: %s\n", time.Now().Format(time.RFC3339)))
 	buf.WriteString("---\n\n")
 	buf.Write(mdData)
 	buf.WriteString("## 分析\n\n")

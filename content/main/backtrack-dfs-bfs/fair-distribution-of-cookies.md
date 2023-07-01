@@ -1,5 +1,6 @@
 ---
 title: 2305. 公平分发饼干
+date: 2023-07-01T21:14:14+08:00
 ---
 
 ## [2305. 公平分发饼干](https://leetcode.cn/problems/fair-distribution-of-cookies) (Medium)
