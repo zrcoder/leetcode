@@ -68,14 +68,13 @@ func maximumRequests(n int, requests [][]int) int
 
 ## 分析
 
-首先想到，能不能通过统计每栋楼要出去的人out和要进来的人int，最后取每栋楼min(in, out)累加来得到结果？细想不行，会多算。
+首先想到，能不能通过统计每栋楼要出去的人out和要进来的人in，最后取每栋楼min(in, out)累加来得到结果？细想不行，会多算。
 
-再看，数据规模有限，可以穷举所有的情况来看结果。多所有 request，穷举每隔请求采用和不采用的情况，看看每种情况是不是所有楼进出人数相同。
+### 回溯
 
-用一般回溯写法就可以。 函数签名为 `backtrack(i, used int)`,  i 代表穷举到了 requests[i], used 存储了已经采用的请求数。另需一个数组 memo 记录每栋楼人数变动（进1人+1， 出一人 -1），这样在 i == len(requests) 时，就可以通过判断 memo 是否全为0 来确定是不是得到了一个可行解。
+数据规模有限，可以用回溯法穷举所有的情况来看结果。对所有 request，穷举每个请求采用和不采用的情况，看看每种情况是不是所有楼进出人数相同。
 
 ```go
-
 func maximumRequests(n int, requests [][]int) int {
 	res := 0
 	memo := make([]int, n)
@@ -114,48 +113,41 @@ func allZero(s []int) bool {
 时间复杂度 `O(2^m*n)`，其中 m 为 requests长度，n为楼栋数。穷举所有requests 用弃情况共 2^m，而每种情况为了判定是否满足所有楼进出人数为0，需要遍历 memo。
 空间复杂度是 `O(n)`，主要为 memo 数组开辟的空间。
 
-还可以优化时间复杂度，可以用一个额外的变量 zeros 来维护 memo里边 0 的数量。
+### 二进制枚举
+
+可以用一个二进制数字来代表采取的请求情况，枚举检查所有情况是否合法（每栋进出人数为0），且统计合法情况下最大的请求数量。
 
 ```go
 func maximumRequests(n int, requests [][]int) int {
+	m := len(requests)
 	res := 0
-	memo := make([]int, n)
-	zeros := n
-	var backtrack func(i, used int)
-	backtrack = func(i, used int) {
-		if i == len(requests) {
-			if zeros == n && used > res {
-				res = used
-			}
-			return
+	for mask := 1; mask < 1<<m; mask++ {
+		cur, ok := check(mask, n, requests)
+		if ok && cur > res {
+			res = cur
 		}
-		// 不采用 requests[i]
-		backtrack(i+1, used)
-		// 采用 requests[i]
-		z := zeros
-		v := requests[i]
-		if memo[v[0]] == 0 {
-			zeros--
-		}
-		if memo[v[1]] == 0 {
-			zeros--
-		}
-		memo[v[0]]--
-		memo[v[1]]++
-		if memo[v[0]] == 0 {
-			zeros++
-		}
-		if memo[v[1]] == 0 {
-			zeros++
-		}
-		backtrack(i+1, used+1)
-		memo[v[0]]++
-		memo[v[1]]--
-		zeros = z
 	}
-	backtrack(0, 0)
 	return res
+}
+
+func check(mask, n int, requests [][]int) (int, bool) {
+	delta := make([]int, n)
+	cnt := 0
+	for i, req := range requests {
+		if mask&(1<<i) == 0 {
+			continue
+		}
+		cnt++
+		delta[req[0]]--
+		delta[req[1]]++
+	}
+	for _, v := range delta {
+		if v != 0 {
+			return 0, false
+		}
+	}
+	return cnt, true
 }
 ```
 
-这样时间复杂度会降为 `O(2^m)`。实际测试反而不如未优化的解法～实际上当 n 比较大时这个优化才值得，而题目约束 n 最大是 20。
+时空复杂度同回溯法。
