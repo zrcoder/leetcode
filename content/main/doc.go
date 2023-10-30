@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/user"
 	"path/filepath"
 	"time"
 )
@@ -22,12 +23,18 @@ type Meta struct {
 func main() {
 	log.SetFlags(log.Lshortfile)
 
-	if len(os.Args) < 3 {
+	if len(os.Args) < 4 {
 		log.Fatal("must pass the go source and markdown destination directories")
 	}
 
-	src := os.Args[1]
-	dst := os.Args[2]
+	u, err := user.Current()
+	fatalIfError(err)
+	home := u.HomeDir
+
+	lang := os.Args[1]
+	id := os.Args[2]
+	dst := os.Args[3]
+	src := filepath.Join(home, ".leetgo", lang, "go", id)
 	data, err := os.ReadFile(filepath.Join(src, "question.json"))
 	fatalIfError(err)
 	question := &Meta{}
@@ -46,8 +53,8 @@ func main() {
 
 	buf := bytes.NewBuffer(nil)
 	buf.WriteString("---\n")
-	buf.WriteString(fmt.Sprintf("title: %s. %s\n", question.FrontendID, question.Title))
-	buf.WriteString(fmt.Sprintf("date: %s\n", time.Now().Format(time.RFC3339)))
+	fmt.Fprintf(buf, "title: %s. %s\n", question.FrontendID, question.Title)
+	fmt.Fprintf(buf, "date: %s\n", time.Now().Format(time.RFC3339))
 	buf.WriteString("---\n\n")
 	buf.Write(mdData)
 	buf.WriteString("## 分析\n\n")

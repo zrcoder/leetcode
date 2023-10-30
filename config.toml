@@ -3,7 +3,6 @@ baseURL = "https://rdcode.netlify.app/"
 theme = "github.com/McShelby/hugo-theme-relearn"
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
-defaultContentLanguageInSubdir = true
 
 [outputs]
   # For search functionality
