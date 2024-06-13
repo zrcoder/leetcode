@@ -16,12 +16,6 @@ markup:
 
 menu:
     main:
-      - name: 题解
-        pageRef: /docs
-        weight: 1
-      - name: 随笔
-        pageRef: /blog
-        weight: 2
       - name: Search
         weight: 3
         params:

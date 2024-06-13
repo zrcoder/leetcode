@@ -1,3 +1,8 @@
+---
+cascade:
+  type: docs
+---
+
 # Leetcode 之旅
 
 这本书是个人算法问题[题解](docs)，Go 语言实现。
