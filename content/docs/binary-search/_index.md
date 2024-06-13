@@ -1,7 +1,7 @@
 ---
 title: "二分搜索"
 weight: 3
-bookCollapseSection: true
+
 ---
 
 二分搜索，思想很简单，细节是魔鬼。让我们搞定这个魔鬼
