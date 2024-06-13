@@ -1,0 +1,50 @@
+baseURL: https://rdcode.netlify.app/
+defaultContentLanguage: zh-cn
+languageCode: zh-cn
+title: Leetcode 之旅
+
+module:
+  imports:
+    - path: github.com/imfing/hextra # hextra theme
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+menu:
+    main:
+      - name: 题解
+        pageRef: /docs
+        weight: 1
+      - name: 随笔
+        pageRef: /blog
+        weight: 2
+      - name: Search
+        weight: 3
+        params:
+          type: search
+      - name: GitHub
+        weight: 4
+        url: "https://github.com/zrcoder/leetcode"
+        params:
+          icon: github
+
+params:
+  navbar:
+    displayTitle: true
+    displayLogo: false
+  editURL:
+    enable: true
+    base: "https://github.com/zrcoder/leetcode/edit/master/content"
+  page:
+    # full (100%), wide (90rem), normal (1280px)
+    width: wide
+  theme:
+    # light | dark | system
+    default: system
+    displayToggle: true
+  footer:
+    enable: false

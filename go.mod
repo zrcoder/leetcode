@@ -2,4 +2,6 @@ module github.com/zrcoder/leetcode
 
 go 1.16
 
-require github.com/McShelby/hugo-theme-relearn v0.0.0-20230610122345-821002099413 // indirect
+require (
+	github.com/imfing/hextra v0.8.0 // indirect
+)
