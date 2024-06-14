@@ -36,7 +36,7 @@ Morris 算法用到了线索二叉树（threaded binary tree）的概念。
 
 见如下例子：
 
-![](/sl-img/morris-inorder.png)
+![](morris-inorder.png)
 
 示例代码如下：
 
@@ -106,7 +106,7 @@ func preorderTraversalMorris(root *TreeNode) {
 
 可以看如下图示对比理解：
 
-![](/sl-img/morris-preorder.png)
+![](morris-preorder.png)
 
 ## 后序遍历
 
@@ -160,4 +160,4 @@ func reversePath(node *TreeNode) * TreeNode {
 
 图示：
 
-![](/sl-img/morris-postorder.png)
+![](morris-postorder.png)

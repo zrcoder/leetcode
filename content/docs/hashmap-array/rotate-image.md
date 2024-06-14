@@ -49,7 +49,7 @@ tags: [二维数组]
 
 ## 分析
 
-![](/sl-img/rotateMatrix.png)  
+![](rotateMatrix.png)  
 如图,对于点 p1(r, c), 顺时针旋转90°后到达点 p2, 其坐标是(c, n-1-r)；  
 类似地，p2 旋转后到达 p3，p3 旋转后到达 p4，p4旋转后恰恰到达p1，这样完成一个循环：
 

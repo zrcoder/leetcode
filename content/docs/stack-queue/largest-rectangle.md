@@ -187,7 +187,7 @@ func calRight(heights []int) []int {
 
 实际上这个问题可以划归为上一个问题，以题目中示例一为例：
 
-![](/sl-img/largest-rectangle.png)
+![](largest-rectangle.png)
 
 列方向连续的格子 1 形成了一个个柱子，只需要逐行向下，每次更新 heights，再使用上一题的解法更新结果即可。这样整个时间复杂度降低到了 `O(n*m)`
 

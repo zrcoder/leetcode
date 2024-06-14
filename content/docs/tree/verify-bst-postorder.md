@@ -76,7 +76,7 @@ func verifyPostorder(postorder []int) bool {
 
 看一个例子：
 
-![](/sl-img/verify-bst-post.svg)
+![](verify-bst-post.svg)
 
 其后续遍历序列 postorder：[1, 3, 2, 5, 4, 7, 9, 8, 6]，没有太明显的特征。
 
