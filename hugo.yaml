@@ -1,6 +1,6 @@
 baseURL: https://rdcode.netlify.app/
 defaultContentLanguage: zh-cn
-languageCode: zh-cn
+languageCode: zh-CN
 title: Leetcode 之旅
 
 module:
@@ -42,3 +42,13 @@ params:
     displayToggle: true
   footer:
     enable: false
+
+  comments:
+    enable: true
+    type: giscus
+
+    giscus:
+      repo: zrcoder/leetcode
+      repoId: MDEwOlJlcG9zaXRvcnkzMDI4NjIyNjc=
+      category: General
+      categoryId: DIC_kwDOEg1Pu84CW1jM
