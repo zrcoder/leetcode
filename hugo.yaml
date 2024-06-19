@@ -7,6 +7,8 @@ module:
   imports:
     - path: github.com/imfing/hextra # hextra theme
 
+# https://imfing.github.io/hextra/docs/
+
 markup:
   goldmark:
     renderer:
@@ -33,9 +35,6 @@ params:
   editURL:
     enable: true
     base: "https://github.com/zrcoder/leetcode/edit/master/content"
-  page:
-    # full (100%), wide (90rem), normal (1280px)
-    width: wide
   theme:
     # light | dark | system
     default: system
