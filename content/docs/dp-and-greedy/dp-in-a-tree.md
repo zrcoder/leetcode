@@ -288,5 +288,5 @@ func minCameraCover(root *TreeNode) int {
 
 ## 延伸
 
-- [树中距离之和](/main/tree/sum-of-distances-in-tree)
-- [二叉搜索树的最大键值和](/main/tree/maximum-sum-bst-in-binary-tree)
+- [树中距离之和](/docs/tree/sum-of-distances-in-tree)
+- [二叉搜索树的最大键值和](/docs/tree/maximum-sum-bst-in-binary-tree)

@@ -90,7 +90,7 @@ func (h *Heap) Pop() interface{} {
 
 ## 应用
 
-- [数据流、滑动窗口的中位数](/main/design/find-median-from-data-stream)
+- [数据流、滑动窗口的中位数](/docs/design/find-median-from-data-stream)
   > 用两个堆来解决中位数的问题，非常妙，尤其可以看看滑动窗口那个问题的解法，实现了一个 remove、push 和 pop 都是对数级复杂度的堆。
   >
 

@@ -108,20 +108,20 @@ func (uf UnionFind) Find(x int) int {
 
 ## 应用
 
-- [省份数量](/main/graph/number-of-provinces)
-- [等式方程的可满足性](/main/graph/satisfiability-of-equality-equations)
-- [最低成本联通所有城市](/main/graph/connecting-cities-with-minimum-cost)
-- [按字典序排列最小的等效字符串](/main/graph/lexicographically-smallest-equivalent-string)
-- [冗余连接](/main/graph/redundant-connection)
-- [交换字符串中的字符](/main/graph/smallest-string-with-swaps)
-- [移除最多的同行或同列石头](/main/graph/most-stones-removed-with-same-row-or-column)
-- [打砖块](/main/graph/bricks-falling-when-hit)
-- [你能穿过矩阵的最后一天](main/graph/last-day-where-you-can-still-cross)
-- [账户合并](/main/graph/accounts-merge)
-- [最小生成树里的关键边和伪关键边](/main/graph/critical-and-pseudo-critical-edges-in-mst)
-- [按公因数计算最大组件大小](/main/graph/largest-component-size-by-common-factor)
-- [保证图可完全遍历](/main/graph/remove-max-number-of-edges-to-keep-graph-fully-traversable)
+- [省份数量](/docs/graph/number-of-provinces)
+- [等式方程的可满足性](/docs/graph/satisfiability-of-equality-equations)
+- [最低成本联通所有城市](/docs/graph/connecting-cities-with-minimum-cost)
+- [按字典序排列最小的等效字符串](/docs/graph/lexicographically-smallest-equivalent-string)
+- [冗余连接](/docs/graph/redundant-connection)
+- [交换字符串中的字符](/docs/graph/smallest-string-with-swaps)
+- [移除最多的同行或同列石头](/docs/graph/most-stones-removed-with-same-row-or-column)
+- [打砖块](/docs/graph/bricks-falling-when-hit)
+- [你能穿过矩阵的最后一天](/docs/graph/last-day-where-you-can-still-cross)
+- [账户合并](/docs/graph/accounts-merge)
+- [最小生成树里的关键边和伪关键边](/docs/graph/critical-and-pseudo-critical-edges-in-mst)
+- [按公因数计算最大组件大小](/docs/graph/largest-component-size-by-common-factor)
+- [保证图可完全遍历](/docs/graph/remove-max-number-of-edges-to-keep-graph-fully-traversable)
 
 > 值得一提的是，并查集还可以附加权值信息，来解决一些问题
 
-- [除法求值](/main/graph/evaluate-division)
+- [除法求值](/docs/graph/evaluate-division)

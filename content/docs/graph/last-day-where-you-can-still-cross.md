@@ -167,4 +167,4 @@ func Test_latestDayToCross(t *testing.T) {
 
 ### 逆向并查集
 
-如果不考虑最左最右两列的连通性，而是考虑最上最下两行的连通性，需要逆向思考，参考：[打砖块](/main/graph/bricks-falling-when-hit)，代码略。
+如果不考虑最左最右两列的连通性，而是考虑最上最下两行的连通性，需要逆向思考，参考：[打砖块](/docs/graph/bricks-falling-when-hit)，代码略。

@@ -47,7 +47,7 @@ weight: 1
 ## 解析
 
 这是个好问题，思路是用广度优先搜索来找到最短路径，有一些细节好好挖掘能形成编程技巧。
-如果对BFS不熟，可以先参考这个题解：[[778] 在水位上升的泳池中游泳](/main/backtrack-dfs-bfs/swim-in-rising-water)  
+如果对BFS不熟，可以先参考这个题解：[[778] 在水位上升的泳池中游泳](/docs/backtrack-dfs-bfs/swim-in-rising-water)  
 
 ## 解法一：常规广度优先搜索
 

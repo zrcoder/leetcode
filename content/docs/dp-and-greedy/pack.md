@@ -216,8 +216,8 @@ func pack(goods []Good, v int) int {
 
 ## 相关实践
 
-* 分割等和子集 见[题目描述](/main/backtrack-dfs-bfs/partition-to-k-equal-sum-subsets)问题416最后的01背包解法。
-* 变体：如 [零钱兑换系列](/main/hashmap-array/coin-change)。
+* 分割等和子集 见[题目描述](/docs/backtrack-dfs-bfs/partition-to-k-equal-sum-subsets)问题416最后的01背包解法。
+* 变体：如 [零钱兑换系列](/docs/hashmap-array/coin-change)。
 * k sum 问题:
 
 ```

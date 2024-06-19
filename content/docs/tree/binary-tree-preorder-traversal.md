@@ -107,7 +107,7 @@ func preorderTraversal2(root *TreeNode) []int {
 
 优秀的是空间复杂度
 
-详见 [Morris 迭代实现解法说明](/main/tree/traversal/binary-tree-morris)
+详见 [Morris 迭代实现解法说明](/docs/tree/traversal/binary-tree-morris)
 
 ```go
 var res []int

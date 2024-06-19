@@ -100,7 +100,7 @@ func inorderTraversal2(root *TreeNode) []int {
 
 ## 4. morris 遍历法
 
-详见 [Morris 迭代实现解法说明](/main/tree/traversal/binary-tree-morris)
+详见 [Morris 迭代实现解法说明](/docs/tree/traversal/binary-tree-morris)
 时间复杂度和上边的方法一样，O(n)；空间复杂度很优秀，除去结果数组，是 O(1)
 
 ```go

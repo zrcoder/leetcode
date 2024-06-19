@@ -39,7 +39,7 @@ date: 2024-02-10T16:50:45+08:00
 
 ### 动态规划
 
-如果仅需要返回最大长度，可以先排序，再通过双重循环的动态规划解决，现在需要能返回具体的子集，稍微复杂点，参考[最长上升子序列](/main/dp-and-greedy/longest-increasing-subsequence)中的说明来做。
+如果仅需要返回最大长度，可以先排序，再通过双重循环的动态规划解决，现在需要能返回具体的子集，稍微复杂点，参考[最长上升子序列](/docs/dp-and-greedy/longest-increasing-subsequence)中的说明来做。
 
 ```go
 func largestDivisibleSubset(nums []int) []int {

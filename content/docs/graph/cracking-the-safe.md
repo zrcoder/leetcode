@@ -122,6 +122,6 @@ func crackSafe(n int, k int) string {
 
 先走 `x->a` 这条死胡同，还是先走 `x->b` 这条环路？这里是显而易见的，而后序遍历能保证无论选择了哪条路，都能先把死胡同里的点加入结果，其次才会把环里的点加入。
 
-更多关于图的欧拉回路问题，可以看看 [[332] 重新安排行程](/main/graph/reconstruct-itinerary) 。
+更多关于图的欧拉回路问题，可以看看 [[332] 重新安排行程](/docs/graph/reconstruct-itinerary) 。
 
 实际上上边这个简图，就是在`重新安排行程`题解里“画”的。

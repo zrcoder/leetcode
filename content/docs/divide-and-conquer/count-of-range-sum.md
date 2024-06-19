@@ -24,7 +24,7 @@ weight: 1
 
 ## 分析
 
-这个问题有点像 [两个有序数组的中位数](/main/binary-search/median_of_two_sorted_arrays)。 朴素解法很简单，难的是想出时间复杂度 `O(nlogn)`的解法。
+这个问题有点像 [两个有序数组的中位数](/docs/binary-search/median_of_two_sorted_arrays)。 朴素解法很简单，难的是想出时间复杂度 `O(nlogn)`的解法。
 
 ### 朴素解法
 

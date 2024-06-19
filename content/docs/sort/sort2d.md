@@ -8,7 +8,7 @@ tags: [排序, 动态规划, 贪心, 二维排序]
 
 让我们从经典的 `lis` 即`最长递增子序列`问题开始：
 
-注意[参考解法](/main/dp-and-greedy/longest-increasing-subsequence/)中的贪心策略。
+注意[参考解法](/docs/dp-and-greedy/longest-increasing-subsequence/)中的贪心策略。
 
 类似的贪心策略可以扩展应用到一类二维排序问题：
 
