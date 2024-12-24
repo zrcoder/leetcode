@@ -23,7 +23,7 @@ type Meta struct {
 func main() {
 	log.SetFlags(log.Lshortfile)
 
-	if len(os.Args) < 4 {
+	if len(os.Args) < 3 {
 		log.Fatal("must pass the go source and markdown destination directories")
 	}
 
@@ -31,10 +31,9 @@ func main() {
 	fatalIfError(err)
 	home := u.HomeDir
 
-	lang := os.Args[1]
 	id := os.Args[2]
-	dst := os.Args[3]
-	src := filepath.Join(home, ".leetgo", lang, "go", id)
+	dst := os.Args[1]
+	src := filepath.Join(home, ".leetgo", id)
 	data, err := os.ReadFile(filepath.Join(src, "question.json"))
 	fatalIfError(err)
 	question := &Meta{}
@@ -66,18 +65,8 @@ func main() {
 	buf.WriteString("```go\n")
 	buf.Write(code)
 	buf.WriteString("```\n")
-	testData, err := os.ReadFile(filepath.Join(src, "solution_test.go"))
-	fatalIfError(err)
-	if !bytes.Contains(testData, []byte("TODO")) {
-		buf.WriteString("\n测试用例:\n\n```go\n\n")
-		i := bytes.Index(testData, []byte("func "))
-		if i != -1 {
-			buf.Write(testData[i:])
-			buf.WriteString("\n```\n\n")
-		}
-	}
 
-	err = os.WriteFile(dst, buf.Bytes(), 0640)
+	err = os.WriteFile(dst, buf.Bytes(), 0o640)
 	fatalIfError(err)
 }
 
