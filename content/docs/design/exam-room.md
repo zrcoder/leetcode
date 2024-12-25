@@ -1,6 +1,6 @@
 ---
 title: 855. 考场就座
-date: 2024-12-24T22:41:38+08:00
+date: 2024-12-25T18:45:44+08:00
 ---
 
 ## [855. 考场就座](https://leetcode.cn/problems/exam-room) (Medium)
@@ -108,10 +108,132 @@ func (er *ExamRoom) remove(s []int) {
 	delete(er.Hi, s[0])
 }
 
-/**
- * Your ExamRoom object will be instantiated and called as such:
- * obj := Constructor(n);
- * param_1 := obj.Seat();
- * obj.Leave(p);
- */
+```
+
+> 以上红黑树来自 github.com/emirpasic/gods/trees/redblacktree
+
+有序集合也可以用堆，但因为要删除，可以采取延迟删除的策略。
+
+
+```go
+type Heap struct {
+	S       [][2]int
+	N       int
+	delMemo map[[2]int]bool
+	size    int
+}
+
+func (h *Heap) Len() int { return len(h.S) }
+func (h *Heap) Less(i, j int) bool {
+	x, y := h.S[i], h.S[j]
+	disx, disy := h.dist(x), h.dist(y)
+	if disx == disy {
+		return x[0] < y[0]
+	}
+	return disx > disy
+}
+
+func (h *Heap) Swap(i, j int) {
+	h.S[i], h.S[j] = h.S[j], h.S[i]
+}
+
+func (h *Heap) Push(x any) {
+	h.S = append(h.S, x.([2]int))
+}
+
+func (h *Heap) Pop() any {
+	x := h.S[len(h.S)-1]
+	h.S = h.S[:len(h.S)-1]
+	return x
+}
+
+func (h *Heap) dist(s [2]int) int {
+	lo, hi := s[0], s[1]
+	if lo == -1 || hi == h.N {
+		return hi - lo - 1
+	}
+	return (hi - lo) / 2
+}
+
+func (h *Heap) peek() [2]int {
+	h.clean()
+	return h.S[0]
+}
+
+func (h *Heap) remove(s [2]int) {
+	h.clean()
+	h.delMemo[s] = true
+	h.size--
+}
+
+func (h *Heap) push(s [2]int) {
+	h.clean()
+	h.size++
+	heap.Push(h, s)
+}
+
+func (h *Heap) pop() [2]int {
+	h.clean()
+	h.size--
+	return heap.Pop(h).([2]int)
+}
+
+func (h *Heap) clean() {
+	for len(h.S) > 0 && h.delMemo[h.S[0]] {
+		delete(h.delMemo, h.S[0])
+		heap.Pop(h)
+	}
+}
+
+type ExamRoom struct {
+	Set    *Heap
+	Lo, Hi map[int]int
+	N      int
+}
+
+func Constructor(n int) ExamRoom {
+	er := ExamRoom{
+		Set: &Heap{N: n, delMemo: map[[2]int]bool{}},
+		Lo:  map[int]int{},
+		Hi:  map[int]int{},
+		N:   n,
+	}
+	er.add([2]int{-1, n})
+	return er
+}
+
+func (er *ExamRoom) Seat() int {
+	s := er.Set.peek()
+	p := (s[0] + s[1]) / 2
+	if s[0] == -1 {
+		p = 0
+	} else if s[1] == er.N {
+		p = er.N - 1
+	}
+	er.remove(s)
+	er.add([2]int{s[0], p})
+	er.add([2]int{p, s[1]})
+	return p
+}
+
+func (er *ExamRoom) Leave(p int) {
+	lo := er.Lo[p]
+	hi := er.Hi[p]
+	er.remove([2]int{lo, p})
+	er.remove([2]int{p, hi})
+	er.add([2]int{lo, hi})
+}
+
+func (er *ExamRoom) add(s [2]int) {
+	er.Set.push(s)
+	er.Lo[s[1]] = s[0]
+	er.Hi[s[0]] = s[1]
+}
+
+func (er *ExamRoom) remove(s [2]int) {
+	er.Set.remove(s)
+	delete(er.Lo, s[1])
+	delete(er.Hi, s[0])
+}
+
 ```
